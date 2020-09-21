@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, World!")
+        Text("Carrier Fox")
             .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
@@ -20,3 +20,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
