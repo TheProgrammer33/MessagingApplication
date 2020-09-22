@@ -9,8 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Carrier Fox")
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
+        VStack {
+            Text("Carrier Fox")
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .padding()
+            MessageBoxDetail()
+        }
     }
 }
 

@@ -14,6 +14,7 @@
 		C4E8F7E325191BBC0075AA3C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C4E8F7E125191BBC0075AA3C /* Main.storyboard */; };
 		C4E8F7EF25191BBC0075AA3C /* CarrierFoxTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8F7EE25191BBC0075AA3C /* CarrierFoxTests.swift */; };
 		C4E8F7FA25191BBD0075AA3C /* CarrierFoxUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8F7F925191BBD0075AA3C /* CarrierFoxUITests.swift */; };
+		C4E8F80B25197F930075AA3C /* MessageBoxDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8F80A25197F930075AA3C /* MessageBoxDetail.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		C4E8F7F525191BBC0075AA3C /* CarrierFoxUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CarrierFoxUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E8F7F925191BBD0075AA3C /* CarrierFoxUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarrierFoxUITests.swift; sourceTree = "<group>"; };
 		C4E8F7FB25191BBD0075AA3C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C4E8F80A25197F930075AA3C /* MessageBoxDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageBoxDetail.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				C4E8F7E425191BBC0075AA3C /* Info.plist */,
 				C4E8F7E525191BBC0075AA3C /* CarrierFox.entitlements */,
 				C4E8F7DE25191BBC0075AA3C /* Preview Content */,
+				C4E8F80A25197F930075AA3C /* MessageBoxDetail.swift */,
 			);
 			path = CarrierFox;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 			files = (
 				C4E8F7DB25191BBA0075AA3C /* ContentView.swift in Sources */,
 				C4E8F7D925191BBA0075AA3C /* AppDelegate.swift in Sources */,
+				C4E8F80B25197F930075AA3C /* MessageBoxDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
