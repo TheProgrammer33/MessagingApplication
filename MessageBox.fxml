@@ -4,19 +4,14 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #1C1D1F;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
-      <AnchorPane prefHeight="95.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="84.0" prefWidth="588.0" style="-fx-background-color: #2E2F31;" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="43.0" layoutY="114.0" prefHeight="25.0" prefWidth="523.0" AnchorPane.bottomAnchor="61.0" AnchorPane.leftAnchor="43.0" AnchorPane.rightAnchor="34.0" />
-            <Button layoutX="514.0" layoutY="149.0" mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="26.0" AnchorPane.rightAnchor="34.0" />
+            <TextField layoutX="30.0" layoutY="14.0" prefHeight="25.0" prefWidth="540.0" promptText="Type your message here" style="-fx-background-color: #3A3A3A;" AnchorPane.bottomAnchor="45.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="30.0" />
+            <Button layoutX="527.0" layoutY="45.0" mnemonicParsing="false" style="-fx-background-color: #646467;" text="Send" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="30.0" />
          </children>
       </AnchorPane>
    </bottom>
-   <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </top>
 </BorderPane>
