@@ -1,6 +1,8 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -10,6 +12,10 @@ import javafx.scene.layout.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.Scanner;
 
 public class Main extends Application {
     @Override
@@ -33,11 +39,38 @@ public class Main extends Application {
             primaryStage.setScene(scene);
 
             primaryStage.show();
+
+            EventHandler<ActionEvent> eventHandler = new EventHandler<ActionEvent>() {
+                public void handle(ActionEvent e)
+                {
+                    makeHTTPRequest(textField.getText());
+                }
+            };
+
+            sendButton.setOnAction(eventHandler);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
 
+    }
+
+    public void makeHTTPRequest(String input)
+    {
+        String url = "http://localhost:3000/messages/add?message=" + input + "&user=jack";
+
+        try {
+            URLConnection connection = new URL(url).openConnection();
+            InputStream response = connection.getInputStream();
+
+            Scanner scanner = new Scanner(response);
+            String responseBody = scanner.useDelimiter("\\A").next();
+            System.out.println(responseBody);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
