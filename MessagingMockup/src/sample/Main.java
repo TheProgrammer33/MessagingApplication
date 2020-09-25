@@ -1,34 +1,15 @@
-package com.company;
+package sample;
 
 import javafx.application.Application;
-import javafx.beans.InvalidationListener;
-import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextInputDialog;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.layout.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.*;
-import javafx.stage.Stage;
-import javafx.scene.control.Alert.AlertType;
 
-import java.awt.*;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDate;
-
 
 public class Main extends Application {
     @Override
@@ -44,7 +25,8 @@ public class Main extends Application {
             TextField textField = (TextField) anchorPane.getChildren().get(0);
             Button sendButton = (Button) anchorPane.getChildren().get(1);
 
-
+            textField.setStyle("-fx-text-fill: #FFFFFF; -fx-background-color: #3A3A3A;");
+            textField.setPromptText("Type your message here");
 
             Scene scene = new Scene(root);
 
