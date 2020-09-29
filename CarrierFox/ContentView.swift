@@ -10,10 +10,9 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            Text("Carrier Fox")
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .padding()
-            MessageBoxDetail()
+            MessageList(messageList: [MessageRow(message: Message(messageBody: "Message Demo 1", messageSendDate: Date())), MessageRow(message: Message(messageBody: "Message Demo 2", messageSendDate: Date()))])
+                .padding([.top, .leading, .trailing])
+            MessageBox()
         }
     }
 }
