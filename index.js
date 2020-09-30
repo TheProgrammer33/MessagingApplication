@@ -1,58 +1,94 @@
 var express = require("express");
-var app = express();
 var query = require('url');
 var MongoClient = require("mongodb").MongoClient;
+var events = require('events');
+var app = express();
 var url = "mongodb://localhost:27017/";
+var eventEmitter = new events.EventEmitter();
+
+var newMessage = function(threadId) {
+  //send out new messages to users with app open
+}
+eventEmitter.on('newMessage', newMessage);
 
 app.get("/", function(req, res) {
   res.send("Pong");
 });
 
-app.get("/messages", function(req, res) {
-  console.info("Start the thing here!@#$%^&*(): ", query.parse(req.url, true).query);
-  getFromDatabase(req, 'Messages', res)
+app.get('/api/thread/:threadId/messages', function(req, res) {
+  var threadId = req.params.threadId;
+  var userId = req.query.userId;
+  //TODO - check if userId can view messages in the thread
+
+  MongoClient.connect(url, function(err, client) {
+    if (err) throw err;
+    var db = client.db('Threads');
+    
+    db.collection(threadId).find({}).toArray(function (err, result) {
+      if (err) throw err;
+      response.send(result);
+    });
+
+    client.close();
+  });
+
 });
 
-app.get("/messages/add", function(req, res) {
-  data = query.parse(req.url, true).query
-  if (!data.user || !data.message) {
-    res.send(invalidData());
-  }
+app.post('/api/thread/:threadId/message/add', function(req, res) {
+  var threadId = req.params.threadId;
+  var userId = req.query.userId;
+  //TODO - check if userId can view messages in the thread
+  //eventEmitter.emit('newMessage');
 
-  setToDatabase(data, 'Messages', res);
+  MongoClient.connect(url, function(err, client) {
+    if (err) throw err;
+    var db = client.db('Threads');
+    
+    db.collection(threadId).insertOne(messageData, function (err, result) {
+      if (err) throw err;
+      response.send(result);
+    });
+
+    client.close();
+  });
 });
 
-app.listen(3000,function(){
+app.post('/api/create-account', function(req, res) {
+  var userName = req.query.userName;
+  var password = req.query.password;
+  //TODO - create user id and hash password
+
+  MongoClient.connect(url, function(err, client) {
+    if (err) throw err;
+    var db = client.db('Users');
+    
+    db.collection(userId).insertOne(messageData, function (err, result) {
+      if (err) throw err;
+      response.send(result);
+    });
+
+    client.close();
+  });
+});
+
+app.listen(3000, function(){
   console.log('Express app start on port 3000')
 });
 
-function getFromDatabase(data, collection, response) {
-  MongoClient.connect("mongodb://localhost:27017/", function (err, client) {
-    var db = client.db('testDB');
 
-    db.collection(collection).find({}).toArray(function (err, result) {
-            if (err) throw err;
-            response.send(result);
+/*
+Base Mongo Connection
+
+  MongoClient.connect(url, function(err, client) {
+    if (err) throw err;
+    var db = client.db();
+    
+    db.collection().(function (err, result) {
+      if (err) throw err;
+      response.send();
     });
-    client.close();
-  });
-}
 
-function setToDatabase(data, collection, response) {
-  MongoClient.connect("mongodb://localhost:27017/", function (err, client) {
-    var db = client.db("testDB");
-
-    console.info(data);
-    db.collection(collection).insertOne(data, function (err, result) {
-            if (err) throw err;
-            console.info("Data Saved");
-            response.send(result.ops);
-    });
     client.close();
   });
 
-}
-
-function invalidData() {
-  return "400: Bad Request"
-}
+*/
