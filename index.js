@@ -34,9 +34,10 @@ app.get('/api/thread/:threadId/messages', function(req, res) {
 
 });
 
-app.post('/api/thread/:threadId/message/add', function(req, res) {
+app.get('/api/thread/:threadId/message/add', function(req, res) {
   var threadId = req.params.threadId;
-  var userId = req.query.userId;
+  var messageData = req.query;
+  var userId = messageData.userId;
   //TODO - check if userId can view messages in the thread
   //eventEmitter.emit('newMessage');
 
