@@ -13,12 +13,14 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.layout.*;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
+import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
 
 public class Main extends Application {
@@ -59,7 +61,11 @@ public class Main extends Application {
 
                 initialize(primaryStage, newGroup);
 
-                //makeHTTPRequest(textField.getText());
+                String text = textField.getText();
+
+                text = text.replaceAll("\\s+","");
+
+                makeHTTPRequest(text);
             }
         };
 
@@ -79,15 +85,59 @@ public class Main extends Application {
 
     public void makeHTTPRequest(String input)
     {
-        String url = "http://localhost:3000/messages/add?message=" + input + "&user=jack";
+        String url = "http://localhost:3000/api/thread/1234/message/add";
 
         try {
-            URLConnection connection = new URL(url).openConnection();
+            URL connection = new URL(url);
+
+            HttpURLConnection httpURLConnection = (HttpURLConnection) connection.openConnection();
+            String urlParameters = "message=" + input + "&user=jack";
+            byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
+
+            /*
             InputStream response = connection.getInputStream();
 
             Scanner scanner = new Scanner(response);
             String responseBody = scanner.useDelimiter("\\A").next();
             System.out.println(responseBody);
+            */
+
+            /*
+            Map<String, String> postData = new HashMap<>();
+            postData.put("message", input);
+            postData.put("user", "jack");
+
+            StringBuilder requestData = new StringBuilder();
+
+            for (Map.Entry<String, String> param : postData.entrySet())
+            {
+                if (requestData.length() != 0) {
+                    requestData.append('&');
+                }
+                // Encode the parameter based on the parameter map we've defined
+                // and append the values from the map to form a single parameter
+                requestData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
+                requestData.append('=');
+                requestData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
+            }*/
+
+            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setDoOutput(true);
+
+            httpURLConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
+            httpURLConnection.setRequestProperty("Content-Length", Integer.toString(postData.length));
+
+            httpURLConnection.connect();
+
+            try (DataOutputStream dataOutputStream = new DataOutputStream(httpURLConnection.getOutputStream()))
+            {
+                dataOutputStream.write(postData);
+
+                dataOutputStream.flush();
+                dataOutputStream.close();
+            }
+
+
 
         } catch (IOException e) {
             e.printStackTrace();
