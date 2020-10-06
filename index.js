@@ -26,7 +26,7 @@ app.get('/api/thread/:threadId/messages', function(req, res) {
     
     db.collection(threadId).find({}).toArray(function (err, result) {
       if (err) throw err;
-      response.send(result);
+      res.send(result);
     });
 
     client.close();
@@ -34,7 +34,7 @@ app.get('/api/thread/:threadId/messages', function(req, res) {
 
 });
 
-app.get('/api/thread/:threadId/message/add', function(req, res) {
+app.post('/api/thread/:threadId/message/add', function(req, res) {
   var threadId = req.params.threadId;
   var messageData = req.query;
   var userId = messageData.userId;
@@ -47,7 +47,7 @@ app.get('/api/thread/:threadId/message/add', function(req, res) {
     
     db.collection(threadId).insertOne(messageData, function (err, result) {
       if (err) throw err;
-      response.send(result);
+      res.send(result);
     });
 
     client.close();
