@@ -85,60 +85,30 @@ public class Main extends Application {
 
     public void makeHTTPRequest(String input)
     {
-        String url = "http://localhost:3000/api/thread/1234/message/add";
+        String url = "http://localhost:3000/api/thread/1234/message/add?message=" + input + "&user=jack";
 
         try {
             URL connection = new URL(url);
 
             HttpURLConnection httpURLConnection = (HttpURLConnection) connection.openConnection();
-            String urlParameters = "message=" + input + "&user=jack";
-            byte[] postData = urlParameters.getBytes(StandardCharsets.UTF_8);
-
-            /*
-            InputStream response = connection.getInputStream();
-
-            Scanner scanner = new Scanner(response);
-            String responseBody = scanner.useDelimiter("\\A").next();
-            System.out.println(responseBody);
-            */
-
-            /*
-            Map<String, String> postData = new HashMap<>();
-            postData.put("message", input);
-            postData.put("user", "jack");
-
-            StringBuilder requestData = new StringBuilder();
-
-            for (Map.Entry<String, String> param : postData.entrySet())
-            {
-                if (requestData.length() != 0) {
-                    requestData.append('&');
-                }
-                // Encode the parameter based on the parameter map we've defined
-                // and append the values from the map to form a single parameter
-                requestData.append(URLEncoder.encode(param.getKey(), "UTF-8"));
-                requestData.append('=');
-                requestData.append(URLEncoder.encode(String.valueOf(param.getValue()), "UTF-8"));
-            }*/
 
             httpURLConnection.setRequestMethod("POST");
+
+            httpURLConnection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
             httpURLConnection.setDoOutput(true);
 
-            httpURLConnection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
-            httpURLConnection.setRequestProperty("Content-Length", Integer.toString(postData.length));
-
-            httpURLConnection.connect();
-
-            try (DataOutputStream dataOutputStream = new DataOutputStream(httpURLConnection.getOutputStream()))
+            try (Reader reader = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream(), "UTF-8")))
             {
-                dataOutputStream.write(postData);
+                for (int i; (i = reader.read()) >= 0;)
+                {
+                    System.out.print((char)i);
+                }
 
-                dataOutputStream.flush();
-                dataOutputStream.close();
+                reader.close();
             }
 
-
-
+            httpURLConnection.disconnect();
         } catch (IOException e) {
             e.printStackTrace();
         }
