@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         VStack {
-            MessageList(messageList: [MessageRow(message: Message(messageBody: "Message Demo 1", messageSendDate: Date())), MessageRow(message: Message(messageBody: "Message Demo 2", messageSendDate: Date()))])
+            MessageList()
                 .padding([.top, .leading, .trailing])
             MessageBox()
         }

@@ -8,17 +8,18 @@
 import SwiftUI
 
 struct MessageList: View {
-    var messageList: [MessageRow]
+    @EnvironmentObject var userData: UserData
     var body: some View {
-        List() {
-            messageList[0]
-            messageList[1]
+        List {
+            ForEach(userData.messages, id: \.self) {message in
+                MessageRow(message: message)
+            }
         }
     }
 }
 
 struct MessageList_Previews: PreviewProvider {
     static var previews: some View {
-        MessageList(messageList: [MessageRow(message: Message(messageBody: "Message Demo 1", messageSendDate: Date())), MessageRow(message: Message(messageBody: "Message Demo 2", messageSendDate: Date()))])
+        MessageList().environmentObject(UserData())
     }
 }

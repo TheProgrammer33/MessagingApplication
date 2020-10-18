@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Message {
+struct Message: Codable, Hashable {
     var messageBody: String
     var messageSendDate: Date
     var edited: Bool

@@ -10,32 +10,122 @@ import CoreLocation
 
 func connectToAPI() -> Void
 {
-    let url = URL(string: "http://localhost:3000/messages/add?message=TestFromCatherinesComputer&user=catherine")
-    guard let requestUrl = url else { fatalError() }
+    let url = URL(string: "https://catherinegallaher.com")
+
+    guard url != nil else {
+        print("Error creating url object")
+        return
+    }
+    
     // Create URL Request
-    var request = URLRequest(url: requestUrl)
+    var request = URLRequest(url: url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
     // Specify HTTP Method to use
     request.httpMethod = "GET"
     // Send HTTP Request
-    let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-        
-        // Check if Error took place
+    let session = URLSession.shared
+    
+    let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
         if let error = error {
-            print("Error took place \(error)")
+                print("Error with fetching data: \(error)")
+                return
+        }
+
+        guard let httpResponse = response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode) else {
+            print("Error with the response, unexpected status code: \(String(describing: response))")
             return
         }
-        
-        // Read HTTP Response Status code
-        if let response = response as? HTTPURLResponse {
-            print("Response HTTP Status code: \(response.statusCode)")
-        }
-        
-        // Convert HTTP Response Data to a simple String
-        if let data = data, let dataString = String(data: data, encoding: .utf8) {
-            print("Response data string:\n \(dataString)")
-        }
-        
-    }
-    task.resume()
 
+        if let data = data {
+            let stringResponse = String(decoding: data, as: UTF8.self)
+            print(stringResponse)
+            }
+    })
+    dataTask.resume()
+}
+
+
+func getMessages(completionHandler: @escaping (Data) -> Void){
+    let url = URL(string: "https://catherinegallaher.com/api/thread/1000/messages")
+
+    guard url != nil else {
+        print("Error creating url object")
+        return
+    }
+    
+    // Create URL Request
+    var request = URLRequest(url: url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
+    
+    //Header
+    //Body
+    
+    // Specify HTTP Method to use
+    request.httpMethod = "GET"
+    // Send HTTP Request
+    let session = URLSession.shared
+    
+    let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
+        if let error = error {
+                print("Error with fetching data: \(error)")
+                return
+        }
+
+        guard let httpResponse = response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode) else {
+            print("Error with the response, unexpected status code: \(String(describing: response))")
+            return
+        }
+
+        if let data = data {
+            let stringResponse = String(decoding: data, as: UTF8.self)
+            print(stringResponse)
+            completionHandler(data)
+            }
+    })
+    dataTask.resume()
+}
+
+
+func sendMessage(myMessage: String){
+    //var messages: [Message]
+    //var myMessage: String
+    //myMessage = "Thisisatestwithoutspaces"
+    let urlString = "https://catherinegallaher.com/api/thread/1000/message/add?message="+myMessage
+    print(urlString)
+    let url = URL(string: urlString)
+
+    guard url != nil else {
+        print("Error creating url object")
+        return
+    }
+    
+    // Create URL Request
+    var request = URLRequest(url: url!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10)
+    
+    //Header
+    //Body
+    
+    // Specify HTTP Method to use
+    request.httpMethod = "POST"
+    // Send HTTP Request
+    let session = URLSession.shared
+    
+    let dataTask = session.dataTask(with: request, completionHandler: { (data, response, error) in
+        if let error = error {
+                print("Error with fetching data: \(error)")
+                return
+        }
+              
+        guard let httpResponse = response as? HTTPURLResponse,
+            (200...299).contains(httpResponse.statusCode) else {
+            print("Error with the response, unexpected status code: \(String(describing: response))")
+            return
+        }
+
+        if let data = data {
+            let stringData = String(decoding: data, as: UTF8.self)
+            print(stringData)
+        }
+    })
+    dataTask.resume()
 }

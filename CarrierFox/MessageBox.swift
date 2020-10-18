@@ -15,7 +15,11 @@ struct MessageBox: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             Button(action: {
-                connectToAPI()
+                //connectToAPI()
+                getMessages() { (messages) in
+                    messageData = updateMessages(messages)
+                }
+                //sendMessage()
             }) {
                 Text("Send")
             }.padding([.top, .bottom, .trailing])

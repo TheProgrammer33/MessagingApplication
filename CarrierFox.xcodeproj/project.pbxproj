@@ -11,6 +11,9 @@
 		C424C4372522A26400F73F55 /* MessageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C4362522A26400F73F55 /* MessageList.swift */; };
 		C424C43C2522A28F00F73F55 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C43B2522A28F00F73F55 /* MessageRow.swift */; };
 		C424C4472522A2EC00F73F55 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C4462522A2EC00F73F55 /* Message.swift */; };
+		C424C4632534D49900F73F55 /* LoginMockUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C4622534D49800F73F55 /* LoginMockUp.swift */; };
+		C424C470253B967F00F73F55 /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C46F253B967F00F73F55 /* MessageData.swift */; };
+		C424C478253BA91E00F73F55 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C477253BA91E00F73F55 /* UserData.swift */; };
 		C4E8F7D925191BBA0075AA3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8F7D825191BBA0075AA3C /* AppDelegate.swift */; };
 		C4E8F7DB25191BBA0075AA3C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8F7DA25191BBA0075AA3C /* ContentView.swift */; };
 		C4E8F7DD25191BBC0075AA3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4E8F7DC25191BBC0075AA3C /* Assets.xcassets */; };
@@ -43,6 +46,9 @@
 		C424C4362522A26400F73F55 /* MessageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageList.swift; sourceTree = "<group>"; };
 		C424C43B2522A28F00F73F55 /* MessageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
 		C424C4462522A2EC00F73F55 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		C424C4622534D49800F73F55 /* LoginMockUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginMockUp.swift; path = CarrierFoxTests/LoginMockUp.swift; sourceTree = SOURCE_ROOT; };
+		C424C46F253B967F00F73F55 /* MessageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
+		C424C477253BA91E00F73F55 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		C4E8F7D525191BBA0075AA3C /* CarrierFox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarrierFox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E8F7D825191BBA0075AA3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4E8F7DA25191BBA0075AA3C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -108,6 +114,7 @@
 		C4E8F7D725191BBA0075AA3C /* CarrierFox */ = {
 			isa = PBXGroup;
 			children = (
+				C424C4622534D49800F73F55 /* LoginMockUp.swift */,
 				C4E8F7D825191BBA0075AA3C /* AppDelegate.swift */,
 				C4E8F7DA25191BBA0075AA3C /* ContentView.swift */,
 				C4E8F7DC25191BBC0075AA3C /* Assets.xcassets */,
@@ -118,7 +125,9 @@
 				C4E8F80A25197F930075AA3C /* MessageBox.swift */,
 				C424C4312522926100F73F55 /* APIConnection.swift */,
 				C424C4362522A26400F73F55 /* MessageList.swift */,
+				C424C477253BA91E00F73F55 /* UserData.swift */,
 				C424C43B2522A28F00F73F55 /* MessageRow.swift */,
+				C424C46F253B967F00F73F55 /* MessageData.swift */,
 				C424C4462522A2EC00F73F55 /* Message.swift */,
 			);
 			path = CarrierFox;
@@ -284,8 +293,11 @@
 				C4E8F7DB25191BBA0075AA3C /* ContentView.swift in Sources */,
 				C424C43C2522A28F00F73F55 /* MessageRow.swift in Sources */,
 				C4E8F7D925191BBA0075AA3C /* AppDelegate.swift in Sources */,
+				C424C470253B967F00F73F55 /* MessageData.swift in Sources */,
+				C424C4632534D49900F73F55 /* LoginMockUp.swift in Sources */,
 				C4E8F80B25197F930075AA3C /* MessageBox.swift in Sources */,
 				C424C4372522A26400F73F55 /* MessageList.swift in Sources */,
+				C424C478253BA91E00F73F55 /* UserData.swift in Sources */,
 				C424C4472522A2EC00F73F55 /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
