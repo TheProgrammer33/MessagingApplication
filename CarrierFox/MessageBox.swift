@@ -16,6 +16,7 @@ struct MessageBox: View {
                 .padding()
             Button(action: {
                 //connectToAPI()
+                sendMessage(myMessage: message)
                 getMessages() { (messages) in
                     messageData = updateMessages(messages)
                 }

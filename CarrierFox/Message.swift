@@ -8,17 +8,22 @@
 import Foundation
 
 struct Message: Codable, Hashable {
+    var id: Int
+    var user: String
     var messageBody: String
-    var messageSendDate: Date
-    var edited: Bool
+    //var messageSendDate: Date
+    //var isEdited: Bool
     
-    init(messageBody: String, messageSendDate: Date) {
-        self.messageBody = messageBody
-        self.messageSendDate = messageSendDate
-        self.edited = false
+    
+    init(message: String) {//messageSendDate: Date) {
+        self.id = 0
+        self.messageBody = message
+        self.user = "Who cares"
+        //self.messageSendDate = messageSendDate
+        //self.isEdited = false
     }
     
-    mutating func updatedEdited() {
-        self.edited = true
-    }
+//    mutating func updatedEdited() {
+//        self.isEdited = true
+//    }
 }

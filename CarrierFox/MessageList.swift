@@ -11,7 +11,7 @@ struct MessageList: View {
     @EnvironmentObject var userData: UserData
     var body: some View {
         List {
-            ForEach(userData.messages, id: \.self) {message in
+            ForEach(userData.messages, id: \.self) { message in
                 MessageRow(message: message)
             }
         }
