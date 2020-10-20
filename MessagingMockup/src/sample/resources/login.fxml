@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+
+<AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+   <children>
+      <TextField layoutX="48.0" layoutY="242.0" prefHeight="26.0" prefWidth="240.0" promptText="Username" />
+      <PasswordField layoutX="47.0" layoutY="300.0" prefHeight="26.0" prefWidth="242.0" promptText="Password" />
+      <Button layoutX="231.0" layoutY="409.0" mnemonicParsing="false" text="Submit" />
+   </children>
+</AnchorPane>

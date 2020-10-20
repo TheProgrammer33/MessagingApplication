@@ -1,0 +1,104 @@
+package sample;
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
+import java.io.FileInputStream;
+import java.io.IOException;
+
+public class NewAccountController extends AnchorPane
+{
+    @FXML
+    private Stage primaryStage;
+
+    @FXML
+    private TextField username;
+    @FXML
+    private TextField email;
+    @FXML
+    private PasswordField password;
+    @FXML
+    private PasswordField confirmPassword;
+    @FXML
+    private Text passwordError;
+    @FXML
+    private ImageView carrierFoxImage;
+
+    public Group initializeNewAccountPage(Stage primaryStage) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("resources/NewAccount.fxml"));
+
+        fxmlLoader.setRoot(this);
+        fxmlLoader.setController(this);
+
+        setPrimaryStage(primaryStage);
+
+        Parent root = fxmlLoader.load();
+
+        ImageView carrierFoxImage = (ImageView) root.getChildrenUnmodifiable().get(5);
+
+        carrierFoxImage.setImage(new Image(new FileInputStream("src/sample/resources/CarrierFox128x1.png")));
+
+        return new Group(root);
+    }
+
+    public void setPrimaryStage(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+    }
+
+    private Boolean isEmpty(PasswordField passwordField)
+    {
+        System.out.println(passwordField.getText());
+        if (passwordField.getText().isEmpty())
+            return true;
+        else
+            return false;
+    }
+
+    @FXML
+    public void validatePasswords()
+    {
+        if (isEmpty(password) || isEmpty(confirmPassword))
+        {
+            return;
+        }
+
+        if (password.getText().equals(confirmPassword.getText()))
+        {
+            passwordError.setVisible(false);
+        }
+        else
+        {
+            passwordError.setVisible(true);
+        }
+    }
+
+    @FXML
+    public void toggleLogInMenu()
+    {
+        LogInController logInController = new LogInController();
+
+        this.primaryStage.close();
+
+        Scene scene = null;
+        try {
+            scene = new Scene(logInController.initializeLogInPage(primaryStage));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.primaryStage.setScene(scene);
+
+        this.primaryStage.show();
+    }
+}
