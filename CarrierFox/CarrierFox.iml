@@ -23,5 +23,15 @@
         <jarDirectory url="file://$MODULE_DIR$/../JavaFX/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../GSON" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../GSON" recursive="false" />
+      </library>
+    </orderEntry>
   </component>
 </module>

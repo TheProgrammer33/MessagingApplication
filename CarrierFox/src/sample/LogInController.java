@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.http.HttpRequest;
 
 public class LogInController extends AnchorPane
 {
@@ -52,11 +53,13 @@ public class LogInController extends AnchorPane
         return new Group(root);
     }
 
-    public void setPrimaryStage(Stage primaryStage) {
+    public void setPrimaryStage(Stage primaryStage)
+    {
         this.primaryStage = primaryStage;
     }
 
-    public Stage getPrimaryStage() {
+    public Stage getPrimaryStage()
+    {
         return primaryStage;
     }
 
@@ -70,9 +73,41 @@ public class LogInController extends AnchorPane
         this.password = password;
     }
 
+    public boolean checkUserAndPass()
+    {
+        HTTPRequest httpRequest = new HTTPRequest();
+
+        return httpRequest.login(username.getText(), password.getText());
+    }
+
+    @FXML
+    protected void toggleMessageBoxMenu()
+    {
+        if (!checkUserAndPass())
+        {
+            return;
+        }
+
+        MessageBoxController messageBoxController = new MessageBoxController();
+
+        this.primaryStage.close();
+
+        Scene scene = null;
+        try {
+            scene = new Scene(messageBoxController.initializeMessageBoxPage(primaryStage));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.primaryStage.setScene(scene);
+
+        this.primaryStage.show();
+    }
+
     @FXML
     protected void toggleCreateNewAccountMenu()
     {
+
         NewAccountController newAccountController = new NewAccountController();
 
         this.primaryStage.close();

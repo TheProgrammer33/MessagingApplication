@@ -45,7 +45,14 @@ public class NewAccountController extends AnchorPane
 
         Parent root = fxmlLoader.load();
 
-        ImageView carrierFoxImage = (ImageView) root.getChildrenUnmodifiable().get(5);
+        carrierFoxImage = (ImageView) root.getChildrenUnmodifiable().get(5);
+
+        username = (TextField) root.getChildrenUnmodifiable().get(0);
+        email = (TextField) root.getChildrenUnmodifiable().get(1);
+        password = (PasswordField) root.getChildrenUnmodifiable().get(2);
+        confirmPassword = (PasswordField) root.getChildrenUnmodifiable().get(3);
+
+        passwordError = (Text) root.getChildrenUnmodifiable().get(8);
 
         carrierFoxImage.setImage(new Image(new FileInputStream("src/sample/resources/CarrierFox128x1.png")));
 
@@ -58,7 +65,6 @@ public class NewAccountController extends AnchorPane
 
     private Boolean isEmpty(PasswordField passwordField)
     {
-        System.out.println(passwordField.getText());
         if (passwordField.getText().isEmpty())
             return true;
         else
@@ -86,6 +92,10 @@ public class NewAccountController extends AnchorPane
     @FXML
     public void toggleLogInMenu()
     {
+        HTTPRequest httpRequest = new HTTPRequest();
+
+        httpRequest.createAccount(email.getText(), username.getText(), password.getText());
+
         LogInController logInController = new LogInController();
 
         this.primaryStage.close();
