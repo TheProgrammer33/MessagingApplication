@@ -4,9 +4,12 @@
   "description": "backend code for a messaging application",
   "main": "index.js",
   "dependencies": {
+    "bufferutil": "^4.0.1",
     "express": "^4.17.1",
     "mongodb": "^3.6.2",
-    "twilio": "^3.49.3"
+    "twilio": "^3.49.3",
+    "utf-8-validate": "^5.0.2",
+    "ws": "^7.3.1"
   },
   "devDependencies": {},
   "scripts": {
