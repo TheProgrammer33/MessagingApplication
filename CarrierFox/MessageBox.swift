@@ -9,18 +9,21 @@ import SwiftUI
 
 struct MessageBox: View {
     @State private var message = ""
+    @EnvironmentObject var userData: UserData
     var body: some View {
         HStack {
             TextField("Type here", text: $message)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             Button(action: {
-                //connectToAPI()
-                sendMessage(myMessage: message)
-                getMessages() { (messages) in
-                    messageData = updateMessages(messages)
+                if(message != "") {
+                    sendMessage(myMessage: message)
                 }
-                //sendMessage()
+                getMessages() { (messages) in
+                    //messageData = updateMessages(messages)
+                    userData.messages = updateMessages(messages)
+                }
+                message = ""
             }) {
                 Text("Send")
             }.padding([.top, .bottom, .trailing])
@@ -31,6 +34,6 @@ struct MessageBox: View {
 
 struct messageBox_Previews: PreviewProvider {
     static var previews: some View {
-        MessageBox()
+        MessageBox().environmentObject(UserData())
     }
 }

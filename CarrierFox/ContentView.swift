@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    let myWindow:NSWindow?
     var body: some View {
-        VStack {
+        return VStack {
             MessageList()
                 .padding([.top, .leading, .trailing])
             MessageBox()
@@ -20,7 +21,7 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(myWindow: nil)
     }
 }
 

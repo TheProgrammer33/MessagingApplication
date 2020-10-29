@@ -12,19 +12,26 @@ struct MessageRow: View {
     var body: some View {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy h:m a"
-        //let date = formatter.string(from: message.messageSendDate)
-        return HStack {
-            //Text(message.messageBody).padding(.horizontal)
-            Text(message.messageBody).padding(.horizontal)
-            Spacer()
-            //Text(date).padding(.horizontal)
+        let date = formatter.string(from: message.messageSentDate)
+        return VStack {
+            //Text(date).font(.caption).padding(.all)
+            HStack {
+                if (message.user == "MoreCoffee") {
+                    Spacer()
+                    Text(message.messageBody).padding(.horizontal)
+                }
+                else {
+                    Text(message.messageBody).padding(.horizontal)
+                    Spacer()
+                }
+            }
+            .font(.subheadline)
         }
     }
 }
 
 struct MessageRow_Previews: PreviewProvider {
     static var previews: some View {
-        //MessageRow(message: Message(messageBody: "Message Preview", messageSendDate: Date()))
-        MessageRow(message: Message(message: "Message Preview"))
+        MessageRow(message: Message(messageBody: "Message Preview", messageSentDate: Date()))
     }
 }

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C424C4322522926100F73F55 /* APIConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C4312522926100F73F55 /* APIConnection.swift */; };
+		C424C4322522926100F73F55 /* MessageAPIConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C4312522926100F73F55 /* MessageAPIConnect.swift */; };
 		C424C4372522A26400F73F55 /* MessageList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C4362522A26400F73F55 /* MessageList.swift */; };
 		C424C43C2522A28F00F73F55 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C43B2522A28F00F73F55 /* MessageRow.swift */; };
 		C424C4472522A2EC00F73F55 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C4462522A2EC00F73F55 /* Message.swift */; };
@@ -15,6 +15,7 @@
 		C424C470253B967F00F73F55 /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C46F253B967F00F73F55 /* MessageData.swift */; };
 		C424C478253BA91E00F73F55 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C477253BA91E00F73F55 /* UserData.swift */; };
 		C4662649253D290E00AF75D2 /* NewAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4662648253D290E00AF75D2 /* NewAccountView.swift */; };
+		C4662651253F4DCE00AF75D2 /* LoginAPIConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4662650253F4DCE00AF75D2 /* LoginAPIConnection.swift */; };
 		C4E8F7D925191BBA0075AA3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8F7D825191BBA0075AA3C /* AppDelegate.swift */; };
 		C4E8F7DB25191BBA0075AA3C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8F7DA25191BBA0075AA3C /* ContentView.swift */; };
 		C4E8F7DD25191BBC0075AA3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4E8F7DC25191BBC0075AA3C /* Assets.xcassets */; };
@@ -43,7 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		C424C4312522926100F73F55 /* APIConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConnection.swift; sourceTree = "<group>"; };
+		C424C4312522926100F73F55 /* MessageAPIConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageAPIConnect.swift; sourceTree = "<group>"; };
 		C424C4362522A26400F73F55 /* MessageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageList.swift; sourceTree = "<group>"; };
 		C424C43B2522A28F00F73F55 /* MessageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
 		C424C4462522A2EC00F73F55 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -51,6 +52,7 @@
 		C424C46F253B967F00F73F55 /* MessageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
 		C424C477253BA91E00F73F55 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		C4662648253D290E00AF75D2 /* NewAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountView.swift; sourceTree = "<group>"; };
+		C4662650253F4DCE00AF75D2 /* LoginAPIConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIConnection.swift; sourceTree = "<group>"; };
 		C4E8F7D525191BBA0075AA3C /* CarrierFox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarrierFox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E8F7D825191BBA0075AA3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4E8F7DA25191BBA0075AA3C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -126,7 +128,8 @@
 				C4E8F7E525191BBC0075AA3C /* CarrierFox.entitlements */,
 				C4E8F7DE25191BBC0075AA3C /* Preview Content */,
 				C4E8F80A25197F930075AA3C /* MessageBox.swift */,
-				C424C4312522926100F73F55 /* APIConnection.swift */,
+				C424C4312522926100F73F55 /* MessageAPIConnect.swift */,
+				C4662650253F4DCE00AF75D2 /* LoginAPIConnection.swift */,
 				C424C477253BA91E00F73F55 /* UserData.swift */,
 				C424C4362522A26400F73F55 /* MessageList.swift */,
 				C424C43B2522A28F00F73F55 /* MessageRow.swift */,
@@ -293,7 +296,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C4662649253D290E00AF75D2 /* NewAccountView.swift in Sources */,
-				C424C4322522926100F73F55 /* APIConnection.swift in Sources */,
+				C424C4322522926100F73F55 /* MessageAPIConnect.swift in Sources */,
 				C4E8F7DB25191BBA0075AA3C /* ContentView.swift in Sources */,
 				C424C43C2522A28F00F73F55 /* MessageRow.swift in Sources */,
 				C4E8F7D925191BBA0075AA3C /* AppDelegate.swift in Sources */,
@@ -302,6 +305,7 @@
 				C4E8F80B25197F930075AA3C /* MessageBox.swift in Sources */,
 				C424C4372522A26400F73F55 /* MessageList.swift in Sources */,
 				C424C478253BA91E00F73F55 /* UserData.swift in Sources */,
+				C4662651253F4DCE00AF75D2 /* LoginAPIConnection.swift in Sources */,
 				C424C4472522A2EC00F73F55 /* Message.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
