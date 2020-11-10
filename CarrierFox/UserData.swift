@@ -13,4 +13,5 @@ import Combine
 final class UserData: ObservableObject {
     @Published var messages = messageData
     @Published var username = "MoreCoffee"
+    @Published var chatList = [ChatDetailView()]
 }

@@ -52,10 +52,10 @@ struct NewAccountView: View {
                         .foregroundColor(Color.red)
                         .padding(.leading, 17.0)
                 }
-                TextField("Password", text: $password)
+                SecureField("Password", text: $password)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                TextField("Confirm Password", text: $confirmPassword)
+                SecureField("Confirm Password", text: $confirmPassword)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 if(password != confirmPassword) {

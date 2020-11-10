@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             contentRect: NSRect(x: 0, y: 0, width: 450, height: 500),
             styleMask: [.titled, .closable, .miniaturizable, .fullSizeContentView],
             backing: .buffered, defer: false)
-        let contentView = LoginView(myWindow: windowDetails)
+        let contentView = LoginView(myWindow: windowDetails).environmentObject(UserData())
         //let contentView = NewAccountView()
 
         // Create the window and set the content view.

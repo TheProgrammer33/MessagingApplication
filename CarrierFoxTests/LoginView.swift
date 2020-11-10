@@ -8,6 +8,7 @@
 import SwiftUI
 
 func showContentWindow() {
+
     var windowRef:NSWindow
     windowRef = NSWindow(
         contentRect: NSRect(x: 0, y: 0, width: 600, height: 500),
@@ -31,12 +32,16 @@ func showNewAccountWindow() {
 struct LoginView: View {
     @State private var username = ""
     @State private var password = ""
+    @EnvironmentObject var userData: UserData
     let myWindow:NSWindow?
     var body: some View {
         var successfulLogin: Bool = false
         let handlerBlock: (Bool) -> Void = {
             if $0 {
                 successfulLogin = true
+            }
+            else {
+                successfulLogin = false
             }
         }
         return NavigationView {
@@ -49,7 +54,7 @@ struct LoginView: View {
                     TextField("Username", text: $username)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
-                    TextField("Password", text: $password)
+                    SecureField("Password", text: $password)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
                 }
@@ -70,6 +75,9 @@ struct LoginView: View {
                         login(username: username, password: password, completionHandler: handlerBlock)
                         if(successfulLogin) {
                             showContentWindow()
+//                            getMessages() { (messages) in
+//                                userData.messages = updateMessages(messages)
+//                            }
                             self.myWindow?.close()
                         }
                         else {
@@ -91,6 +99,6 @@ struct LoginView: View {
 
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        LoginView(myWindow: nil)
+        LoginView(myWindow: nil).environmentObject(UserData())
     }
 }
