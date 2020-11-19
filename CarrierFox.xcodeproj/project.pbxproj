@@ -14,6 +14,9 @@
 		C424C4632534D49900F73F55 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C4622534D49800F73F55 /* LoginView.swift */; };
 		C424C470253B967F00F73F55 /* MessageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C46F253B967F00F73F55 /* MessageData.swift */; };
 		C424C478253BA91E00F73F55 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C424C477253BA91E00F73F55 /* UserData.swift */; };
+		C45EC0DA256453390092518B /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC0D9256453390092518B /* Chat.swift */; };
+		C45EC0DF2566C75D0092518B /* MessagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC0DE2566C75D0092518B /* MessagingView.swift */; };
+		C45EC0E42566C7710092518B /* ChatSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC0E32566C7710092518B /* ChatSelectionView.swift */; };
 		C4662649253D290E00AF75D2 /* NewAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4662648253D290E00AF75D2 /* NewAccountView.swift */; };
 		C4662651253F4DCE00AF75D2 /* LoginAPIConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4662650253F4DCE00AF75D2 /* LoginAPIConnection.swift */; };
 		C47D5587255A218A00479231 /* NewChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D5586255A218A00479231 /* NewChatView.swift */; };
@@ -55,6 +58,9 @@
 		C424C4622534D49800F73F55 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = CarrierFoxTests/LoginView.swift; sourceTree = SOURCE_ROOT; };
 		C424C46F253B967F00F73F55 /* MessageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
 		C424C477253BA91E00F73F55 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		C45EC0D9256453390092518B /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		C45EC0DE2566C75D0092518B /* MessagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingView.swift; sourceTree = "<group>"; };
+		C45EC0E32566C7710092518B /* ChatSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSelectionView.swift; sourceTree = "<group>"; };
 		C4662648253D290E00AF75D2 /* NewAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountView.swift; sourceTree = "<group>"; };
 		C4662650253F4DCE00AF75D2 /* LoginAPIConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIConnection.swift; sourceTree = "<group>"; };
 		C47D5586255A218A00479231 /* NewChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatView.swift; sourceTree = "<group>"; };
@@ -132,6 +138,8 @@
 				C4662648253D290E00AF75D2 /* NewAccountView.swift */,
 				C4E8F7D825191BBA0075AA3C /* AppDelegate.swift */,
 				C4E8F7DA25191BBA0075AA3C /* ContentView.swift */,
+				C45EC0DE2566C75D0092518B /* MessagingView.swift */,
+				C45EC0E32566C7710092518B /* ChatSelectionView.swift */,
 				C47D5595255B4EC300479231 /* NewChatSelectionView.swift */,
 				C4E8F7DC25191BBC0075AA3C /* Assets.xcassets */,
 				C4E8F7E125191BBC0075AA3C /* Main.storyboard */,
@@ -142,6 +150,7 @@
 				C424C4312522926100F73F55 /* MessageAPIConnect.swift */,
 				C4662650253F4DCE00AF75D2 /* LoginAPIConnection.swift */,
 				C424C477253BA91E00F73F55 /* UserData.swift */,
+				C45EC0D9256453390092518B /* Chat.swift */,
 				C47D5590255A241300479231 /* ChatDetailView.swift */,
 				C424C4362522A26400F73F55 /* MessageList.swift */,
 				C424C43B2522A28F00F73F55 /* MessageRow.swift */,
@@ -309,6 +318,8 @@
 			files = (
 				C47D5596255B4EC300479231 /* NewChatSelectionView.swift in Sources */,
 				C4662649253D290E00AF75D2 /* NewAccountView.swift in Sources */,
+				C45EC0DA256453390092518B /* Chat.swift in Sources */,
+				C45EC0DF2566C75D0092518B /* MessagingView.swift in Sources */,
 				C424C4322522926100F73F55 /* MessageAPIConnect.swift in Sources */,
 				C4E8F7DB25191BBA0075AA3C /* ContentView.swift in Sources */,
 				C47D5587255A218A00479231 /* NewChatView.swift in Sources */,
@@ -321,6 +332,7 @@
 				C4E8F80B25197F930075AA3C /* MessageBox.swift in Sources */,
 				C424C4372522A26400F73F55 /* MessageList.swift in Sources */,
 				C424C478253BA91E00F73F55 /* UserData.swift in Sources */,
+				C45EC0E42566C7710092518B /* ChatSelectionView.swift in Sources */,
 				C4662651253F4DCE00AF75D2 /* LoginAPIConnection.swift in Sources */,
 				C424C4472522A2EC00F73F55 /* Message.swift in Sources */,
 			);

@@ -8,7 +8,6 @@
 import Foundation
 import CoreLocation
 
-
 func createNewAccount(completionHandler: @escaping (Bool) -> Void, email: String, username: String, password: String){
     let urlString = "https://catherinegallaher.com/api/create-account"
     let url = URL(string: urlString)
@@ -57,6 +56,7 @@ func createNewAccount(completionHandler: @escaping (Bool) -> Void, email: String
 }
 
 func login(username: String, password: String, completionHandler: @escaping (Bool) -> Void){
+    
     let urlString = "https://catherinegallaher.com/api/login"
     let url = URL(string: urlString)
 
@@ -92,7 +92,10 @@ func login(username: String, password: String, completionHandler: @escaping (Boo
         if let data = data {
             let stringData = String(decoding: data, as: UTF8.self)
             print(stringData)
-            if (stringData == "{}") {
+            print(stringData.split(separator: "\"")[1])
+            if (stringData.split(separator: "\"")[1] == "sessionId") {
+                let sessionID = stringData.split(separator: "\"")[3]
+                print(sessionID)
                 completionHandler(true)
             }
             else {

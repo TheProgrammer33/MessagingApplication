@@ -8,10 +8,9 @@
 import SwiftUI
 
 func showContentWindow() {
-
     var windowRef:NSWindow
     windowRef = NSWindow(
-        contentRect: NSRect(x: 0, y: 0, width: 600, height: 500),
+        contentRect: NSRect(x: 0, y: 0, width: 800, height: 700),
         styleMask: [.titled, .closable, .miniaturizable, .fullSizeContentView, .resizable],
         backing: .buffered, defer: false)
     windowRef.contentView = NSHostingView(rootView: ContentView(myWindow: windowRef).environmentObject(UserData()))
@@ -35,7 +34,7 @@ struct LoginView: View {
     @EnvironmentObject var userData: UserData
     let myWindow:NSWindow?
     var body: some View {
-        var successfulLogin: Bool = false
+        var successfulLogin: Bool = true
         let handlerBlock: (Bool) -> Void = {
             if $0 {
                 successfulLogin = true
@@ -75,9 +74,13 @@ struct LoginView: View {
                         login(username: username, password: password, completionHandler: handlerBlock)
                         if(successfulLogin) {
                             showContentWindow()
-//                            getMessages() { (messages) in
-//                                userData.messages = updateMessages(messages)
+                            getMessages() { (messages) in
+                                userData.publishMessageChanges(messages: updateMessages(messages))
+                            }
+//                            getChatList() { (messages) in
+//                                userData.publishChatChanges(chats: )
 //                            }
+//                           userData.publishUsernameChanges(username: username)
                             self.myWindow?.close()
                         }
                         else {
@@ -88,9 +91,9 @@ struct LoginView: View {
                     }
                 }
                 .padding(.trailing, 27.0)
-                if (!successfulLogin) {
-                    Text("Invalid Username or Password").font(.footnote).foregroundColor(Color.red).padding()
-                }
+//                if (!successfulLogin) {
+//                    Text("Invalid Username or Password").font(.footnote).foregroundColor(Color.red).padding()
+//                }
             }
             .frame(width: 450.0, height: 500.0)
         }

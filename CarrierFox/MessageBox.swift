@@ -20,8 +20,7 @@ struct MessageBox: View {
                     sendMessage(myMessage: message)
                 }
                 getMessages() { (messages) in
-                    //messageData = updateMessages(messages)
-                    userData.messages = updateMessages(messages)
+                    userData.publishMessageChanges(messages: updateMessages(messages))
                 }
                 message = ""
             }) {

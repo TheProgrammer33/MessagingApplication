@@ -10,9 +10,9 @@ import SwiftUI
 struct SelectChatView: View {
     var body: some View {
         List {
-            ChatDetailView()
-            ChatDetailView()
-            ChatDetailView()
+            ChatDetailView(chat: Chat(name: "Friend 1", id: 0))
+            ChatDetailView(chat: Chat(name: "Friend 1", id: 1))
+            ChatDetailView(chat: Chat(name: "Friend 1", id: 2))
         }
         .frame(width: 170.0)
     }

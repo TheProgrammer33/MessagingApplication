@@ -8,12 +8,19 @@
 import SwiftUI
 
 struct NewChatView: View {
+    
     var body: some View {
-        HStack {
-            Text("Add Chat").padding()
-            Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
-                Text("+")
-            }.padding([.top, .bottom, .trailing])
+        List {
+            HStack {
+                Text("Add Chat").padding([.leading, .trailing])
+                    .padding(.top, 2.0)
+                Button(action: {
+                    
+                }) {
+                    Text("+")
+                }.padding([.trailing])
+                    .padding(.top, 2.0)
+            }
         }.frame(width: 170.0, height: 35.0)
     }
 }
