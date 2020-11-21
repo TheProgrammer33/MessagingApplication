@@ -31,6 +31,8 @@ public class MessageBoxController extends AnchorPane
     private TextField messageBox;
     @FXML
     private VBox messageStack;
+    @FXML
+    private ScrollPane messageScrollPane;
 
     public Group initializeMessageBoxPage(Stage primaryStage) throws IOException
     {
@@ -48,12 +50,44 @@ public class MessageBoxController extends AnchorPane
         messageBox = (TextField) anchorPane.getChildrenUnmodifiable().get(0);
 
         AnchorPane messageAnchor = (AnchorPane) borderPane.getChildren().get(1);
-        ScrollPane scrollPane = (ScrollPane) messageAnchor.getChildren().get(0);
-        messageStack = (VBox) scrollPane.getContent();
+        messageScrollPane = (ScrollPane) messageAnchor.getChildren().get(0);
+        messageStack = (VBox) messageScrollPane.getContent();
 
         HTTPRequest httpRequest = new HTTPRequest();
 
         List<Message> messageList = httpRequest.getMessages();
+
+        setMessageStackToList(messageList);
+
+        messageScrollPane.vvalueProperty().bind(messageStack.heightProperty());
+
+        return new Group(root);
+    }
+
+    public void setPrimaryStage(Stage primaryStage)
+    {
+        this.primaryStage = primaryStage;
+    }
+
+    @FXML
+    public void sendMessage()
+    {
+        System.out.println(messageBox.getText());
+
+        HTTPRequest httpRequest = new HTTPRequest();
+
+        //httpRequest.sendMessage(messageBox.getText());
+
+        List<Message> messages = httpRequest.getMessages();
+
+        setMessageStackToList(messages);
+
+        messageBox.setText("");
+    }
+
+    public void setMessageStackToList(List<Message> messageList)
+    {
+        messageStack.getChildren().clear();
 
         for (Message message : messageList)
         {
@@ -72,8 +106,6 @@ public class MessageBoxController extends AnchorPane
                 hBox.setAlignment(Pos.BASELINE_RIGHT);
 
                 messageStack.getChildren().add(hBox);
-
-                System.out.println("Right stack: " + message.getUser());
             }
             else
             {
@@ -90,27 +122,8 @@ public class MessageBoxController extends AnchorPane
                 hBox.setAlignment(Pos.BASELINE_LEFT);
 
                 messageStack.getChildren().add(hBox);
-
-                System.out.println("Left stack: " + message.getUser());
             }
         }
-
-        return new Group(root);
-    }
-
-    public void setPrimaryStage(Stage primaryStage)
-    {
-        this.primaryStage = primaryStage;
-    }
-
-    @FXML
-    public void sendMessage()
-    {
-        System.out.println(messageBox.getText());
-
-        HTTPRequest httpRequest = new HTTPRequest();
-
-        httpRequest.sendMessage(messageBox.getText());
     }
 
 }

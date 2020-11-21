@@ -88,13 +88,13 @@ public class LogInController extends AnchorPane
             return;
         }
 
-        MessageBoxController messageBoxController = new MessageBoxController();
+        DefaultPageController defaultPageController = new DefaultPageController();
 
         this.primaryStage.close();
 
         Scene scene = null;
         try {
-            scene = new Scene(messageBoxController.initializeMessageBoxPage(primaryStage));
+            scene = new Scene(defaultPageController.initializeDefaultPage(primaryStage));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -107,7 +107,6 @@ public class LogInController extends AnchorPane
     @FXML
     protected void toggleCreateNewAccountMenu()
     {
-
         NewAccountController newAccountController = new NewAccountController();
 
         this.primaryStage.close();

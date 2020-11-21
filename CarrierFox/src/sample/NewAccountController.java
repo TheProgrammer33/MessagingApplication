@@ -32,6 +32,10 @@ public class NewAccountController extends AnchorPane
     @FXML
     private Text passwordError;
     @FXML
+    private Text usernameError;
+    @FXML
+    private Text emailError;
+    @FXML
     private ImageView carrierFoxImage;
 
     public Group initializeNewAccountPage(Stage primaryStage) throws IOException
@@ -52,6 +56,8 @@ public class NewAccountController extends AnchorPane
         password = (PasswordField) root.getChildrenUnmodifiable().get(2);
         confirmPassword = (PasswordField) root.getChildrenUnmodifiable().get(3);
 
+        usernameError = (Text) root.getChildrenUnmodifiable().get(6);
+        emailError = (Text) root.getChildrenUnmodifiable().get(7);
         passwordError = (Text) root.getChildrenUnmodifiable().get(8);
 
         carrierFoxImage.setImage(new Image(new FileInputStream("src/sample/resources/CarrierFox128x1.png")));
@@ -94,7 +100,22 @@ public class NewAccountController extends AnchorPane
     {
         HTTPRequest httpRequest = new HTTPRequest();
 
-        httpRequest.createAccount(email.getText(), username.getText(), password.getText());
+        usernameError.setVisible(false);
+        emailError.setVisible(false);
+
+        try
+        {
+            httpRequest.createAccount(email.getText(), username.getText(), password.getText());
+        }
+        catch (HTTPException e)
+        {
+            if (e.getMessage().compareTo("{\"userMessage\":\"Username already exists\",\"errorCode\":409}") == 0)
+                usernameError.setVisible(true);
+            else if (e.getMessage().compareTo("{\"userMessage\":\"Email already exists\",\"errorCode\":409}") == 0)
+                emailError.setVisible(true);
+
+            return;
+        }
 
         LogInController logInController = new LogInController();
 
