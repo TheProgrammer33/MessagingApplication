@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SelectChatView: View {
+    @ObservedObject var userData: UserData = .shared
     var body: some View {
         List {
             ChatDetailView(chat: Chat(name: "Friend 1", id: 0))

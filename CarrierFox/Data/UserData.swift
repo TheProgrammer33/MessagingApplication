@@ -11,22 +11,24 @@ import SwiftUI
 import Combine
 
 final class UserData: ObservableObject {
+    init() { }
+    
+    static let shared = UserData()
+    
     @Published var messages = messageData
     @Published var username = ""
     @Published var chatList: [Chat] = []
     @Published var selectedChatID = 0
     @Published var selectedChatName = ""
     @Published var sessionID = ""
+    @Published var friendList: [Friend] = []
+    @Published var notificationsIsOn: Bool = false
     
 
     func publishMessageChanges(messages: [Message]) {
         print("In publishMessageChanges")
         DispatchQueue.main.async {
-            print("In dispatchQueue")
-            print(messages)
             self.messages = messages
-            print("The messages: ")
-            print(self.messages)
         }
     }
     
@@ -50,8 +52,16 @@ final class UserData: ObservableObject {
     }
     
     func publishSessionIDChange(id: String) {
+        print("in publish session id")
+        print(id)
         DispatchQueue.main.async {
             self.sessionID = id
+        }
+    }
+    
+    func publishFriendListChanges(friendList: [Friend]) {
+        DispatchQueue.main.async {
+            self.friendList = friendList
         }
     }
 }

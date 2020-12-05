@@ -8,12 +8,13 @@
 import SwiftUI
 
 func showContentWindow() {
+    print("in show content window")
     var windowRef:NSWindow
     windowRef = NSWindow(
         contentRect: NSRect(x: 0, y: 0, width: 800, height: 700),
         styleMask: [.titled, .closable, .miniaturizable, .fullSizeContentView, .resizable],
         backing: .buffered, defer: false)
-    windowRef.contentView = NSHostingView(rootView: ContentView(myWindow: windowRef).environmentObject(UserData()))
+    windowRef.contentView = NSHostingView(rootView: ContentView(myWindow: windowRef))
     windowRef.makeKeyAndOrderFront(nil)
 }
 
@@ -31,17 +32,23 @@ func showNewAccountWindow() {
 struct LoginView: View {
     @State private var username = ""
     @State private var password = ""
-    @EnvironmentObject var userData: UserData
+    @State private var sessionID = ""
+    @ObservedObject var userData: UserData = .shared
     let myWindow:NSWindow?
     var body: some View {
-        var successfulLogin: Bool = true
-        let handlerBlock: (Bool) -> Void = {
-            if $0 {
+        var successfulLogin: Bool = false
+        let handlerBlock: (String) -> Void = {
+            if $0 != "" {
+                print($0)
+                sessionID = $0
                 successfulLogin = true
             }
             else {
                 successfulLogin = false
             }
+        }
+        let friendHandlerBlock: ([Friend]) -> Void = {
+            userData.publishFriendListChanges(friendList: $0)
         }
         return NavigationView {
             VStack {
@@ -73,14 +80,14 @@ struct LoginView: View {
                     Button(action: {
                         login(username: username, password: password, completionHandler: handlerBlock)
                         if(successfulLogin) {
-                            showContentWindow()
                             getMessages() { (messages) in
                                 userData.publishMessageChanges(messages: updateMessages(messages))
                             }
-//                            getChatList() { (messages) in
-//                                userData.publishChatChanges(chats: )
-//                            }
-//                           userData.publishUsernameChanges(username: username)
+                            userData.sessionID = self.sessionID
+                            userData.username = self.username
+                            getFriends(sessionID: userData.sessionID, completionHandler: friendHandlerBlock)
+                            showContentWindow()
+                            
                             self.myWindow?.close()
                         }
                         else {

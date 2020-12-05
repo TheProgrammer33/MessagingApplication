@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ChatDetailView: View {
     var chat: Chat
-    @EnvironmentObject var userData: UserData
+    @ObservedObject var userData: UserData = .shared
     var body: some View {
         VStack {
             Button(action: {

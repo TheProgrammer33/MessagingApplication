@@ -17,12 +17,23 @@
 		C45EC0DA256453390092518B /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC0D9256453390092518B /* Chat.swift */; };
 		C45EC0DF2566C75D0092518B /* MessagingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC0DE2566C75D0092518B /* MessagingView.swift */; };
 		C45EC0E42566C7710092518B /* ChatSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC0E32566C7710092518B /* ChatSelectionView.swift */; };
+		C45EC0EC2569A4B70092518B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC0EB2569A4B70092518B /* SettingsView.swift */; };
+		C45EC0F6256AE08A0092518B /* NotificationsSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC0F5256AE08A0092518B /* NotificationsSettings.swift */; };
+		C45EC0FE256AE09F0092518B /* AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC0FD256AE09F0092518B /* AccountSettings.swift */; };
+		C45EC103256AE5840092518B /* ChangePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC102256AE5840092518B /* ChangePassword.swift */; };
+		C45EC108256AE5CE0092518B /* ChangeEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC107256AE5CE0092518B /* ChangeEmail.swift */; };
+		C45EC10E256B4FE60092518B /* FriendsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC10D256B4FE60092518B /* FriendsView.swift */; };
+		C45EC116256B50110092518B /* FriendDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC115256B50110092518B /* FriendDetailView.swift */; };
+		C45EC11E256C20800092518B /* FriendsAPIConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC11D256C20800092518B /* FriendsAPIConnection.swift */; };
+		C45EC123256C734F0092518B /* SettingsAPIConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C45EC122256C734F0092518B /* SettingsAPIConnection.swift */; };
 		C4662649253D290E00AF75D2 /* NewAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4662648253D290E00AF75D2 /* NewAccountView.swift */; };
 		C4662651253F4DCE00AF75D2 /* LoginAPIConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4662650253F4DCE00AF75D2 /* LoginAPIConnection.swift */; };
-		C47D5587255A218A00479231 /* NewChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D5586255A218A00479231 /* NewChatView.swift */; };
 		C47D558C255A219F00479231 /* SelectChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D558B255A219F00479231 /* SelectChatView.swift */; };
 		C47D5591255A241300479231 /* ChatDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D5590255A241300479231 /* ChatDetailView.swift */; };
 		C47D5596255B4EC300479231 /* NewChatSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C47D5595255B4EC300479231 /* NewChatSelectionView.swift */; };
+		C49F3A87256D8FBF0014AA33 /* MessageWebSocket.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F3A86256D8FBF0014AA33 /* MessageWebSocket.swift */; };
+		C49F3A94256DF17A0014AA33 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F3A93256DF17A0014AA33 /* Friend.swift */; };
+		C49F3A9C256EC6870014AA33 /* NewChatAPIConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = C49F3A9B256EC6870014AA33 /* NewChatAPIConnection.swift */; };
 		C4E8F7D925191BBA0075AA3C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8F7D825191BBA0075AA3C /* AppDelegate.swift */; };
 		C4E8F7DB25191BBA0075AA3C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4E8F7DA25191BBA0075AA3C /* ContentView.swift */; };
 		C4E8F7DD25191BBC0075AA3C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C4E8F7DC25191BBC0075AA3C /* Assets.xcassets */; };
@@ -55,18 +66,29 @@
 		C424C4362522A26400F73F55 /* MessageList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageList.swift; sourceTree = "<group>"; };
 		C424C43B2522A28F00F73F55 /* MessageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
 		C424C4462522A2EC00F73F55 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		C424C4622534D49800F73F55 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = CarrierFoxTests/LoginView.swift; sourceTree = SOURCE_ROOT; };
+		C424C4622534D49800F73F55 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginView.swift; path = CarrierFox/LoginAndNewAccount/LoginView.swift; sourceTree = SOURCE_ROOT; };
 		C424C46F253B967F00F73F55 /* MessageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageData.swift; sourceTree = "<group>"; };
 		C424C477253BA91E00F73F55 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
 		C45EC0D9256453390092518B /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		C45EC0DE2566C75D0092518B /* MessagingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingView.swift; sourceTree = "<group>"; };
 		C45EC0E32566C7710092518B /* ChatSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSelectionView.swift; sourceTree = "<group>"; };
+		C45EC0EB2569A4B70092518B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		C45EC0F5256AE08A0092518B /* NotificationsSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsSettings.swift; sourceTree = "<group>"; };
+		C45EC0FD256AE09F0092518B /* AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettings.swift; sourceTree = "<group>"; };
+		C45EC102256AE5840092518B /* ChangePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePassword.swift; sourceTree = "<group>"; };
+		C45EC107256AE5CE0092518B /* ChangeEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeEmail.swift; sourceTree = "<group>"; };
+		C45EC10D256B4FE60092518B /* FriendsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsView.swift; sourceTree = "<group>"; };
+		C45EC115256B50110092518B /* FriendDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailView.swift; sourceTree = "<group>"; };
+		C45EC11D256C20800092518B /* FriendsAPIConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsAPIConnection.swift; sourceTree = "<group>"; };
+		C45EC122256C734F0092518B /* SettingsAPIConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAPIConnection.swift; sourceTree = "<group>"; };
 		C4662648253D290E00AF75D2 /* NewAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewAccountView.swift; sourceTree = "<group>"; };
 		C4662650253F4DCE00AF75D2 /* LoginAPIConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginAPIConnection.swift; sourceTree = "<group>"; };
-		C47D5586255A218A00479231 /* NewChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatView.swift; sourceTree = "<group>"; };
 		C47D558B255A219F00479231 /* SelectChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectChatView.swift; sourceTree = "<group>"; };
 		C47D5590255A241300479231 /* ChatDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDetailView.swift; sourceTree = "<group>"; };
 		C47D5595255B4EC300479231 /* NewChatSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatSelectionView.swift; sourceTree = "<group>"; };
+		C49F3A86256D8FBF0014AA33 /* MessageWebSocket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageWebSocket.swift; sourceTree = "<group>"; };
+		C49F3A93256DF17A0014AA33 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
+		C49F3A9B256EC6870014AA33 /* NewChatAPIConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewChatAPIConnection.swift; sourceTree = "<group>"; };
 		C4E8F7D525191BBA0075AA3C /* CarrierFox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CarrierFox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4E8F7D825191BBA0075AA3C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C4E8F7DA25191BBA0075AA3C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -109,6 +131,76 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C45EC0F0256ADE150092518B /* LoginAndNewAccount */ = {
+			isa = PBXGroup;
+			children = (
+				C4662650253F4DCE00AF75D2 /* LoginAPIConnection.swift */,
+				C4662648253D290E00AF75D2 /* NewAccountView.swift */,
+				C424C4622534D49800F73F55 /* LoginView.swift */,
+			);
+			path = LoginAndNewAccount;
+			sourceTree = "<group>";
+		};
+		C45EC0F1256ADE460092518B /* Messaging */ = {
+			isa = PBXGroup;
+			children = (
+				C424C4312522926100F73F55 /* MessageAPIConnect.swift */,
+				C49F3A86256D8FBF0014AA33 /* MessageWebSocket.swift */,
+				C45EC0DE2566C75D0092518B /* MessagingView.swift */,
+				C4E8F80A25197F930075AA3C /* MessageBox.swift */,
+				C424C4362522A26400F73F55 /* MessageList.swift */,
+				C424C43B2522A28F00F73F55 /* MessageRow.swift */,
+				C424C4462522A2EC00F73F55 /* Message.swift */,
+			);
+			path = Messaging;
+			sourceTree = "<group>";
+		};
+		C45EC0F2256ADE870092518B /* ChatSelection */ = {
+			isa = PBXGroup;
+			children = (
+				C47D5595255B4EC300479231 /* NewChatSelectionView.swift */,
+				C49F3A9B256EC6870014AA33 /* NewChatAPIConnection.swift */,
+				C45EC0E32566C7710092518B /* ChatSelectionView.swift */,
+				C47D558B255A219F00479231 /* SelectChatView.swift */,
+				C47D5590255A241300479231 /* ChatDetailView.swift */,
+				C45EC0D9256453390092518B /* Chat.swift */,
+			);
+			path = ChatSelection;
+			sourceTree = "<group>";
+		};
+		C45EC0F3256ADE970092518B /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C424C46F253B967F00F73F55 /* MessageData.swift */,
+				C424C477253BA91E00F73F55 /* UserData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C45EC0F4256AE01A0092518B /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				C45EC0EB2569A4B70092518B /* SettingsView.swift */,
+				C45EC0F5256AE08A0092518B /* NotificationsSettings.swift */,
+				C45EC0FD256AE09F0092518B /* AccountSettings.swift */,
+				C45EC102256AE5840092518B /* ChangePassword.swift */,
+				C45EC107256AE5CE0092518B /* ChangeEmail.swift */,
+				C45EC122256C734F0092518B /* SettingsAPIConnection.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		C45EC10C256B4FD00092518B /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				C45EC10D256B4FE60092518B /* FriendsView.swift */,
+				C45EC115256B50110092518B /* FriendDetailView.swift */,
+				C45EC11D256C20800092518B /* FriendsAPIConnection.swift */,
+				C49F3A93256DF17A0014AA33 /* Friend.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
 		C4E8F7CC25191BBA0075AA3C = {
 			isa = PBXGroup;
 			children = (
@@ -132,30 +224,19 @@
 		C4E8F7D725191BBA0075AA3C /* CarrierFox */ = {
 			isa = PBXGroup;
 			children = (
-				C424C4622534D49800F73F55 /* LoginView.swift */,
-				C47D5586255A218A00479231 /* NewChatView.swift */,
-				C47D558B255A219F00479231 /* SelectChatView.swift */,
-				C4662648253D290E00AF75D2 /* NewAccountView.swift */,
 				C4E8F7D825191BBA0075AA3C /* AppDelegate.swift */,
 				C4E8F7DA25191BBA0075AA3C /* ContentView.swift */,
-				C45EC0DE2566C75D0092518B /* MessagingView.swift */,
-				C45EC0E32566C7710092518B /* ChatSelectionView.swift */,
-				C47D5595255B4EC300479231 /* NewChatSelectionView.swift */,
+				C45EC10C256B4FD00092518B /* Friends */,
+				C45EC0F4256AE01A0092518B /* Settings */,
+				C45EC0F0256ADE150092518B /* LoginAndNewAccount */,
+				C45EC0F1256ADE460092518B /* Messaging */,
+				C45EC0F2256ADE870092518B /* ChatSelection */,
+				C45EC0F3256ADE970092518B /* Data */,
 				C4E8F7DC25191BBC0075AA3C /* Assets.xcassets */,
 				C4E8F7E125191BBC0075AA3C /* Main.storyboard */,
 				C4E8F7E425191BBC0075AA3C /* Info.plist */,
 				C4E8F7E525191BBC0075AA3C /* CarrierFox.entitlements */,
 				C4E8F7DE25191BBC0075AA3C /* Preview Content */,
-				C4E8F80A25197F930075AA3C /* MessageBox.swift */,
-				C424C4312522926100F73F55 /* MessageAPIConnect.swift */,
-				C4662650253F4DCE00AF75D2 /* LoginAPIConnection.swift */,
-				C424C477253BA91E00F73F55 /* UserData.swift */,
-				C45EC0D9256453390092518B /* Chat.swift */,
-				C47D5590255A241300479231 /* ChatDetailView.swift */,
-				C424C4362522A26400F73F55 /* MessageList.swift */,
-				C424C43B2522A28F00F73F55 /* MessageRow.swift */,
-				C424C46F253B967F00F73F55 /* MessageData.swift */,
-				C424C4462522A2EC00F73F55 /* Message.swift */,
 			);
 			path = CarrierFox;
 			sourceTree = "<group>";
@@ -316,25 +397,36 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C45EC123256C734F0092518B /* SettingsAPIConnection.swift in Sources */,
 				C47D5596255B4EC300479231 /* NewChatSelectionView.swift in Sources */,
 				C4662649253D290E00AF75D2 /* NewAccountView.swift in Sources */,
 				C45EC0DA256453390092518B /* Chat.swift in Sources */,
 				C45EC0DF2566C75D0092518B /* MessagingView.swift in Sources */,
 				C424C4322522926100F73F55 /* MessageAPIConnect.swift in Sources */,
+				C45EC0F6256AE08A0092518B /* NotificationsSettings.swift in Sources */,
+				C49F3A9C256EC6870014AA33 /* NewChatAPIConnection.swift in Sources */,
 				C4E8F7DB25191BBA0075AA3C /* ContentView.swift in Sources */,
-				C47D5587255A218A00479231 /* NewChatView.swift in Sources */,
 				C47D558C255A219F00479231 /* SelectChatView.swift in Sources */,
+				C45EC103256AE5840092518B /* ChangePassword.swift in Sources */,
 				C424C43C2522A28F00F73F55 /* MessageRow.swift in Sources */,
 				C4E8F7D925191BBA0075AA3C /* AppDelegate.swift in Sources */,
 				C424C470253B967F00F73F55 /* MessageData.swift in Sources */,
+				C45EC0FE256AE09F0092518B /* AccountSettings.swift in Sources */,
 				C424C4632534D49900F73F55 /* LoginView.swift in Sources */,
 				C47D5591255A241300479231 /* ChatDetailView.swift in Sources */,
+				C45EC116256B50110092518B /* FriendDetailView.swift in Sources */,
+				C45EC11E256C20800092518B /* FriendsAPIConnection.swift in Sources */,
 				C4E8F80B25197F930075AA3C /* MessageBox.swift in Sources */,
 				C424C4372522A26400F73F55 /* MessageList.swift in Sources */,
 				C424C478253BA91E00F73F55 /* UserData.swift in Sources */,
+				C49F3A87256D8FBF0014AA33 /* MessageWebSocket.swift in Sources */,
+				C45EC10E256B4FE60092518B /* FriendsView.swift in Sources */,
 				C45EC0E42566C7710092518B /* ChatSelectionView.swift in Sources */,
 				C4662651253F4DCE00AF75D2 /* LoginAPIConnection.swift in Sources */,
 				C424C4472522A2EC00F73F55 /* Message.swift in Sources */,
+				C45EC0EC2569A4B70092518B /* SettingsView.swift in Sources */,
+				C45EC108256AE5CE0092518B /* ChangeEmail.swift in Sources */,
+				C49F3A94256DF17A0014AA33 /* Friend.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

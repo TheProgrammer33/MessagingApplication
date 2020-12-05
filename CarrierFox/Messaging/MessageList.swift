@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct MessageList: View {
-    @EnvironmentObject var userData: UserData
+    @ObservedObject var userData: UserData = .shared
     
     var body: some View {
         List {
+            Text(userData.sessionID)
             ForEach(userData.messages, id: \.self) { message in
                 MessageRow(message: message)
             }
@@ -24,3 +25,4 @@ struct MessageList_Previews: PreviewProvider {
         MessageList().environmentObject(UserData())
     }
 }
+

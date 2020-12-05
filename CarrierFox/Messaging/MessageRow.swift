@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MessageRow: View {
     var message: Message
+    @ObservedObject var userData: UserData = .shared
     var body: some View {
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy h:m a"
@@ -16,12 +17,23 @@ struct MessageRow: View {
         return VStack {
             //Text(date).font(.caption).padding(.all)
             HStack {
-                if (message.user == "MoreCoffee") {
+                if (message.user == userData.username) {
                     Spacer()
-                    Text(message.messageBody).padding(.horizontal)
+                    Text(message.messageBody)
+                        .foregroundColor(Color.white)
+                        .multilineTextAlignment(.trailing).padding(.horizontal)
+                        .background(Color.blue)
+                        .clipShape(Capsule())
+                        .lineLimit(10)
                 }
                 else {
-                    Text(message.messageBody).padding(.horizontal)
+                    Text(message.messageBody)
+                        .foregroundColor(Color.white)
+                        .multilineTextAlignment(.leading)
+                        .padding(.horizontal)
+                        .background(Color.gray)
+                        .clipShape(Capsule())
+                        .lineLimit(10)
                     Spacer()
                 }
             }

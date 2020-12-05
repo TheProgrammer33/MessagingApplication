@@ -9,8 +9,8 @@ import Foundation
 
 struct Message: Codable, Hashable {
     var _id: String
-    var messageBody: String
     var user: String
+    var messageBody: String
     var messageSentDate: Date
     var isEdited: Bool
     
@@ -18,7 +18,7 @@ struct Message: Codable, Hashable {
     init(messageBody: String, messageSentDate: Date) {
         self._id = "0"
         self.messageBody = messageBody
-        self.user = "Who cares"
+        self.user = ""
         self.messageSentDate = messageSentDate
         self.isEdited = false
     }

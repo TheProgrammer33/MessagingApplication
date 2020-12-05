@@ -1,0 +1,75 @@
+//
+//  messageBoxDetail.swift
+//  CarrierFox
+//
+//  Created by Catherine Gallaher on 9/21/20.
+//
+
+import SwiftUI
+
+struct MessageBox: View, WebSocketConnectionDelegate {
+    func onConnected(connection: WebSocketConnection) {
+        print("Connection")
+    }
+    
+    func onDisconnected(connection: WebSocketConnection, error: Error?) {
+        print("Disconnected")
+        print(error as Any)
+    }
+    
+    func onError(connection: WebSocketConnection, error: Error) {
+        print(error as Any)
+    }
+    
+    func onMessage(connection: WebSocketConnection, text: String) {
+        print(text)
+        print("text")
+        if(text != "Websocket Connected" && text != "Connection") {
+//            let data = Data(text.utf8)
+//            userData.messages.append(updateMessages(data))
+            getMessages() { (messages) in
+                userData.publishMessageChanges(messages: updateMessages(messages))
+            }
+        }
+    }
+    
+    func onMessage(connection: WebSocketConnection, data: Data) {
+        let stringData = String(decoding: data, as: UTF8.self)
+        print(stringData)
+        userData.messages.append(updateMessages(data))
+    }
+    
+    @State private var message = ""
+    @ObservedObject var userData: UserData = .shared
+    var body: some View {
+        let webSocketConnection = WebSocketTaskConnection()
+        webSocketConnection.delegate = self
+        //if (webSocketConnection.State != 0) {
+            webSocketConnection.connect()
+        //}
+        return HStack {
+            TextField("Type here", text: $message)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                .padding()
+            Button(action: {
+                
+                if(message != "") {
+                    webSocketConnection.sendMessage(message: message, user: userData.username)
+                }
+                getMessages() { (messages) in
+                    userData.publishMessageChanges(messages: updateMessages(messages))
+                }
+                message = ""
+            }) {
+                Text("Send")
+            }.padding([.top, .bottom, .trailing])
+        }
+    }
+}
+
+
+struct messageBox_Previews: PreviewProvider {
+    static var previews: some View {
+        MessageBox()
+    }
+}
