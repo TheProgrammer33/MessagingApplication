@@ -36,20 +36,7 @@ struct LoginView: View {
     @ObservedObject var userData: UserData = .shared
     let myWindow:NSWindow?
     var body: some View {
-        var successfulLogin: Bool = false
-        let handlerBlock: (String) -> Void = {
-            if $0 != "" {
-                print($0)
-                sessionID = $0
-                successfulLogin = true
-            }
-            else {
-                successfulLogin = false
-            }
-        }
-        let friendHandlerBlock: ([Friend]) -> Void = {
-            userData.publishFriendListChanges(friendList: $0)
-        }
+        var successfulLogin: Bool = true
         return NavigationView {
             VStack {
                 Image("Logo")
@@ -78,16 +65,40 @@ struct LoginView: View {
                 HStack {
                     Spacer()
                     Button(action: {
-                        login(username: username, password: password, completionHandler: handlerBlock)
-                        if(successfulLogin) {
-                            getMessages() { (messages) in
-                                userData.publishMessageChanges(messages: updateMessages(messages))
+                        login(username: username, password: password) { (loginResult) in
+                            if loginResult._id != "" {
+                                print(loginResult)
+                                userData.publishSessionIDChange(id: loginResult._id)
+                                userData.publishUsernameChanges(username: self.username)
+                                //userData.publishSelectedChatChanges(chat: loginResult.threads[0])
+                                //print(loginResult.threads)
+                                //print(userData.selectedChatName)
+                                //print("Selected ID: \(userData.selectedChatID)")
+                                getMessages(threadID: loginResult.threads[0].threadId) { (messages) in
+                                    if(!messages.isEmpty)
+                                    {
+                                        userData.publishMessageChanges(messages: updateMessages(messages))
+                                    }
+                                    else
+                                    {
+                                        userData.publishMessageChanges(messages: [])
+                                    }
+                                }
+                                getFriends(sessionID: userData.sessionID) { (friends) in
+                                    userData.publishFriendListChanges(friendList: friends)
+                                }
+                                userData.publishChatChanges(chats: loginResult.threads)
+                                //showContentWindow()
+                                
+                                //self.myWindow?.close()
+                                successfulLogin = true
                             }
-                            userData.sessionID = self.sessionID
-                            userData.username = self.username
-                            getFriends(sessionID: userData.sessionID, completionHandler: friendHandlerBlock)
+                            else {
+                                successfulLogin = false
+                            }
+                        }
+                        if(successfulLogin) {
                             showContentWindow()
-                            
                             self.myWindow?.close()
                         }
                         else {

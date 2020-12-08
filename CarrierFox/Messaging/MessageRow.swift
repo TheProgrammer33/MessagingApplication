@@ -24,7 +24,7 @@ struct MessageRow: View {
                         .multilineTextAlignment(.trailing).padding(.horizontal)
                         .background(Color.blue)
                         .clipShape(Capsule())
-                        .lineLimit(10)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
                 else {
                     Text(message.messageBody)
@@ -33,7 +33,7 @@ struct MessageRow: View {
                         .padding(.horizontal)
                         .background(Color.gray)
                         .clipShape(Capsule())
-                        .lineLimit(10)
+                        .fixedSize(horizontal: false, vertical: true)
                     Spacer()
                 }
             }

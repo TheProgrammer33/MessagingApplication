@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol WebSocketConnection {
-    func sendMessage(message: String, user: String)
+    func sendMessage(message: String, user: String, threadId: Int)
     func send(data: Data)
     func connect()
     func disconnect()
@@ -80,8 +80,8 @@ class WebSocketTaskConnection: NSObject, WebSocketConnection, URLSessionWebSocke
         }
     }
     
-    func sendMessage(message: String, user: String) {
-        let message = URLSessionWebSocketTask.Message.string("{\"message\": \"\(message)\", \"threadId\": 1, \"user\": \"\(user)\"}")
+    func sendMessage(message: String, user: String, threadId: Int) {
+        let message = URLSessionWebSocketTask.Message.string("{\"message\": \"\(message)\", \"threadId\": \(threadId), \"user\": \"\(user)\"}")
         webSocketTask.send(message) { error in
             if let error = error {
                 self.delegate?.onError(connection: self, error: error)

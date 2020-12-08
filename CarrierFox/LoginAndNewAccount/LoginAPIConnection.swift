@@ -55,7 +55,7 @@ func createNewAccount(completionHandler: @escaping (Bool) -> Void, email: String
     dataTask.resume()
 }
 
-func login(username: String, password: String, completionHandler: @escaping (String) -> Void) {
+func login(username: String, password: String, completionHandler: @escaping (LoginObject) -> Void) {
     
     let urlString = "https://catherinegallaher.com/api/login"
     let url = URL(string: urlString)
@@ -96,10 +96,11 @@ func login(username: String, password: String, completionHandler: @escaping (Str
             if (stringData.split(separator: "\"")[1] != "userMessage") {
                 let sessionID = stringData.split(separator: "\"")[3]
                 print(sessionID)
-                completionHandler(String(sessionID))
+                let loginResponse:LoginObject = try! JSONDecoder().decode(LoginObject.self, from: data)
+                completionHandler(loginResponse)
             }
             else {
-                completionHandler("")
+                completionHandler(LoginObject())
             }
         }
     })

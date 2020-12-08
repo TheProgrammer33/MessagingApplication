@@ -11,9 +11,9 @@ struct SelectChatView: View {
     @ObservedObject var userData: UserData = .shared
     var body: some View {
         List {
-            ChatDetailView(chat: Chat(name: "Friend 1", id: 0))
-            ChatDetailView(chat: Chat(name: "Friend 1", id: 1))
-            ChatDetailView(chat: Chat(name: "Friend 1", id: 2))
+            ForEach(userData.chatList, id: \.self) { chat in
+                ChatDetailView(chat: chat)
+            }
         }
         .frame(width: 170.0)
     }

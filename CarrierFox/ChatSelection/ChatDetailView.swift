@@ -15,9 +15,23 @@ struct ChatDetailView: View {
             Button(action: {
                 print(chat)
                 userData.publishSelectedChatChanges(chat: chat)
+                print(userData.selectedChatID)
+                getMessages(threadID: userData.selectedChatID) { (messages) in
+                    if(!messages.isEmpty)
+                    {
+                        userData.publishMessageChanges(messages: updateMessages(messages))
+                    }
+                    else
+                    {
+                        userData.publishMessageChanges(messages: [])
+                    }
+                }
             }) {
                 Text(chat.name)
-                    .padding().opacity(100).frame(width: 150, height: 55.0)
+                    .padding()
+                    .opacity(100)
+                    .frame(width: 150, height: 55.0)
+                    .fixedSize(horizontal: false, vertical: true)
             }
             .buttonStyle(BorderlessButtonStyle())
             Divider()

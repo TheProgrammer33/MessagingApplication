@@ -12,7 +12,6 @@ struct MessageList: View {
     
     var body: some View {
         List {
-            Text(userData.sessionID)
             ForEach(userData.messages, id: \.self) { message in
                 MessageRow(message: message)
             }

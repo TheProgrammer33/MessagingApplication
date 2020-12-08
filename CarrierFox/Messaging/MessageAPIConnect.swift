@@ -8,8 +8,8 @@
 import Foundation
 import CoreLocation
 
-func getMessages(completionHandler: @escaping (Data) -> Void){
-    let url = URL(string: "https://catherinegallaher.com/api/thread/1/messages")
+func getMessages(threadID:Int, completionHandler: @escaping (Data) -> Void){
+    let url = URL(string: "https://catherinegallaher.com/api/thread/\(threadID)/messages")
     guard url != nil else {
         print("Error creating url object")
         return

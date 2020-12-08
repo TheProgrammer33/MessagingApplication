@@ -41,13 +41,14 @@ final class UserData: ObservableObject {
     func publishChatChanges(chats: [Chat]) {
         DispatchQueue.main.async {
             self.chatList = chats
+            self.publishSelectedChatChanges(chat: chats[0])
         }
     }
     
     func publishSelectedChatChanges(chat: Chat) {
         DispatchQueue.main.async {
             self.selectedChatName = chat.name
-            self.selectedChatID = chat.id
+            self.selectedChatID = chat.threadId
         }
     }
     
