@@ -109,10 +109,12 @@ public class NewAccountController extends AnchorPane
         }
         catch (HTTPException e)
         {
-            if (e.getMessage().compareTo("{\"userMessage\":\"Username already exists\",\"errorCode\":409}") == 0)
+            if (e.getMessage().compareTo("Username already exists") == 0)
                 usernameError.setVisible(true);
-            else if (e.getMessage().compareTo("{\"userMessage\":\"Email already exists\",\"errorCode\":409}") == 0)
+            else if (e.getMessage().compareTo("Email already exists") == 0)
                 emailError.setVisible(true);
+            else
+                e.printStackTrace();
 
             return;
         }
@@ -131,5 +133,10 @@ public class NewAccountController extends AnchorPane
         this.primaryStage.setScene(scene);
 
         this.primaryStage.show();
+
+        primaryStage.setAlwaysOnTop(true);
+        primaryStage.setAlwaysOnTop(false);
+
+        primaryStage.toFront();
     }
 }

@@ -18,14 +18,21 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.http.HttpRequest;
+import java.util.HashMap;
 
 public class LogInController extends AnchorPane
 {
-    @FXML
-    private TextField username;
+    private UserData userData;
 
     @FXML
+    private TextField username;
+    @FXML
     private TextField password;
+    @FXML
+    private Button submit;
+
+    @FXML
+    private Text invalidUserOrPass;
 
     @FXML
     private Stage primaryStage;
@@ -40,10 +47,11 @@ public class LogInController extends AnchorPane
         Parent root = fxmlLoader.load();
 
         ImageView carrierFoxImage = (ImageView) root.getChildrenUnmodifiable().get(0);
-        Text invalidUserOrPass = (Text) root.getChildrenUnmodifiable().get(5);
+        invalidUserOrPass = (Text) root.getChildrenUnmodifiable().get(5);
 
         setUsername((TextField) root.getChildrenUnmodifiable().get(1));
         setPassword((PasswordField) root.getChildrenUnmodifiable().get(2));
+        submit = (Button) root.getChildrenUnmodifiable().get(3);
 
         setPrimaryStage(primaryStage);
 
@@ -51,6 +59,12 @@ public class LogInController extends AnchorPane
         carrierFoxImage.setImage(new Image(new FileInputStream("src/sample/resources/CarrierFox128x1.png")));
 
         return new Group(root);
+    }
+
+    @FXML
+    public void passwordSubmit()
+    {
+        submit.fire();
     }
 
     public void setPrimaryStage(Stage primaryStage)
@@ -73,18 +87,25 @@ public class LogInController extends AnchorPane
         this.password = password;
     }
 
-    public boolean checkUserAndPass()
+    public void loginAndLoadUserData() throws HTTPException
     {
         HTTPRequest httpRequest = new HTTPRequest();
 
-        return httpRequest.login(username.getText(), password.getText());
+        userData = httpRequest.login(username.getText(), password.getText());
     }
 
     @FXML
     protected void toggleMessageBoxMenu()
     {
-        if (!checkUserAndPass())
+        invalidUserOrPass.setVisible(false);
+
+        try
         {
+            loginAndLoadUserData();
+        }
+        catch (HTTPException e)
+        {
+            invalidUserOrPass.setVisible(true);
             return;
         }
 
@@ -94,7 +115,7 @@ public class LogInController extends AnchorPane
 
         Scene scene = null;
         try {
-            scene = new Scene(defaultPageController.initializeDefaultPage(primaryStage));
+            scene = new Scene(defaultPageController.initializeDefaultPage(primaryStage, userData));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,11 +1,13 @@
 package sample;
 
+import java.util.Date;
+
 public class Message
 {
     private String _id;
-    private String messageBody;
     private String user;
-    private String messageSentDate;
+    private String messageBody;
+    private Date messageSentDate;
     private boolean isEdited;
 
     public String getId()
@@ -18,7 +20,7 @@ public class Message
         return messageBody;
     }
 
-    public String getMessageSentDate()
+    public Date getMessageSentDate()
     {
         return messageSentDate;
     }
@@ -38,7 +40,7 @@ public class Message
         this.messageBody = messageBody;
     }
 
-    public void setMessageSentDate(String messageSentDate)
+    public void setMessageSentDate(Date messageSentDate)
     {
         this.messageSentDate = messageSentDate;
     }

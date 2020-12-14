@@ -3,25 +3,23 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
-<fx:root type="javafx.scene.layout.AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #2E2F31;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="400.0" style="-fx-background-color: #2E2F31;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField id="username" layoutX="64.0" layoutY="212.0" prefHeight="26.0" prefWidth="273.0" promptText="Username" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
       <TextField id="email" layoutX="64.0" layoutY="264.0" prefHeight="26.0" prefWidth="273.0" promptText="Email" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
       <PasswordField id="password" layoutX="64.0" layoutY="316.0" prefHeight="26.0" prefWidth="273.0" promptText="Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
-      <PasswordField id="confirmPassword" layoutX="64.0" layoutY="368.0" prefHeight="26.0" prefWidth="273.0" promptText="Confirm Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" onKeyTyped="#validatePasswords" />
-      <Button layoutX="165.0" layoutY="420.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #646467; -fx-text-fill: #FFFFFF;" text="Submit" onAction="#toggleLogInMenu" />
+      <PasswordField id="confirmPassword" layoutX="64.0" layoutY="368.0" onKeyTyped="#validatePasswords" prefHeight="26.0" prefWidth="273.0" promptText="Confirm Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+      <Button layoutX="165.0" layoutY="420.0" mnemonicParsing="false" onAction="#toggleLogInMenu" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #646467; -fx-text-fill: #FFFFFF;" text="Submit" />
       <ImageView id="carrierFoxImage" fitHeight="128.0" fitWidth="128.0" layoutX="136.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
          <image>
          </image>
       </ImageView>
-      <Text visible="false" disable="true" fill="RED" layoutX="114.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username already exists!" wrappingWidth="174.0" />
-      <Text visible="false" disable="true" fill="RED" layoutX="113.0" layoutY="308.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not a valid email address and/or already exists!" wrappingWidth="174.0" />
-      <Text id="passwordError" visible="false" disable="true" fill="RED" layoutX="118.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwords do not match!" wrappingWidth="166.0" />
+      <Text disable="true" fill="RED" layoutX="114.0" layoutY="256.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username already exists!" visible="false" wrappingWidth="174.0" />
+      <Text disable="true" fill="RED" layoutX="45.0" layoutY="307.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Not a valid email address and/or already exists!" visible="false" wrappingWidth="313.0" />
+      <Text id="passwordError" disable="true" fill="RED" layoutX="118.0" layoutY="412.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwords do not match!" visible="false" wrappingWidth="166.0" />
    </children>
 </fx:root>

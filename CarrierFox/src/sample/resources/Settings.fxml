@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="600.0" style="-fx-background-color: #2E2F31; -fx-text-fill: #FFFFFF;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnToDefaultPage" style="-fx-background-color: #646467;" text="Back" textFill="WHITE" />
+      <AnchorPane layoutX="14.0" layoutY="50.0" prefHeight="239.0" prefWidth="287.0">
+         <children>
+            <Text fill="WHITE" layoutX="55.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Password">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <PasswordField layoutX="35.0" layoutY="70.0" prefHeight="26.0" prefWidth="218.0" promptText="Old Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+            <PasswordField layoutX="35.0" layoutY="120.0" prefHeight="26.0" prefWidth="218.0" promptText="New Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+            <PasswordField layoutX="35.0" layoutY="154.0" onKeyTyped="#checkPasswords" prefHeight="26.0" prefWidth="218.0" promptText="Confirm New Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+            <Text fill="RED" layoutX="59.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Old Password is incorrect!" visible="false" />
+            <Text fill="RED" layoutX="50.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Passwords don't match!" visible="false" />
+            <Button layoutX="77.0" layoutY="205.0" mnemonicParsing="false" onAction="#submitPassword" style="-fx-background-color: #646467;" text="Change Password" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="14.0" layoutY="272.0" prefHeight="239.0" prefWidth="287.0">
+         <children>
+            <Text fill="WHITE" layoutX="74.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Email">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <TextField layoutX="58.0" layoutY="101.0" promptText="New Email" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+            <Text fill="RED" layoutX="70.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Email Address!" visible="false" />
+            <Button layoutX="90.0" layoutY="172.0" mnemonicParsing="false" onAction="#changeEmail" style="-fx-background-color: #646467;" text="Change Email" textFill="WHITE" />
+            <Line endX="100.0" layoutX="144.0" layoutY="31.0" startX="-100.0" stroke="#3a3a3a" />
+         </children>
+      </AnchorPane>
+      <AnchorPane layoutX="300.0" layoutY="50.0" prefHeight="454.0" prefWidth="287.0">
+         <children>
+            <Text fill="WHITE" layoutX="42.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notification Settings">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <RadioButton layoutX="91.0" layoutY="131.0" mnemonicParsing="false" text="On" textFill="WHITE">
+               <toggleGroup>
+                  <ToggleGroup fx:id="Full_Notifications" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton layoutX="152.0" layoutY="131.0" mnemonicParsing="false" text="Off" textFill="WHITE" toggleGroup="$Full_Notifications" />
+            <Line endX="2.0" endY="5.0" layoutY="21.0" startX="2.0" startY="384.0" stroke="#3a3a3a" />
+            <Text fill="WHITE" layoutX="71.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send Notifications">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Line endX="100.0" layoutX="143.0" layoutY="255.0" startX="-100.0" stroke="#3a3a3a" />
+            <Text fill="WHITE" layoutX="109.0" layoutY="314.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Text>
+            <Button layoutX="112.0" layoutY="354.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #646467;" text="Logout" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+   </children>
+</fx:root>

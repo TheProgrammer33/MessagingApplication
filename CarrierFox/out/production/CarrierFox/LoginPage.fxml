@@ -15,7 +15,7 @@
          </image>
       </ImageView>
       <TextField layoutX="37.0" layoutY="163.0" prefHeight="26.0" prefWidth="531.0" promptText="Username" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
-      <PasswordField layoutX="38.0" layoutY="218.0" prefHeight="26.0" prefWidth="531.0" promptText="Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+      <PasswordField layoutX="38.0" layoutY="218.0" prefHeight="26.0" prefWidth="531.0" promptText="Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" onAction="#passwordSubmit" />
       <Button layoutX="504.0" layoutY="306.0" mnemonicParsing="false" style="-fx-background-color: #646467;" text="Submit" textFill="WHITE" onAction="#toggleMessageBoxMenu" />
       <Button layoutX="171.0" layoutY="257.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="121.0" style="-fx-background-color: #646467;" text="Reset Password" textAlignment="CENTER" textFill="WHITE" />
       <Text disable="true" fill="RED" layoutX="202.0" layoutY="360.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Username or Password" textAlignment="CENTER" />
