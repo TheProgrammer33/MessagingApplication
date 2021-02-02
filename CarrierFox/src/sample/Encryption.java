@@ -105,7 +105,7 @@ public class Encryption
     private static byte[] encrypt(Key pubkey, String text) {
         try {
             Cipher rsa;
-            rsa = Cipher.getInstance("RSA");
+            rsa = Cipher.getInstance("RSA", "BC");
             rsa.init(Cipher.ENCRYPT_MODE, pubkey);
             return rsa.doFinal(text.getBytes());
         } catch (Exception e) {
@@ -117,7 +117,7 @@ public class Encryption
     private static String decrypt(Key decryptionKey, byte[] buffer) {
         try {
             Cipher rsa;
-            rsa = Cipher.getInstance("RSA");
+            rsa = Cipher.getInstance("RSA", "BC");
             rsa.init(Cipher.DECRYPT_MODE, decryptionKey);
             byte[] utf8 = rsa.doFinal(buffer);
             return new String(utf8, "UTF8");

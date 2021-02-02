@@ -31,7 +31,7 @@
          </children></AnchorPane>
       <AnchorPane layoutX="34.0" layoutY="19.0" prefHeight="35.0" prefWidth="170.0" style="-fx-background-color: #1C1D1F;">
          <children>
-            <Button layoutX="127.0" layoutY="4.0" mnemonicParsing="false" style="-fx-background-color: #646467;" text="+" textFill="WHITE" />
+            <Button layoutX="127.0" layoutY="4.0" mnemonicParsing="false" style="-fx-background-color: #646467;" text="+" textFill="WHITE" onAction="#initializeGroupChatPage"/>
             <Text fill="WHITE" layoutX="20.0" layoutY="22.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Chat" wrappingWidth="64.7294921875" />
          </children>
       </AnchorPane>

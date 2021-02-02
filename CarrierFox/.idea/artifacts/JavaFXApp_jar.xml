@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="JavaFXApp_jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/JavaFXApp_jar</output-path>
+    <root id="archive" name="JavaFXApp_jar.jar">
+      <element id="archive" name="JavaFXApp.jar">
+        <element id="module-output" name="CarrierFox" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -85,6 +85,7 @@ public class DefaultPageController extends AnchorPane
         {
             this.currentThreadId = -1;
             chatName.setText("");
+            friendsBox.getChildren().clear();
         }
         AnchorPane messageBoxAnchor = (AnchorPane) root.getChildrenUnmodifiable().get(3);
         messagesScrollPane = (ScrollPane) messageBoxAnchor.getChildren().get(0);
@@ -93,6 +94,8 @@ public class DefaultPageController extends AnchorPane
         messagingTextField = (TextField) root.getChildrenUnmodifiable().get(4);
 
         AnchorPane addChatAnchor = (AnchorPane) root.getChildrenUnmodifiable().get(1);
+
+        /*
         ComboBox<String> addChatBox = new ComboBox<>();
 
         addChatBox.setStyle("-fx-background-color: #646467;");
@@ -107,7 +110,7 @@ public class DefaultPageController extends AnchorPane
 
         this.addChatBox = addChatBox;
 
-        ObservableList<String> friendNames = FXCollections.observableArrayList(new String("test"));
+        ObservableList<String> friendNames = FXCollections.observableArrayList();
         List<Friend> friendsList = this.userData.getFriendList();
         for (int i = 0; i < friendsList.size(); i++)
         {
@@ -140,7 +143,7 @@ public class DefaultPageController extends AnchorPane
             }
         };
 
-        addChatBox.setOnAction(addChatEvent);
+        addChatBox.setOnAction(addChatEvent);*/
 
         if (this.currentThreadId != -1)
         {
@@ -266,6 +269,30 @@ public class DefaultPageController extends AnchorPane
         Scene scene = null;
         try {
             scene = new Scene(friendsManagementController.initializeFriendsManagementPage(primaryStage, userData));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        this.primaryStage.setScene(scene);
+
+        this.primaryStage.show();
+
+        primaryStage.setAlwaysOnTop(true);
+        primaryStage.setAlwaysOnTop(false);
+
+        primaryStage.toFront();
+    }
+
+    @FXML
+    public void initializeGroupChatPage()
+    {
+        GroupChatController groupChatController = new GroupChatController();
+
+        this.primaryStage.close();
+
+        Scene scene = null;
+        try {
+            scene = new Scene(groupChatController.initializeGroupChatPage(primaryStage, userData));
         } catch (IOException e) {
             e.printStackTrace();
         }

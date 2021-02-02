@@ -394,6 +394,7 @@ public class HTTPRequest
 
             try (BufferedReader br = new BufferedReader(
                     new InputStreamReader(httpURLConnection.getInputStream(), "utf-8")))
+
             {
                 String responseLine = null;
                 while ((responseLine = br.readLine()) != null)
