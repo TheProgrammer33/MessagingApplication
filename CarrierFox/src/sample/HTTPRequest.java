@@ -305,8 +305,10 @@ public class HTTPRequest
         return notificationsSettings.getSettings();
     }
 
-    public Thread createThread(List<String> users)
+    public Thread createThread(List<String> users, String username)
     {
+        users.add(username);
+
         String url = "https://catherinegallaher.com/api/create-thread";
 
         List<String> paramTypes = new ArrayList<>();

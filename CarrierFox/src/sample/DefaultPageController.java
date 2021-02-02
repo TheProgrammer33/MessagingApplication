@@ -8,12 +8,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,6 +23,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 public class DefaultPageController extends AnchorPane
 {
@@ -93,58 +92,6 @@ public class DefaultPageController extends AnchorPane
 
         messagingTextField = (TextField) root.getChildrenUnmodifiable().get(4);
 
-        AnchorPane addChatAnchor = (AnchorPane) root.getChildrenUnmodifiable().get(1);
-
-        /*
-        ComboBox<String> addChatBox = new ComboBox<>();
-
-        addChatBox.setStyle("-fx-background-color: #646467;");
-        addChatBox.setOpacity(0.0);
-        addChatBox.setLayoutX(10.0);
-        addChatBox.setLayoutY(4.0);
-        addChatBox.setPrefWidth(150.0);
-
-        addChatBox.getItems().addAll("item1", "item2", "item3");
-
-        addChatAnchor.getChildren().add(addChatBox);
-
-        this.addChatBox = addChatBox;
-
-        ObservableList<String> friendNames = FXCollections.observableArrayList();
-        List<Friend> friendsList = this.userData.getFriendList();
-        for (int i = 0; i < friendsList.size(); i++)
-        {
-            friendNames.add(i, friendsList.get(i).getUsername());
-        }
-
-        addChatBox.setItems(friendNames);
-
-        addChatBox.setPromptText("click me");
-
-        EventHandler<ActionEvent> addChatEvent = new EventHandler<ActionEvent>()
-        {
-            @Override
-            public void handle(ActionEvent actionEvent)
-            {
-                List<String> users = new ArrayList<>();
-
-                users.add(userData.getUsername());
-                users.add(addChatBox.getValue());
-
-                userData.addThread(httpRequest.createThread(users));
-
-                try
-                {
-                    updateFriendsBox();
-                } catch (IOException e)
-                {
-                    e.printStackTrace();
-                }
-            }
-        };
-
-        addChatBox.setOnAction(addChatEvent);*/
-
         if (this.currentThreadId != -1)
         {
             updateMessageBox(currentThreadId);
@@ -154,6 +101,11 @@ public class DefaultPageController extends AnchorPane
         }
 
         return new Group(root);
+    }
+
+    private void closeWebSocket()
+    {
+        httpRequest.closeWebSocket();
     }
 
     public void updateFriendsBox() throws IOException
@@ -196,7 +148,7 @@ public class DefaultPageController extends AnchorPane
         Text threadName = (Text) chatNameAnchor.getChildren().get(0);
         threadName.setText(thread.getName());
 
-        httpRequest.closeWebSocket();
+        closeWebSocket();
 
         httpRequest.openWebSocket(messagesScrollPane, userData, thread.getThreadId());
     }
@@ -238,6 +190,8 @@ public class DefaultPageController extends AnchorPane
     @FXML
     public void initializeSettingsPage()
     {
+        closeWebSocket();
+
         SettingsPageController settingsPageController = new SettingsPageController();
 
         this.primaryStage.close();
@@ -262,6 +216,8 @@ public class DefaultPageController extends AnchorPane
     @FXML
     public void initializeFriendsPage()
     {
+        closeWebSocket();
+
         FriendsManagementController friendsManagementController = new FriendsManagementController();
 
         this.primaryStage.close();
@@ -288,23 +244,64 @@ public class DefaultPageController extends AnchorPane
     {
         GroupChatController groupChatController = new GroupChatController();
 
-        this.primaryStage.close();
+        Stage secondaryWindowStage = new Stage();
 
         Scene scene = null;
         try {
-            scene = new Scene(groupChatController.initializeGroupChatPage(primaryStage, userData));
+            scene = new Scene(groupChatController.initializeGroupChatPage(secondaryWindowStage, userData));
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        this.primaryStage.setScene(scene);
+        secondaryWindowStage.setScene(scene);
 
-        this.primaryStage.show();
+        secondaryWindowStage.show();
 
-        primaryStage.setAlwaysOnTop(true);
-        primaryStage.setAlwaysOnTop(false);
+        secondaryWindowStage.setAlwaysOnTop(true);
+        secondaryWindowStage.setAlwaysOnTop(false);
 
-        primaryStage.toFront();
+        secondaryWindowStage.toFront();
+
+        groupChatController.getCreateChatButton().setOnAction(event ->
+        {
+            groupChatController.returnToDefaultPage();
+            System.out.println("Closed!");
+            try
+            {
+                createNewChatFromMenu(groupChatController.getFriendsVbox());
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void createNewChatFromMenu(VBox friendsVBox) throws IOException
+    {
+        List<String> usernames = new ArrayList<>();
+        for (int i = 0; i < friendsVBox.getChildren().size(); i++)
+        {
+            AnchorPane friendAnchorPane = (AnchorPane) friendsVBox.getChildren().get(i);
+            Text friendUsername = (Text) friendAnchorPane.getChildren().get(0);
+            CheckBox checkBox = (CheckBox) friendAnchorPane.getChildren().get(1);
+
+            if (checkBox.isSelected())
+            {
+                usernames.add(friendUsername.getText());
+            }
+        }
+
+        this.httpRequest.createThread(usernames, userData.getUsername());
+
+        try // TODO: 2/2/21 FIX issue where friends box does not update showing the new chat!
+        {
+            TimeUnit.MILLISECONDS.sleep(500);
+        } catch (InterruptedException e)
+        {
+            e.printStackTrace();
+        }
+
+        updateFriendsBox();
     }
 
     @FXML
