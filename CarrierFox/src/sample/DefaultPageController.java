@@ -276,6 +276,11 @@ public class DefaultPageController extends AnchorPane
         });
     }
 
+    private void updateThreadList(Thread newThread)
+    {
+        this.userData.addThread(newThread);
+    }
+
     private void createNewChatFromMenu(VBox friendsVBox) throws IOException
     {
         List<String> usernames = new ArrayList<>();
@@ -291,16 +296,9 @@ public class DefaultPageController extends AnchorPane
             }
         }
 
-        this.httpRequest.createThread(usernames, userData.getUsername());
+        Thread newthread = this.httpRequest.createThread(usernames, userData.getUsername());
 
-        try // TODO: 2/2/21 FIX issue where friends box does not update showing the new chat!
-        {
-            TimeUnit.MILLISECONDS.sleep(500);
-        } catch (InterruptedException e)
-        {
-            e.printStackTrace();
-        }
-
+        updateThreadList(newthread);
         updateFriendsBox();
     }
 
