@@ -16,17 +16,26 @@ struct ChatSelectionView: View {
                 HStack {
                     Text("Add Chat").padding([.leading, .trailing])
                         .padding(.top, 2.0)
-                    Button(action: {
-                        self.showFriendSearch.toggle()
-                    }) {
-                        Text("+")
-                    }.padding([.trailing])
+                    HStack {
+                        Button(action: {
+                            self.showFriendSearch.toggle()
+                        }) {
+                            Text("+")
+                        }.padding([.trailing])
                         .padding(.top, 2.0)
+                    }
+                    .popover(
+                        isPresented: self.$showFriendSearch,
+                        arrowEdge: .bottom
+                    ) { NewChatView() }
+//                    .sheet(isPresented: self.$showFriendSearch, content: {
+//                        NewChatView()
+//                    })
                 }
             }.frame(width: 170.0, height: 35.0)
-            if(showFriendSearch) {
-                NewChatSelectionView()
-            }
+//            if(showFriendSearch) {
+//                NewChatSelectionView()
+//            }
             SelectChatView()
         }.padding()
     }

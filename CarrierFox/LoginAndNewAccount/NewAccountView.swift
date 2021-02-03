@@ -7,29 +7,14 @@
 
 import SwiftUI
 
-func showLoginWindow() {
-    var windowRef:NSWindow
-    windowRef = NSWindow(
-        contentRect: NSRect(x: 0, y: 0, width: 450, height: 500),
-        styleMask: [.titled, .closable, .miniaturizable, .fullSizeContentView],
-        backing: .buffered, defer: false)
-    windowRef.contentView = NSHostingView(rootView: LoginView(myWindow: windowRef))
-    windowRef.makeKeyAndOrderFront(nil)
-}
-
 struct NewAccountView: View {
     @State private var username = ""
     @State private var email = ""
     @State private var password = ""
     @State private var confirmPassword = ""
+    @State private var successfulNewAccount: Bool = false;
     let myWindow:NSWindow?
     var body: some View {
-        var successfulNewAccount: Bool = false
-        let handlerBlock: (Bool) -> Void = {
-            if $0 {
-                successfulNewAccount = true
-            }
-        }
         return VStack {
             Image("Logo")
                 .resizable()
@@ -66,7 +51,9 @@ struct NewAccountView: View {
             }
             .frame(width: 425.0)
             Button(action: {
-                createNewAccount(completionHandler: handlerBlock, email: email, username: username, password: password)
+                createNewAccount(email: email, username: username, password: password){ response in
+                    successfulNewAccount = response
+                }
                 if(successfulNewAccount) {
                     showLoginWindow()
                     self.myWindow?.close()

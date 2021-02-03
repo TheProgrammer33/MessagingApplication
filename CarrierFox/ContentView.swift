@@ -7,11 +7,21 @@
 
 import SwiftUI
 
+func testEncrypt() {
+    
+    do {
+        try encryptData()
+    }
+    catch {
+        print("There was an error")
+    }
+}
+
 struct ContentView: View {
     let myWindow:NSWindow?
     @State private var isSettings: Bool = false
     @State private var isFriends: Bool = false
-    @EnvironmentObject var userData: UserData
+    @ObservedObject var userData: UserData = .shared
     var body: some View {
         return VStack {
             if(isSettings || isFriends)
@@ -32,7 +42,7 @@ struct ContentView: View {
                     VStack {
                         HStack {
                             List {
-                                Text("Septri").multilineTextAlignment(.leading).padding(.top, 2.0)
+                                Text(userData.selectedChatName).multilineTextAlignment(.leading).padding(.top, 2.0)
                             }.frame(height: 35.0)
                             .padding(.leading)
                             Spacer()
@@ -49,6 +59,7 @@ struct ContentView: View {
                             Button(action: {
                                 self.isFriends.toggle()
                                 self.isSettings = false
+                                testEncrypt()
                             }) {
                                 Text("Friends")
                             }
@@ -67,7 +78,7 @@ struct ContentView: View {
                 FriendsView()
             }
             else {
-                SettingsView()
+                SettingsView(myWindow: myWindow)
             }
         }
     }

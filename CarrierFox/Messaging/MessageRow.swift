@@ -15,25 +15,52 @@ struct MessageRow: View {
         formatter.dateFormat = "MM/dd/yyyy h:m a"
         let date = formatter.string(from: message.messageSentDate)
         return VStack {
-            //Text(date).font(.caption).padding(.all)
             HStack {
                 if (message.user == userData.username) {
-                    Spacer()
-                    Text(message.messageBody)
-                        .foregroundColor(Color.white)
-                        .multilineTextAlignment(.trailing).padding(.horizontal)
-                        .background(Color.blue)
-                        .clipShape(Capsule())
-                        .fixedSize(horizontal: false, vertical: true)
+                    
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Text(date).font(.caption).foregroundColor(Color.gray)
+                            Text(message.user)
+                                .font(.callout)
+                                .multilineTextAlignment(.trailing)
+                                .padding(.trailing, 6.0)
+                        }
+                        HStack {
+                            Spacer()
+                            Text(message.messageBody)
+                                .foregroundColor(Color.white)
+                                .multilineTextAlignment(.trailing).padding(.horizontal)
+                                .background(Color.blue)
+                                .clipShape(Capsule())
+                                .fixedSize(horizontal: false, vertical: true)
+                        }
+                    }
                 }
                 else {
-                    Text(message.messageBody)
-                        .foregroundColor(Color.white)
-                        .multilineTextAlignment(.leading)
-                        .padding(.horizontal)
-                        .background(Color.gray)
-                        .clipShape(Capsule())
-                        .fixedSize(horizontal: false, vertical: true)
+                    VStack {
+                        HStack {
+                            Text(message.user)
+                                .font(.callout)
+                                .multilineTextAlignment(.leading)
+                                .padding(.leading, 6.0)
+                            Text(date)
+                                .font(.caption)
+                                .foregroundColor(Color.gray)
+                            Spacer()
+                        }
+                        HStack {
+                            Text(message.messageBody)
+                                .foregroundColor(Color.white)
+                                .multilineTextAlignment(.leading)
+                                .padding(.horizontal)
+                                .background(Color.gray)
+                                .clipShape(Capsule())
+                                .fixedSize(horizontal: false, vertical: true)
+                            Spacer()
+                        }
+                    }
                     Spacer()
                 }
             }

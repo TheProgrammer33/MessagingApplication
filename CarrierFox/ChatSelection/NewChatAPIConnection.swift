@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-func newChat(completionHandler: @escaping (Bool) -> Void, friendUsername: String, sessionID: String, currentUser: String){
+func newChat(friendUsername: String, sessionID: String, currentUser: String, completionHandler: @escaping (NewChatObject) -> Void){
     let urlString = "https://catherinegallaher.com/api/create-thread"
     let url = URL(string: urlString)
 
@@ -42,14 +42,15 @@ func newChat(completionHandler: @escaping (Bool) -> Void, friendUsername: String
         }
 
         if let data = data {
-            let stringData = String(decoding: data, as: UTF8.self)
+            var stringData = String(decoding: data, as: UTF8.self)
+            let start = stringData.index(stringData.startIndex, offsetBy: 1)
+            let end =  stringData.index(stringData.endIndex, offsetBy: -1)
+            let range = start..<end
+            stringData = String(stringData[range])
             print(stringData)
-            if (stringData == "{}") {
-                completionHandler(true)
-            }
-            else {
-                completionHandler(false)
-            }
+            let parsedData = Data(stringData.utf8)
+            let loginResponse:NewChatObject = try! JSONDecoder().decode(NewChatObject.self, from: parsedData)
+            completionHandler(loginResponse)
         }
     })
     dataTask.resume()

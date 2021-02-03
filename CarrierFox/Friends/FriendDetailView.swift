@@ -12,15 +12,16 @@ struct FriendDetailView: View {
     @ObservedObject var userData: UserData = .shared
     
     var body: some View {
-        let handlerBlock: (Bool) -> Void = {_ in
-            print("Friend Deleted")
-        }
         return HStack {
             Text(friend.username)
             Spacer()
             Button(action: {
                 print("Deleting friend")
-                deleteFriend(friendUsername: friend.username, sessionID: userData.sessionID, completionHandler: handlerBlock)
+                deleteFriend(friendUsername: friend.username, sessionID: userData.sessionID){ (result) in
+                    getFriends(sessionID: userData.sessionID) { (friends) in
+                        userData.publishFriendListChanges(friendList: friends)
+                    }
+                }
             }) {
                 Text("Delete")
             }

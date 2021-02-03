@@ -16,6 +16,13 @@ struct NotificationsSettings: View {
             Toggle(isOn: $userData.notificationsIsOn) {
                 Text("Send Notifications")
             }.toggleStyle(SwitchToggleStyle())
+            Button(action: {
+                print("saving settings")
+                saveNotifications(sessionID: userData.sessionID, notifications: userData.notificationsIsOn)
+            }) {
+                Text("Save Settings")
+            }
+            .padding(.vertical)
         }.padding()
     }
 }

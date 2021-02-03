@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @ObservedObject var userData: UserData = .shared
+    let myWindow:NSWindow?
     var body: some View {
         VStack {
             HStack {
@@ -16,24 +17,19 @@ struct SettingsView: View {
                     AccountSettings()
                     Spacer()
                 }
+                Divider().padding()
                 VStack {
-                    NotificationsSettings()
+                    NotificationsLogoutView(myWindow: myWindow)
                     Spacer()
                 }
             }
-            Button(action: {
-                print("saving settings")
-                saveNotifications(sessionID: userData.sessionID, notifications: userData.notificationsIsOn)
-            }) {
-                Text("Save Settings")
-            }
-            .padding(.bottom)
+            
         }
     }
 }
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(myWindow: nil)
     }
 }

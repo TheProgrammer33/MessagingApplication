@@ -11,12 +11,6 @@ struct NewChatSelectionView: View {
     @ObservedObject var userData: UserData = .shared
     @State var menuText = "Select a Contact"
     
-    let handlerBlock: (Bool) -> Void = {
-        if $0 {
-            
-        }
-    }
-    
     var body: some View {
         VStack {
             MenuButton(label: Text(menuText)) {
@@ -29,7 +23,13 @@ struct NewChatSelectionView: View {
                 }
             }
             Button(action: {
-                newChat(completionHandler: handlerBlock, friendUsername: menuText, sessionID: userData.sessionID, currentUser: userData.username)
+                if(menuText != "Select a Contact") {
+                    newChat(friendUsername: menuText, sessionID: userData.sessionID, currentUser: userData.username) { (responseObject) in
+                        var tempChatList = userData.chatList
+                        tempChatList.append(Chat(name: responseObject.name, id: responseObject.threadId))
+                        userData.publishChatChanges(chats: tempChatList)
+                    }
+                }
             }) {
                 Text("Submit")
             }

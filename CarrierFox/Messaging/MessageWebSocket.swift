@@ -75,9 +75,12 @@ class WebSocketTaskConnection: NSObject, WebSocketConnection, URLSessionWebSocke
                 @unknown default:
                     fatalError()
                 }
-                self.listen()
+                //self.listen()
+                //self.connect()
             }
+            self.listen()
         }
+        //self.listen()
     }
     
     func sendMessage(message: String, user: String, threadId: Int) {

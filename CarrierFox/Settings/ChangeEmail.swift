@@ -12,14 +12,6 @@ struct ChangeEmail: View {
     @State private var validEmail = false
     @ObservedObject var userData: UserData = .shared
     var body: some View {
-        let handlerBlock: (Bool) -> Void = {
-            if $0 {
-                validEmail = true
-            }
-            else {
-                validEmail = false
-            }
-        }
         return VStack {
             Text("Change Email")
                 .font(.title)
@@ -32,7 +24,9 @@ struct ChangeEmail: View {
             }
             Button(action: {
                 print("changing email")
-                changeEmail(sessionID: userData.sessionID, newEmail: email, completionHandler: handlerBlock)
+                changeEmail(sessionID: userData.sessionID, newEmail: email) { response in
+                    validEmail = response
+                }
             }) {
                 Text("Change Email")
             }.padding()

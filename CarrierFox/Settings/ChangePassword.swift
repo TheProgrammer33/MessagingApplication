@@ -14,14 +14,6 @@ struct ChangePassword: View {
     @State private var validOldPassword = false
     @ObservedObject var userData: UserData = .shared
     var body: some View {
-        let handlerBlock: (Bool) -> Void = {
-            if $0 {
-                validOldPassword = true
-            }
-            else {
-                validOldPassword = false
-            }
-        }
         return VStack {
             Text("Change Password").font(.title)
             
@@ -46,7 +38,9 @@ struct ChangePassword: View {
             
             Button(action: {
                 print("changing password")
-                changePassword(sessionID: userData.sessionID, password: newPassword, oldPassword: oldPassword, completionHandler: handlerBlock)
+                changePassword(sessionID: userData.sessionID, password: newPassword, oldPassword: oldPassword) { response in
+                    validOldPassword = response
+                }
             }) {
                 Text("Change Password")
             }

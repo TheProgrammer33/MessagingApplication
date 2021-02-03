@@ -7,28 +7,6 @@
 
 import SwiftUI
 
-func showContentWindow() {
-    print("in show content window")
-    var windowRef:NSWindow
-    windowRef = NSWindow(
-        contentRect: NSRect(x: 0, y: 0, width: 800, height: 700),
-        styleMask: [.titled, .closable, .miniaturizable, .fullSizeContentView, .resizable],
-        backing: .buffered, defer: false)
-    windowRef.contentView = NSHostingView(rootView: ContentView(myWindow: windowRef))
-    windowRef.makeKeyAndOrderFront(nil)
-}
-
-func showNewAccountWindow() {
-    var windowRef:NSWindow
-    windowRef = NSWindow(
-        contentRect: NSRect(x: 0, y: 0, width: 450, height: 500),
-        styleMask: [.titled, .closable, .miniaturizable, .fullSizeContentView],
-        backing: .buffered, defer: false)
-    windowRef.contentView = NSHostingView(rootView: NewAccountView(myWindow: windowRef))
-    windowRef.makeKeyAndOrderFront(nil)
-}
-
-
 struct LoginView: View {
     @State private var username = ""
     @State private var password = ""
@@ -70,48 +48,41 @@ struct LoginView: View {
                                 print(loginResult)
                                 userData.publishSessionIDChange(id: loginResult._id)
                                 userData.publishUsernameChanges(username: self.username)
-                                //userData.publishSelectedChatChanges(chat: loginResult.threads[0])
-                                //print(loginResult.threads)
-                                //print(userData.selectedChatName)
-                                //print("Selected ID: \(userData.selectedChatID)")
-                                getMessages(threadID: loginResult.threads[0].threadId) { (messages) in
-                                    if(!messages.isEmpty)
-                                    {
-                                        userData.publishMessageChanges(messages: updateMessages(messages))
-                                    }
-                                    else
-                                    {
-                                        userData.publishMessageChanges(messages: [])
+                                if (!loginResult.threads.isEmpty)
+                                {
+                                    getMessages(threadID: loginResult.threads[0].threadId) { (messages) in
+                                        if(!messages.isEmpty)
+                                        {
+                                            userData.publishMessageChanges(messages: updateMessages(messages))
+                                        }
+                                        else
+                                        {
+                                            userData.publishMessageChanges(messages: [])
+                                        }
                                     }
                                 }
-                                getFriends(sessionID: userData.sessionID) { (friends) in
-                                    userData.publishFriendListChanges(friendList: friends)
-                                }
-                                userData.publishChatChanges(chats: loginResult.threads)
-                                //showContentWindow()
                                 
-                                //self.myWindow?.close()
+                                userData.publishFriendListChanges(friendList: loginResult.friends)
+                                userData.publishChatChanges(chats: loginResult.threads)
+                                userData.publishNotificationChanges(notifications: loginResult.notifications)
+                                DispatchQueue.main.async {
+                                    self.myWindow?.close()
+                                    showContentWindow()
+                                }
                                 successfulLogin = true
                             }
                             else {
                                 successfulLogin = false
                             }
                         }
-                        if(successfulLogin) {
-                            showContentWindow()
-                            self.myWindow?.close()
-                        }
-                        else {
-                            print("Unsucessful Login")
-                        }
                     }) {
                         Text("Submit")
                     }
                 }
                 .padding(.trailing, 27.0)
-//                if (!successfulLogin) {
-//                    Text("Invalid Username or Password").font(.footnote).foregroundColor(Color.red).padding()
-//                }
+                if (!successfulLogin) {
+                    Text("Invalid Username or Password").font(.footnote).foregroundColor(Color.red).padding()
+                }
             }
             .frame(width: 450.0, height: 500.0)
         }

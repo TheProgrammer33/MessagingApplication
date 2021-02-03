@@ -11,7 +11,9 @@ import SwiftUI
 import Combine
 
 final class UserData: ObservableObject {
-    init() { }
+    init() {
+        print("in userdata init")
+    }
     
     static let shared = UserData()
     
@@ -23,6 +25,8 @@ final class UserData: ObservableObject {
     @Published var sessionID = ""
     @Published var friendList: [Friend] = []
     @Published var notificationsIsOn: Bool = false
+    @Published var scrollIndex: Binding<CGPoint?>? = nil //Binding<CGPoint?>?(CGPoint(x: 0, y: 10000))
+    @Published var newChatSelection: [String: Bool] = [:]
     
 
     func publishMessageChanges(messages: [Message]) {
@@ -38,10 +42,18 @@ final class UserData: ObservableObject {
         }
     }
     
+    func publishNotificationChanges(notifications: Bool) {
+        DispatchQueue.main.async {
+            self.notificationsIsOn = notifications
+        }
+    }
+    
     func publishChatChanges(chats: [Chat]) {
         DispatchQueue.main.async {
             self.chatList = chats
-            self.publishSelectedChatChanges(chat: chats[0])
+            if(!chats.isEmpty) {
+                self.publishSelectedChatChanges(chat: chats[0])
+            }
         }
     }
     
@@ -63,6 +75,32 @@ final class UserData: ObservableObject {
     func publishFriendListChanges(friendList: [Friend]) {
         DispatchQueue.main.async {
             self.friendList = friendList
+            self.newChatSelection = [:]
+            for friend in friendList {
+                //self.newChatSelection.merge([friend.username: false], uniquingKeysWith:  { (_, new) in new })
+                self.newChatSelection.updateValue(false, forKey: friend.username)
+            }
+        }
+    }
+    
+    func resetNewChatSelection() {
+        DispatchQueue.main.async {
+            for (username, _) in self.newChatSelection {
+                self.newChatSelection.updateValue(false, forKey: username)
+            }
+            
+        }
+    }
+    
+    func publishScrollIndexChanges(scrollTo: CGPoint) {
+        DispatchQueue.main.async {
+            self.scrollIndex?.wrappedValue = scrollTo
+        }
+    }
+    
+    func updateScrollIndex() {
+        DispatchQueue.main.async {
+            self.scrollIndex?.wrappedValue = CGPoint(x:0, y: 30*self.messages.count)
         }
     }
 }

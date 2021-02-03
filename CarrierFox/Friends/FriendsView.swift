@@ -14,17 +14,6 @@ struct FriendsView: View {
     @State private var successfulAddFriend = false
     
     var body: some View {
-        let getFriendsHandlerBlock: ([Friend]) -> Void = {
-            userData.publishFriendListChanges(friendList: $0)
-        }
-        let addDeleteFriendsHandlerBlock: (Bool) -> Void = {
-            if $0 {
-                self.successfulAddFriend = true
-            }
-            else {
-                self.successfulAddFriend = false
-            }
-        }
         return VStack {
             HStack {
                 Text("Friends")
@@ -55,8 +44,20 @@ struct FriendsView: View {
                         Button(action: {
                             print("for real adding friend")
                             print(userData.sessionID)
-                            addFriend(completionHandler: addDeleteFriendsHandlerBlock, friendUsername: searchFriend, sessionID: userData.sessionID)
-                            getFriends(sessionID: userData.sessionID, completionHandler: getFriendsHandlerBlock)
+                            if(searchFriend != userData.username) {
+                                addFriend(friendUsername: searchFriend, sessionID: userData.sessionID) { (result) in
+                                    if (result == true){
+                                        self.successfulAddFriend = true
+                                        getFriends(sessionID: userData.sessionID) {(friends) in
+                                            userData.publishFriendListChanges(friendList: friends)
+                                        }
+                                        searchFriend = ""
+                                    }
+                                    else {
+                                        self.successfulAddFriend = false
+                                    }
+                                }
+                            }
                         }) {
                             Text("Add")
                         }

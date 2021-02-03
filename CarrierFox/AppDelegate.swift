@@ -19,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let windowDetails = NSWindow(
             contentRect: NSRect(x: 0, y: 0, width: 450, height: 500),
             styleMask: [.titled, .closable, .miniaturizable, .fullSizeContentView],
-            backing: .buffered, defer: false)
+            backing: .buffered, defer: false) 
         let contentView = LoginView(myWindow: windowDetails).environmentObject(UserData())
         
         window = windowDetails
@@ -34,6 +34,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to tear down your application
     }
 
+    
 
 }
 

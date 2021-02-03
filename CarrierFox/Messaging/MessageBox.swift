@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MessageBox: View, WebSocketConnectionDelegate {
+    
     func onConnected(connection: WebSocketConnection) {
         print("Connection")
     }
@@ -31,7 +32,10 @@ struct MessageBox: View, WebSocketConnectionDelegate {
                 if(!messages.isEmpty)
                 {
                     userData.publishMessageChanges(messages: updateMessages(messages))
+                    //self.setNotification()
+                    userData.updateScrollIndex()
                 }
+                
             }
             
         }
@@ -41,16 +45,22 @@ struct MessageBox: View, WebSocketConnectionDelegate {
         let stringData = String(decoding: data, as: UTF8.self)
         print(stringData)
         userData.messages.append(updateMessages(data))
+
     }
+    
+//    func setNotification() -> Void {
+//        let manager = NotificationManager()
+//        manager.requestPermission()
+//        manager.addNotification(title: "This is a test reminder")
+//        manager.scheduleNotifications()
+//    }
     
     @State private var message = ""
     @ObservedObject var userData: UserData = .shared
     var body: some View {
         let webSocketConnection = WebSocketTaskConnection()
         webSocketConnection.delegate = self
-        //if (webSocketConnection.State != 0) {
-            webSocketConnection.connect()
-        //}
+        webSocketConnection.connect()
         return HStack {
             TextField("Type here", text: $message)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -59,11 +69,13 @@ struct MessageBox: View, WebSocketConnectionDelegate {
                 
                 if(message != "") {
                     webSocketConnection.sendMessage(message: message, user: userData.username, threadId: userData.selectedChatID)
+                    //webSocketConnection.listen()
                 }
                 getMessages(threadID: userData.selectedChatID) { (messages) in
                     if(!messages.isEmpty)
                     {
                         userData.publishMessageChanges(messages: updateMessages(messages))
+                        userData.updateScrollIndex()
                     }
                     else
                     {

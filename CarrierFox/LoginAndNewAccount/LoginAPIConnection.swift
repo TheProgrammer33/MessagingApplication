@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-func createNewAccount(completionHandler: @escaping (Bool) -> Void, email: String, username: String, password: String){
+func createNewAccount(email: String, username: String, password: String, completionHandler: @escaping (Bool) -> Void){
     let urlString = "https://catherinegallaher.com/api/create-account"
     let url = URL(string: urlString)
 

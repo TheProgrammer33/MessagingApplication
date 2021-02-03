@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-func addFriend(completionHandler: @escaping (Bool) -> Void, friendUsername: String, sessionID: String){
+func addFriend(friendUsername: String, sessionID: String, completionHandler: @escaping (Bool) -> Void){
     let urlString = "https://catherinegallaher.com/api/add-friend"
     let url = URL(string: urlString)
 
