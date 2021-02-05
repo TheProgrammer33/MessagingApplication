@@ -11,42 +11,6 @@
     <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../JavaFX/javafx-sdk-11.0.2/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <NATIVE>
-          <root url="file://$MODULE_DIR$/../JavaFX/javafx-sdk-11.0.2/lib" />
-        </NATIVE>
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/../JavaFX/javafx-sdk-11.0.2/lib" />
-        </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../JavaFX/javafx-sdk-11.0.2/lib" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/../JavaFX/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../GSON" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/../GSON" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../BouncyCastle" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/../BouncyCastle" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
           <root url="jar://$USER_HOME$/Downloads/Java-WebSocket-1.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -88,6 +52,42 @@
         </CLASSES>
         <JAVADOC />
         <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../JavaLibraries/JavaFX/javafx-sdk-11.0.2/lib" />
+        </CLASSES>
+        <JAVADOC />
+        <NATIVE>
+          <root url="file://$MODULE_DIR$/../JavaLibraries/JavaFX/javafx-sdk-11.0.2/lib" />
+        </NATIVE>
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/../JavaLibraries/JavaFX/javafx-sdk-11.0.2/lib" />
+        </SOURCES>
+        <jarDirectory url="file://$MODULE_DIR$/../JavaLibraries/JavaFX/javafx-sdk-11.0.2/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../JavaLibraries/JavaFX/javafx-sdk-11.0.2/lib" recursive="false" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../JavaLibraries/GSON" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../JavaLibraries/GSON" recursive="false" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/../JavaLibraries/BouncyCastle" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+        <jarDirectory url="file://$MODULE_DIR$/../JavaLibraries/BouncyCastle" recursive="false" />
       </library>
     </orderEntry>
   </component>

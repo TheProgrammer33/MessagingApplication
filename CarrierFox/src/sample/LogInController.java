@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -123,6 +124,15 @@ public class LogInController extends AnchorPane
         this.primaryStage.setScene(scene);
 
         this.primaryStage.show();
+
+        Platform.runLater(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+                defaultPageController.updateMessageBox(defaultPageController.getCurrentThreadId());
+            }
+        });
     }
 
     @FXML

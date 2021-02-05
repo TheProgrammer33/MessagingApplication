@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -103,6 +104,11 @@ public class DefaultPageController extends AnchorPane
         return new Group(root);
     }
 
+    public int getCurrentThreadId()
+    {
+        return currentThreadId;
+    }
+
     private void closeWebSocket()
     {
         httpRequest.closeWebSocket();
@@ -150,6 +156,8 @@ public class DefaultPageController extends AnchorPane
 
         closeWebSocket();
 
+        updateMessageBox(currentThreadId);
+
         httpRequest.openWebSocket(messagesScrollPane, userData, thread.getThreadId());
     }
 
@@ -167,9 +175,14 @@ public class DefaultPageController extends AnchorPane
             messageWrapper.setTextFill(Color.WHITE);
             messageWrapper.setText(messages.get(i).getMessageBody());
 
-            messageWrapper.wrapTextProperty().setValue(true);
-
             hBox.getChildren().add(messageWrapper);
+
+            if (messages.get(i).getMessageBody().length() > 20)
+            {
+                messageWrapper.wrapTextProperty().setValue(true);
+                messageWrapper.setMaxWidth(300.0);
+                messageWrapper.setWrapText(true);
+            }
 
             if (messages.get(i).getUser().compareTo(userData.getUsername()) == 0)
             {

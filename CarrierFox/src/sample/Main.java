@@ -30,19 +30,6 @@ public class Main extends Application
         initializeApplication(primaryStage, root);
     }
 
-    private void decryptMessage() throws NoSuchAlgorithmException, IOException
-    {
-        Encryption encryption = new Encryption();
-
-        FileOutputStream fileOutputStream = new FileOutputStream("src/sample/resources/encrypted.txt");
-
-        String message = "Secwet message\n";
-
-        fileOutputStream.write(encryption.encryptMessage(message).getBytes());
-
-        fileOutputStream.close();
-    }
-
     private Boolean isEmpty(TextField textField)
     {
         if (textField.getText().isEmpty())
