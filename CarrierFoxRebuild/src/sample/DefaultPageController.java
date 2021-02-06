@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -136,6 +138,26 @@ public class DefaultPageController extends AnchorPane
             friendButton.setOnAction(e ->
             {
                 switchThreads(thread);
+
+                /*
+                java.lang.Thread newThread = new java.lang.Thread()
+                {
+                    @Override
+                    public void run()
+                    {
+                        Platform.runLater(new Runnable()
+                        {
+                            @Override
+                            public void run()
+                            {
+                                updateMessageBox(thread.getThreadId());
+                            }
+                        });
+                    }
+                };
+
+                newThread.start();
+                newThread.interrupt();*/
             });
         }
     }
@@ -160,6 +182,9 @@ public class DefaultPageController extends AnchorPane
 
         messagesBox.getChildren().clear();
 
+        if (messages == null)
+            return;
+
         for (int i = 0; i < messages.size(); i++)
         {
             HBox hBox = new HBox();
@@ -169,13 +194,6 @@ public class DefaultPageController extends AnchorPane
             messageWrapper.setText(messages.get(i).getMessageBody());
 
             hBox.getChildren().add(messageWrapper);
-
-            if (messages.get(i).getMessageBody().length() > 20)
-            {
-                messageWrapper.wrapTextProperty().setValue(true);
-                messageWrapper.setMaxWidth(300.0);
-                messageWrapper.setWrapText(true);
-            }
 
             if (messages.get(i).getUser().compareTo(userData.getUsername()) == 0)
             {

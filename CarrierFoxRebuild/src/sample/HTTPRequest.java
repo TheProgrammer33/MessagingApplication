@@ -72,7 +72,31 @@ public class HTTPRequest
 
         Type messages = new TypeToken<ArrayList<Message>>(){}.getType();
 
-        return new Gson().fromJson(fullResponse, messages);
+        List<Message> messageList = new Gson().fromJson(fullResponse, messages);
+
+        if (messageList == null)
+            return null;
+
+        for (int i = 0; i < messageList.size(); i++)
+        {
+            Message message = messageList.get(i);
+            String messageBody = message.getMessageBody();
+            int lengthOfMessageBody = messageBody.length();
+
+            if (lengthOfMessageBody > 20)
+            {
+                for (int j = lengthOfMessageBody - 20; j > 0; j--)
+                {
+                    if (messageBody.charAt(j) == ' ')
+                    {
+                        message.setMessageBody(messageBody.substring(0, j) + '\n' + messageBody.substring(j));
+                        break;
+                    }
+                }
+            }
+        }
+
+        return messageList;
     }
 
     public UserData login(String username, String password)
