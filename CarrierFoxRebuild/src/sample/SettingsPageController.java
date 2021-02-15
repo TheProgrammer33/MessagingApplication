@@ -9,6 +9,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -52,6 +53,15 @@ public class SettingsPageController extends AnchorPane
     @FXML
     private RadioButton notificationsOff;
 
+    @FXML
+    private RadioButton englishLanguage;
+    @FXML
+    private RadioButton frenchLanguage;
+    @FXML
+    private RadioButton germanLanguage;
+    @FXML
+    private RadioButton spanishLanguage;
+
     public Group initializeSettingsPage(Stage primaryStage, UserData userData) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("resources/Settings.fxml"));
@@ -76,6 +86,11 @@ public class SettingsPageController extends AnchorPane
 
         notificationsOn = (RadioButton) notifications.getChildren().get(1);
         notificationsOff = (RadioButton) notifications.getChildren().get(2);
+
+        englishLanguage = (RadioButton) notifications.getChildren().get(9);
+        frenchLanguage = (RadioButton) notifications.getChildren().get(10);
+        germanLanguage = (RadioButton) notifications.getChildren().get(11);
+        spanishLanguage = (RadioButton) notifications.getChildren().get(12);
 
         HTTPRequest httpRequest = new HTTPRequest();
 
@@ -169,26 +184,38 @@ public class SettingsPageController extends AnchorPane
             return false;
     }
 
+    private String getCurrentLanguage()
+    {
+        ToggleGroup languageToggleGroup = englishLanguage.getToggleGroup();
+
+        RadioButton selectedLanguage = (RadioButton) languageToggleGroup.getSelectedToggle();
+
+        return selectedLanguage.getText();
+    }
+
+    private Boolean getCurrentNotificationSetting()
+    {
+        ToggleGroup selectedToggleGroup = notificationsOn.getToggleGroup();
+
+        RadioButton selectedNotificationSetting = (RadioButton) selectedToggleGroup.getSelectedToggle();
+
+        if (selectedNotificationSetting == notificationsOn)
+            return true;
+        else
+            return false;
+    }
+
     private void saveSettings()
     {
-        boolean notificationSettings = false;
+        boolean notificationSettings = getCurrentNotificationSetting();
+        String languageSetting = getCurrentLanguage();
 
-        System.out.println(notificationsOn.getText());
-
-        if (notificationsOn.isSelected())
-        {
-            notificationSettings = true;
-        }
-        else if (notificationsOff.isSelected())
-            notificationSettings = false;
-        else
-            notificationSettings = false;
+        this.userData.setNotificationSettings(notificationSettings);
+        this.userData.setLanguage(languageSetting);
 
         HTTPRequest httpRequest = new HTTPRequest();
 
         httpRequest.saveSettings(notificationSettings, this.userData.get_id());
-
-        this.userData.setNotificationSettings(notificationSettings);
     }
 
     @FXML
