@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="401.0" prefWidth="301.0" style="-fx-background-color: #1C1D1F;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField layoutX="65.0" layoutY="61.0" promptText="Search" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+      <Text fill="WHITE" layoutX="97.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Select Friends">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Text>
+      <AnchorPane layoutX="20.0" layoutY="108.0" prefHeight="233.0" prefWidth="262.0" style="-fx-background-color: #2E2F31;">
+         <children>
+            <ScrollPane hbarPolicy="NEVER" prefHeight="233.0" prefWidth="262.0" stylesheets="@scrollPaneStyling.css">
+               <content>
+                  <VBox prefHeight="244.0" prefWidth="262.0" style="-fx-background-color: #2E2F31;">
+                     <children>
+                        <AnchorPane prefHeight="65.0" prefWidth="262.0">
+                           <children>
+                              <Text fill="WHITE" layoutX="14.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friend Name">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Text>
+                              <CheckBox layoutX="217.0" layoutY="24.0" mnemonicParsing="false" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </VBox>
+               </content>
+            </ScrollPane>
+         </children>
+      </AnchorPane>
+      <Button layoutX="120.0" layoutY="361.0" mnemonicParsing="false" style="-fx-background-color: #646467;" text="Create" textFill="WHITE" />
+   </children>
+</fx:root>
