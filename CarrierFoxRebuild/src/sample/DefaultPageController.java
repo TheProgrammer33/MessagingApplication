@@ -213,7 +213,7 @@ public class DefaultPageController extends AnchorPane
     }
 
     @FXML
-    public void initializeSettingsPage()
+    public void initializeSettingsPage() //FIXME: Loses websocket thread when switching back to thread
     {
         SettingsPageController settingsPageController = new SettingsPageController();
 
@@ -237,7 +237,7 @@ public class DefaultPageController extends AnchorPane
     }
 
     @FXML
-    public void initializeFriendsPage()
+    public void initializeFriendsPage() //FIXME: Loses websocket thread when switching back to thread
     {
         FriendsManagementController friendsManagementController = new FriendsManagementController();
 
