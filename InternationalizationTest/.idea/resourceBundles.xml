@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ResourceBundleManager">
+    <file url="file://$PROJECT_DIR$/src/resources/LoginPage_de_DE.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/LoginPage_en_fr.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/LoginPage_es_419.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/LoginPage_fr_FR.properties" />
+    <file url="file://$PROJECT_DIR$/src/resources/LoginPage_pt_PT.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/resources/LoginPage_de_DE.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/LoginPage_es_419.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/LoginPage_fr_FR.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/LoginPage_pt_PT.properties" />
+      <base-name>LoginPage</base-name>
+    </custom-resource-bundle>
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/resources/LoginPage_de_DE.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/LoginPage_en_US.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/LoginPage_es_419.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/LoginPage_fr_FR.properties" />
+      <file value="file://$PROJECT_DIR$/src/resources/LoginPage_pt_PT.properties" />
+      <base-name>LoginPage</base-name>
+    </custom-resource-bundle>
+  </component>
+</project>
