@@ -87,10 +87,10 @@ public class SettingsPageController extends AnchorPane
         notificationsOn = (RadioButton) notifications.getChildren().get(1);
         notificationsOff = (RadioButton) notifications.getChildren().get(2);
 
-        englishLanguage = (RadioButton) notifications.getChildren().get(9);
-        frenchLanguage = (RadioButton) notifications.getChildren().get(10);
-        germanLanguage = (RadioButton) notifications.getChildren().get(11);
-        spanishLanguage = (RadioButton) notifications.getChildren().get(12);
+        englishLanguage = (RadioButton) notifications.getChildren().get(10);
+        frenchLanguage = (RadioButton) notifications.getChildren().get(11);
+        germanLanguage = (RadioButton) notifications.getChildren().get(12);
+        spanishLanguage = (RadioButton) notifications.getChildren().get(13);
 
         HTTPRequest httpRequest = new HTTPRequest();
 

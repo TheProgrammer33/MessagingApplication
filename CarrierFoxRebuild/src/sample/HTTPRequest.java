@@ -58,7 +58,7 @@ public class HTTPRequest
 
     public void sendMessage(String message, String id, String username)
     {
-        this.chatClient.send("{\"message\": \"" + message + "\", \"threadId\": " + id + ", \"user\": \"" + username + "\"" + "}");
+        this.chatClient.send("{\"message\": \"" + message + "\", \"threadId\": " + id + ", \"user\": \"" + username + "\"" + ", \"type\": \"newMessage\"}");
     }
 
     public List<Message> getMessages(int threadId)
