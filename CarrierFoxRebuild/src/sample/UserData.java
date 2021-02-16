@@ -13,6 +13,8 @@ public class UserData
     private List<Friend> friends;
     private List<Thread> threads;
 
+    private String language;
+
     public String getUsername()
     {
         return username;
@@ -76,5 +78,13 @@ public class UserData
     public void addThread(Thread newThread)
     {
         this.threads.add(newThread);
+    }
+
+    public String getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(String language) {
+        this.language = language;
     }
 }
