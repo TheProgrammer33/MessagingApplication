@@ -137,7 +137,7 @@ public class DefaultPageController extends AnchorPane
 
             friendButton.setOnAction(e ->
             {
-                switchThreads(thread);
+                httpRequest.changeThread(thread.getThreadId());
 
                 /*
                 java.lang.Thread newThread = new java.lang.Thread()
@@ -162,6 +162,7 @@ public class DefaultPageController extends AnchorPane
         }
     }
 
+    /*
     public void switchThreads(Thread thread)
     {
         this.currentThreadId = thread.getThreadId();
@@ -174,7 +175,7 @@ public class DefaultPageController extends AnchorPane
         updateMessageBox(currentThreadId);
 
         httpRequest.openWebSocket(messagesScrollPane, userData, thread.getThreadId());
-    }
+    }*/
 
     public void updateMessageBox(int threadId)
     {
@@ -214,8 +215,6 @@ public class DefaultPageController extends AnchorPane
     @FXML
     public void initializeSettingsPage()
     {
-        closeWebSocket();
-
         SettingsPageController settingsPageController = new SettingsPageController();
 
         this.primaryStage.close();
@@ -240,8 +239,6 @@ public class DefaultPageController extends AnchorPane
     @FXML
     public void initializeFriendsPage()
     {
-        closeWebSocket();
-
         FriendsManagementController friendsManagementController = new FriendsManagementController();
 
         this.primaryStage.close();

@@ -66,7 +66,21 @@ public class WebSocketController extends WebSocketClient {
 
     }
 
-    public void updateMessageBox()
+    public void changeThread(int threadId)
+    {
+        this.threadId = threadId;
+
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run()
+            {
+                updateMessageBox();
+                messagesScrollPane.vvalueProperty().bind(messagesBox.heightProperty());
+            }
+        });
+    }
+
+    private void updateMessageBox()
     {
         HTTPRequest httpRequest = new HTTPRequest();
         List<Message> messages = httpRequest.getMessages(this.threadId);

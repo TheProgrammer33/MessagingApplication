@@ -56,6 +56,8 @@ public class HTTPRequest
         websocketThread.stop();
     }
 
+    public void changeThread(int threadId) { chatClient.changeThread(threadId); }
+
     public void sendMessage(String message, String id, String username)
     {
         this.chatClient.send("{\"message\": \"" + message + "\", \"threadId\": " + id + ", \"user\": \"" + username + "\"" + ", \"type\": \"newMessage\"}");
