@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-func newChat(friendUsername: String, sessionID: String, currentUser: String, completionHandler: @escaping (NewChatObject) -> Void){
+func newChat(friendUsernames: [String], sessionID: String, currentUser: String, completionHandler: @escaping (NewChatObject) -> Void){
     let urlString = "https://catherinegallaher.com/api/create-thread"
     let url = URL(string: urlString)
 
@@ -23,7 +23,11 @@ func newChat(friendUsername: String, sessionID: String, currentUser: String, com
         "Content-Type": "application/x-www-form-urlencoded"
     ]
     request.allHTTPHeaderFields = headers
-    let requestBody = "users=\(friendUsername),\(currentUser)"
+    var requestBody = "users="
+    for friend in friendUsernames {
+        requestBody += "\(friend),"
+    }
+    requestBody += "\(currentUser)"
     request.httpBody = requestBody.data(using: String.Encoding.utf8)
     request.httpMethod = "POST"
     

@@ -13,13 +13,13 @@ struct ChangeEmail: View {
     @ObservedObject var userData: UserData = .shared
     var body: some View {
         return VStack {
-            Text("Change Email")
+            Text(NSLocalizedString("Change Email", comment: "Change Email"))
                 .font(.title)
-            TextField("Email", text: $email)
+            TextField(NSLocalizedString("Email", comment: "Email"), text: $email)
                 .padding([.top, .leading, .trailing])
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             if(!validEmail) {
-                Text("Invalid Email")
+                Text(NSLocalizedString("Invalid Email", comment: "Invalid Email"))
                     .foregroundColor(Color.red)
             }
             Button(action: {
@@ -28,7 +28,7 @@ struct ChangeEmail: View {
                     validEmail = response
                 }
             }) {
-                Text("Change Email")
+                Text(NSLocalizedString("Change Email", comment: "Change Email"))
             }.padding()
         }
     }

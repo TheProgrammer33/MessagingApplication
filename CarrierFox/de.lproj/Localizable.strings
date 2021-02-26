@@ -1,0 +1,54 @@
+/* 
+  Localizable.strings
+  CarrierFox
+
+  Created by Catherine Gallaher on 2/15/21.
+  
+*/
+
+"Username" = "Nutzername";
+"Password" = "Passwort";
+"Reset Password" = "Passwort zurücksetzen";
+"Add new Account" = "Neues Konto hinzufügen";
+"Submit" = "Einreichen";
+"Invalid Username or Password" = "Ungültiger Benutzername oder Passwort";
+
+"Username already exists" = "Benutzername existiert bereits";
+"Email" = "Email";
+"Invalid Email" = "Ungültige E-Mail";
+"Confirm Password" = "Bestätige Passwort";
+"Passwords do not match" = " Passwörter stimmen nicht überein";
+"Create Account" = "Konto erstellen";
+
+"Type here" = "Hier schreiben";
+"Send" = "Senden";
+
+"Add Chat" = "Neues Chat";
+
+"Search Friends" = "Freunde durchsuchen";
+"Create" = "Erstellen";
+
+"Logout" = "Ausloggen";
+
+"Notification Settings" = "Benachrichtigungseinstellungen";
+"Send Notifications" = "Benachrichtigungen senden";
+"Save Settings" = "Einstellungen speichern";
+
+"Change Password" = "Passwort ändern";
+"Old Password" = "Altes Passwort";
+"Password is incorrect" = "Passwort ist inkorrekt";
+"New Password" = "Neues Passwort";
+"Confirm New Password" = "Bestätige neues Passwort";
+
+"Change Email" = "Ändern Sie die E-Mail";
+
+"Friends" = "Freunde";
+"+ Add Friend" = "+ Freund hinzufügen";
+"Search For New Friend" = "Finde einen neuen Freund";
+"Add" = "Hinzufügen";
+"Not a valid username" = "Ungültiger Benutzername";
+
+"Delete" = "Löschen";
+
+"Back" = "Zurück";
+"Settings" = "Einstellungen";

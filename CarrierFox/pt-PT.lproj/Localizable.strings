@@ -1,0 +1,54 @@
+/* 
+  Localizable.strings
+  CarrierFox
+
+  Created by Catherine Gallaher on 2/15/21.
+  
+*/
+
+"Username" = "Nome de usuário";
+"Password" = "Senha";
+"Reset Password" = "Redefinir senha";
+"Add new Account" = "Adicionar nova conta";
+"Submit" = "Enviar";
+"Invalid Username or Password" = "Nome de usuário ou senha inválidos";
+
+"Username already exists" = "Nome de usuário já existe";
+"Email" = "E-mail";
+"Invalid Email" = "E-mail inválido";
+"Confirm Password" = "Confirme sua senha";
+"Passwords do not match" = "As senhas não coincidem";
+"Create Account" = "Criar uma nova conta";
+
+"Type here" = "Digite aqui";
+"Send" = "Mandar";
+
+"Add Chat" = "Adicionar bate-papo";
+
+"Search Friends" = "Procurar amigos";
+"Create" = "Crio";
+
+"Logout" = "Sair";
+
+"Notification Settings" = "Configurações de notificação";
+"Send Notifications" = "Enviar notificações";
+"Save Settings" = "Salvar configurações";
+
+"Change Password" = "Mudar senha";
+"Old Password" = "Senha antiga";
+"Password is incorrect" = "Senha é incorreta";
+"New Password" = "Nova senha";
+"Confirm New Password" = "Confirme a nova senha";
+
+"Change Email" = "Mude e-mail";
+
+"Friends" = "Amigos";
+"+ Add Friend" = "+ Adicionar amigo";
+"Search For New Friend" = "Encontre um novo amigo";
+"Add" = "Adicionar";
+"Not a valid username" = "Não é um nome de usuário válido";
+
+"Delete" = "Excluir";
+
+"Back" = "Voltar";
+"Settings" = "Configurações";

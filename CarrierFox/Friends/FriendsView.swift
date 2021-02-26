@@ -16,7 +16,7 @@ struct FriendsView: View {
     var body: some View {
         return VStack {
             HStack {
-                Text("Friends")
+                Text(NSLocalizedString("Friends", comment: "Friends"))
                     .font(.title)
                 Spacer()
             }.padding(.horizontal)
@@ -31,7 +31,7 @@ struct FriendsView: View {
                     print("adding friend")
                     self.isNewFriend.toggle()
                 }) {
-                    Text("+ Add Friend")
+                    Text(NSLocalizedString("+ Add Friend", comment: "Add Friend"))
                 }
                 Spacer()
             }.padding()
@@ -39,10 +39,9 @@ struct FriendsView: View {
             if(isNewFriend) {
                 VStack {
                     HStack {
-                        TextField("Search For New Friend", text: $searchFriend)
+                        TextField(NSLocalizedString("Search For New Friend", comment: "Search For New Friend"), text: $searchFriend)
                         Spacer()
                         Button(action: {
-                            print("for real adding friend")
                             print(userData.sessionID)
                             if(searchFriend != userData.username) {
                                 addFriend(friendUsername: searchFriend, sessionID: userData.sessionID) { (result) in
@@ -59,12 +58,12 @@ struct FriendsView: View {
                                 }
                             }
                         }) {
-                            Text("Add")
+                            Text(NSLocalizedString("Add", comment: "Add Friend"))
                         }
                         
                     }
                     if(!successfulAddFriend) {
-                        Text("Not a valid username")
+                        Text(NSLocalizedString("Not a valid username", comment: "Not a valid username"))
                             .foregroundColor(Color.red)
                     }
                 }.padding([.leading, .bottom, .trailing])

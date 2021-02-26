@@ -23,7 +23,7 @@ struct FriendDetailView: View {
                     }
                 }
             }) {
-                Text("Delete")
+                Text(NSLocalizedString("Delete", comment: "Delete Friend"))
             }
         }.padding()
     }

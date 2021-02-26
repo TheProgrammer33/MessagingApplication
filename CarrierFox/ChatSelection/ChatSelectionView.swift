@@ -14,7 +14,7 @@ struct ChatSelectionView: View {
         VStack {
             List {
                 HStack {
-                    Text("Add Chat").padding([.leading, .trailing])
+                    Text(NSLocalizedString("Add Chat", comment: "Add Chat")).padding([.leading, .trailing])
                         .padding(.top, 2.0)
                     HStack {
                         Button(action: {
@@ -28,14 +28,8 @@ struct ChatSelectionView: View {
                         isPresented: self.$showFriendSearch,
                         arrowEdge: .bottom
                     ) { NewChatView() }
-//                    .sheet(isPresented: self.$showFriendSearch, content: {
-//                        NewChatView()
-//                    })
                 }
             }.frame(width: 170.0, height: 35.0)
-//            if(showFriendSearch) {
-//                NewChatSelectionView()
-//            }
             SelectChatView()
         }.padding()
     }

@@ -13,7 +13,7 @@ func testEncrypt() {
         try encryptData()
     }
     catch {
-        print("There was an error")
+        print("There was an error in encryptData")
     }
 }
 
@@ -32,7 +32,7 @@ struct ContentView: View {
                         self.isFriends = false
                         self.isSettings = false
                     }) {
-                        Text("Back")
+                        Text(NSLocalizedString("Back", comment: "Back to main page"))
                     }
                 }.padding([.top, .leading, .trailing])
             }
@@ -52,7 +52,7 @@ struct ContentView: View {
                                     self.isFriends = false
                                     self.isSettings = false
                                 }) {
-                                    Text("Back")
+                                    Text(NSLocalizedString("Back", comment: "Back to main page"))
                                 }
                             }
                             Spacer()
@@ -61,13 +61,13 @@ struct ContentView: View {
                                 self.isSettings = false
                                 testEncrypt()
                             }) {
-                                Text("Friends")
+                                Text(NSLocalizedString("Friends", comment: "Friends"))
                             }
                             Button(action: {
                                 self.isSettings.toggle()
                                 self.isFriends = false
                             }) {
-                                Text("Settings")
+                                Text(NSLocalizedString("Settings", comment: "Settings"))
                             }
                         }.padding([.top, .trailing])
                         MessagingView().environmentObject(UserData())

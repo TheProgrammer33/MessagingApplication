@@ -11,16 +11,16 @@ struct NotificationsSettings: View {
     @ObservedObject var userData: UserData = .shared
     var body: some View {
         VStack {
-            Text("Notification Settings")
+            Text(NSLocalizedString("Notification Settings", comment: "Notification Settings"))
                 .font(.title)
             Toggle(isOn: $userData.notificationsIsOn) {
-                Text("Send Notifications")
+                Text(NSLocalizedString("Send Notifications", comment: "Send Notifications"))
             }.toggleStyle(SwitchToggleStyle())
             Button(action: {
                 print("saving settings")
                 saveNotifications(sessionID: userData.sessionID, notifications: userData.notificationsIsOn)
             }) {
-                Text("Save Settings")
+                Text(NSLocalizedString("Save Settings", comment: "Save Settings"))
             }
             .padding(.vertical)
         }.padding()

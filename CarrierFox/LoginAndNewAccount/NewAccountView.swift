@@ -21,30 +21,30 @@ struct NewAccountView: View {
                 .frame(width: 128.0, height: 128.0)
                 .scaledToFit()
             Form {
-                TextField("Username", text: $username)
+                TextField(NSLocalizedString("Username", comment: "Username"), text: $username)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 if(successfulNewAccount) {
-                    Text("Username already exists")
+                    Text(NSLocalizedString("Username already exists", comment: "Username already exists"))
                         .foregroundColor(Color.red)
                         .padding(.leading, 17.0)
                 }
-                TextField("Email", text: $email)
+                TextField(NSLocalizedString("Email", comment: "Email"), text: $email)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 if(successfulNewAccount) {
-                    Text("Invalid Email")
+                    Text(NSLocalizedString("Invalid Email", comment: "Invalid Email"))
                         .foregroundColor(Color.red)
                         .padding(.leading, 17.0)
                 }
-                SecureField("Password", text: $password)
+                SecureField(NSLocalizedString("Password", comment: "Password"), text: $password)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                SecureField("Confirm Password", text: $confirmPassword)
+                SecureField(NSLocalizedString("Confirm Password", comment: "Confirm Password"), text: $confirmPassword)
                     .padding()
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 if(password != confirmPassword) {
-                    Text("Passwords do not match")
+                    Text(NSLocalizedString("Passwords do not match", comment: "Passwords do not match"))
                         .foregroundColor(Color.red)
                         .padding(.leading, 17.0)
                 }
@@ -62,7 +62,7 @@ struct NewAccountView: View {
                     print("Error creating Account")
                 }
             }) {
-                Text("Create Account")
+                Text(NSLocalizedString("Create Account", comment: "Create Account"))
             }.padding()
         }
         .frame(width: 450.0, height: 500.0)

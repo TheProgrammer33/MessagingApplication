@@ -12,7 +12,7 @@ struct Logout: View {
     let myWindow:NSWindow?
     var body: some View {
         VStack {
-            Text("Logout")
+            Text(NSLocalizedString("Logout", comment: "Logout"))
                 .font(.title).padding()
             Button(action: {
                 userData.publishMessageChanges(messages: [])
@@ -20,7 +20,7 @@ struct Logout: View {
                 showLoginWindow()
                 self.myWindow?.close()
             }) {
-                Text("Logout")
+                Text(NSLocalizedString("Logout", comment: "Logout"))
             }
         }.padding()
     }

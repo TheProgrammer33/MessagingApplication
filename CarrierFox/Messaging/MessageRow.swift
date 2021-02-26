@@ -10,7 +10,14 @@ import SwiftUI
 struct MessageRow: View {
     var message: Message
     @ObservedObject var userData: UserData = .shared
+    @State private var showMessageSettings: Bool = false
     var body: some View {
+        func rightMouseDown(with theEvent: NSEvent) {
+//            let point = NSPoint { NSEvent.mouseLocation }
+//            let row = List.row(at: point)
+//            print("right click")
+//            print(row)
+        }
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy h:m a"
         let date = formatter.string(from: message.messageSentDate)
@@ -23,26 +30,56 @@ struct MessageRow: View {
                             Spacer()
                             Text(date).font(.caption).foregroundColor(Color.gray)
                             Text(message.user)
-                                .font(.callout)
+                                .font(.footnote)
                                 .multilineTextAlignment(.trailing)
                                 .padding(.trailing, 6.0)
                         }
                         HStack {
                             Spacer()
-                            Text(message.messageBody)
-                                .foregroundColor(Color.white)
-                                .multilineTextAlignment(.trailing).padding(.horizontal)
-                                .background(Color.blue)
-                                .clipShape(Capsule())
-                                .fixedSize(horizontal: false, vertical: true)
+                            Button(action: {
+                                self.showMessageSettings.toggle()
+                            }) {
+                                Text(message.messageBody)
+                                    .foregroundColor(Color.white)
+                            }.buttonStyle(BorderlessButtonStyle())
+                            //.fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.trailing)
+                            .padding(.horizontal)
+                             .background(Color.blue)
+                             .clipShape(Capsule())
+                             
                         }
+                    } .popover(
+                        isPresented: self.$showMessageSettings,
+                        arrowEdge: .trailing
+                    ) {
+                        VStack {
+                            Text("Delete Message?")
+                            HStack {
+                                Button(action: {
+                                    print("deleting message")
+                                    print(message._id)
+                                    deleteMessage(messageID: message._id, threadID: userData.selectedChatID)
+                                    self.showMessageSettings.toggle()
+                                    
+                                }){
+                                    Text("Delete")
+                                }
+                                Button(action: {
+                                    self.showMessageSettings.toggle()
+                                    
+                                }){
+                                    Text("Cancel")
+                                }
+                            }
+                        }.padding()
                     }
                 }
                 else {
                     VStack {
                         HStack {
                             Text(message.user)
-                                .font(.callout)
+                                .font(.footnote)
                                 .multilineTextAlignment(.leading)
                                 .padding(.leading, 6.0)
                             Text(date)
@@ -63,6 +100,7 @@ struct MessageRow: View {
                     }
                     Spacer()
                 }
+                
             }
             .font(.subheadline)
         }

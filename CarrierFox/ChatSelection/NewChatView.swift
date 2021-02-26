@@ -7,43 +7,52 @@
 
 import SwiftUI
 
+func search(searchVal: String, friendList: [FriendWithSelect]) -> [FriendWithSelect] {
+    if (searchVal != "") {
+        var filteredSearch: [FriendWithSelect] = []
+        filteredSearch = friendList.filter { friend in
+            return friend.username.lowercased().contains(searchVal.lowercased())
+        }
+        return filteredSearch
+    }
+    else {
+        return friendList
+    }
+    
+}
+
 struct NewChatView: View {
     @State private var searchFriends: String = ""
-    @State private var ison:Bool = false
     @ObservedObject var userData: UserData = .shared
     var body: some View {
         VStack {
-            TextField("Search Friends", text: $searchFriends).padding()
+            TextField(NSLocalizedString("Search Friends", comment: "Search Friends List"), text: $searchFriends).padding()
             VStack {
-                ForEach(userData.friendList, id: \.self) { friend in
+                ForEach(0..<userData.newChatSelection.count) { i in
                     HStack {
-                        Toggle(isOn: $ison) {
-                            Text(friend.username)
+                        if(search(searchVal: searchFriends, friendList: userData.newChatSelection).contains(userData.newChatSelection[i])) {
+                            Toggle("\(userData.newChatSelection[i].username)", isOn: self.$userData.newChatSelection[i].selected)
+                            Spacer()
                         }
-                        Spacer()
                     }
                 }
             }
-//            VStack {
-//                Text("test")
-//                Text("test 2")
-//                Toggle(isOn: $ison) {
-//                    Text("Demo")
-//                }.toggleStyle(CheckboxToggleStyle())
-//                Toggle(isOn: $ison) {
-//                    Text("Demo")
-//                }.toggleStyle(CheckboxToggleStyle())
-//                Toggle(isOn: $ison) {
-//                    Text("Demo")
-//                }.toggleStyle(CheckboxToggleStyle())
-//                Toggle(isOn: $ison) {
-//                    Text("Demo")
-//                }.toggleStyle(CheckboxToggleStyle())
-//            }
             Button(action: {
+                var selectedFriends: [String] = []
+                for friend in userData.newChatSelection {
+                    if(friend.selected == true)
+                    {
+                        selectedFriends.append(friend.username)
+                    }
+                }
+                newChat(friendUsernames: selectedFriends, sessionID: userData.sessionID, currentUser: userData.username) { (responseObject) in
+                    var tempChatList = userData.chatList
+                    tempChatList.append(Chat(name: responseObject.name, id: responseObject.threadId))
+                    userData.publishChatChanges(chats: tempChatList)
+                }
                 self.searchFriends = ""
             }){
-                Text("Create")
+                Text(NSLocalizedString("Create", comment: "Create new chat"))
             }
         }.padding()
     }

@@ -26,7 +26,7 @@ final class UserData: ObservableObject {
     @Published var friendList: [Friend] = []
     @Published var notificationsIsOn: Bool = false
     @Published var scrollIndex: Binding<CGPoint?>? = nil //Binding<CGPoint?>?(CGPoint(x: 0, y: 10000))
-    @Published var newChatSelection: [String: Bool] = [:]
+    @Published var newChatSelection: [FriendWithSelect] = []
     
 
     func publishMessageChanges(messages: [Message]) {
@@ -75,22 +75,14 @@ final class UserData: ObservableObject {
     func publishFriendListChanges(friendList: [Friend]) {
         DispatchQueue.main.async {
             self.friendList = friendList
-            self.newChatSelection = [:]
+            self.newChatSelection = []
             for friend in friendList {
-                //self.newChatSelection.merge([friend.username: false], uniquingKeysWith:  { (_, new) in new })
-                self.newChatSelection.updateValue(false, forKey: friend.username)
+                //self.newChatSelection.updateValue(false, forKey: friend.username)
+                self.newChatSelection.append(FriendWithSelect(friend: friend.username))
             }
         }
     }
-    
-    func resetNewChatSelection() {
-        DispatchQueue.main.async {
-            for (username, _) in self.newChatSelection {
-                self.newChatSelection.updateValue(false, forKey: username)
-            }
-            
-        }
-    }
+
     
     func publishScrollIndexChanges(scrollTo: CGPoint) {
         DispatchQueue.main.async {

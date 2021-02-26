@@ -22,22 +22,22 @@ struct LoginView: View {
                     .frame(width: 128.0, height: 128.0)
                     .scaledToFit()
                 Form {
-                    TextField("Username", text: $username)
+                    TextField(NSLocalizedString("Username", comment: "Username"), text: $username)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
-                    SecureField("Password", text: $password)
+                    SecureField(NSLocalizedString("Password", comment: "Password"), text: $password)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding()
                 }
                 .frame(width: 425.0)
                 HStack {
-                    Text("Reset Password")
+                    Text(NSLocalizedString("Reset Password", comment: "Reset Password"))
                         .padding(.horizontal)
                     Button(action: {
                         showNewAccountWindow()
                         self.myWindow?.close()
                     }) {
-                        Text("Add new Account")
+                        Text(NSLocalizedString("Add new Account", comment: "Add new Account"))
                     }
                 }.multilineTextAlignment(.center)
                 HStack {
@@ -76,12 +76,12 @@ struct LoginView: View {
                             }
                         }
                     }) {
-                        Text("Submit")
+                        Text(NSLocalizedString("Submit", comment: "Submit"))
                     }
                 }
                 .padding(.trailing, 27.0)
                 if (!successfulLogin) {
-                    Text("Invalid Username or Password").font(.footnote).foregroundColor(Color.red).padding()
+                    Text(NSLocalizedString("Invalid Username or Password", comment: "Invalid")).font(.footnote).foregroundColor(Color.red).padding()
                 }
             }
             .frame(width: 450.0, height: 500.0)

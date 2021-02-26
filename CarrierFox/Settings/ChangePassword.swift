@@ -15,9 +15,9 @@ struct ChangePassword: View {
     @ObservedObject var userData: UserData = .shared
     var body: some View {
         return VStack {
-            Text("Change Password").font(.title)
+            Text(NSLocalizedString("Change Password", comment: "Change Password")).font(.title)
             
-            SecureField("Old Password", text: $oldPassword)
+            SecureField(NSLocalizedString("Old Password", comment: "Old Password"), text: $oldPassword)
                 .padding([.top, .leading, .trailing])
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             if(!validOldPassword) {
@@ -25,14 +25,14 @@ struct ChangePassword: View {
                     .foregroundColor(Color.red)
             }
             
-            SecureField("New Password", text: $newPassword)
+            SecureField(NSLocalizedString("New Password", comment: "New Password"), text: $newPassword)
                 .padding([.top, .leading, .trailing])
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            SecureField("Confirm New Password", text: $confirmNewPassword)
+            SecureField(NSLocalizedString("Confirm New Password", comment: "Confirm New Password"), text: $confirmNewPassword)
                 .padding([.leading, .bottom, .trailing])
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             if(newPassword != confirmNewPassword) {
-                Text("Passwords do not match")
+                Text(NSLocalizedString("Passwords do not match", comment: "Passwords do not match"))
                     .foregroundColor(Color.red)
             }
             
@@ -42,7 +42,7 @@ struct ChangePassword: View {
                     validOldPassword = response
                 }
             }) {
-                Text("Change Password")
+                Text(NSLocalizedString("Change Password", comment: "Change Password"))
             }
         }
         

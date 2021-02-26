@@ -33,7 +33,7 @@ struct MessageBox: View, WebSocketConnectionDelegate {
                 {
                     userData.publishMessageChanges(messages: updateMessages(messages))
                     //self.setNotification()
-                    userData.updateScrollIndex()
+                    //userData.updateScrollIndex()
                 }
                 
             }
@@ -62,7 +62,7 @@ struct MessageBox: View, WebSocketConnectionDelegate {
         webSocketConnection.delegate = self
         webSocketConnection.connect()
         return HStack {
-            TextField("Type here", text: $message)
+            TextField(NSLocalizedString("Type here", comment: "Type message here"), text: $message)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                 .padding()
             Button(action: {
@@ -84,7 +84,7 @@ struct MessageBox: View, WebSocketConnectionDelegate {
                 }
                 message = ""
             }) {
-                Text("Send")
+                Text(NSLocalizedString("Send", comment: "Sent message"))
             }.padding([.top, .bottom, .trailing])
         }
     }

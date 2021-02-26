@@ -84,7 +84,7 @@ class WebSocketTaskConnection: NSObject, WebSocketConnection, URLSessionWebSocke
     }
     
     func sendMessage(message: String, user: String, threadId: Int) {
-        let message = URLSessionWebSocketTask.Message.string("{\"message\": \"\(message)\", \"threadId\": \(threadId), \"user\": \"\(user)\"}")
+        let message = URLSessionWebSocketTask.Message.string("{\"message\": \"\(message)\", \"threadId\": \(threadId), \"user\": \"\(user)\",\"type\": \"newMessage\"}")
         webSocketTask.send(message) { error in
             if let error = error {
                 self.delegate?.onError(connection: self, error: error)

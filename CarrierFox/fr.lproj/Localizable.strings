@@ -1,0 +1,55 @@
+/* 
+  Localizable.strings
+  CarrierFox
+
+  Created by Catherine Gallaher on 2/15/21.
+  
+*/
+
+"Username" = "Nom d'utilisateur";
+"Password" = "Mot de passe";
+"Reset Password" = "Réinitialiser le mot de passe";
+"Add new Account" = "Ajouter un nouveau compte";
+"Submit" = "Nous faire parvenir";
+"Invalid Username or Password" = "Nom d'utilisateur ou mot de passe invalide";
+
+"Username already exists" = "Ce nom d'utilisateur existe déjà";
+"Email" = "Email";
+"Invalid Email" = "Email invalide";
+"Confirm Password" = "Confirmez le mot de passe";
+"Passwords do not match" = "Les mots de passe ne correspondent pas";
+"Create Account" = "Créer un  nouveau compte";
+
+"Type here" = "Ecrire ici";
+"Send" = "Envoyer";
+
+"Add Chat" = "Ajouter un chat";
+
+"Search Friends" = "Retrouver des amis";
+"Create" = "Créer";
+
+"Logout" = "Se déconnecter";
+
+"Notification Settings" = "Paramètres de notification";
+"Send Notifications" = "Envoyer des notifications";
+"Save Settings" = "Enregistrer les paramètres";
+
+"Change Password" = "Changer le mot de passe";
+"Old Password" = "Ancien mot de passe";
+"Password is incorrect" = "Le mot de passe est incorrect";
+"New Password" = "Nouveau mot de passe";
+"Confirm New Password" = "Confirmer le nouveau mot de passe";
+
+"Change Email" = "Changer l'email";
+
+"Friends" = "Amis";
+"+ Add Friend" = "+ Ajouter un ami";
+"Search For New Friend" = "Rechercher un nouvel ami";
+"Add" = "Ajouter";
+"Not a valid username" = "Nom d'utilisateur invalide";
+
+"Delete" = "Effacer";
+
+"Back" = "Retour";
+"Settings" = "Réglages";
+
