@@ -11,6 +11,7 @@ import Foundation
 struct LoginObject: Codable, Hashable {
     let _id: String
     let email: String
+    let username: String
     let friends: [Friend]
     let notifications: Bool
     let threads: [Chat]
@@ -18,6 +19,7 @@ struct LoginObject: Codable, Hashable {
     init() {
         self._id = ""
         self.email = ""
+        self.username = ""
         self.friends = []
         self.notifications = false
         self.threads = []
