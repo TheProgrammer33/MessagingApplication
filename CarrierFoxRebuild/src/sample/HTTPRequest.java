@@ -24,6 +24,14 @@ public class HTTPRequest
 {
     private WebSocketController chatClient;
     private WebSocketThread websocketThread;
+    private int threadId;
+
+    public HTTPRequest(int threadId)
+    {
+        this.threadId = threadId;
+    }
+
+    public HTTPRequest() {}
 
     public void openWebSocket(ScrollPane messagesScrollPane, UserData userData, int threadId)
     {
@@ -51,12 +59,26 @@ public class HTTPRequest
         }
     }
 
+    public void updateMessageBox(ScrollPane messagesScrollPane)
+    {
+        chatClient.setMessagesScrollPane(messagesScrollPane);
+    }
+
+    public void refreshMessagesBox()
+    {
+        chatClient.updateMessageBox();
+    }
+
     public void closeWebSocket()
     {
         websocketThread.stop();
     }
 
-    public void changeThread(int threadId) { chatClient.changeThread(threadId); }
+    public void changeThread(int threadId)
+    {
+        chatClient.changeThread(threadId);
+        this.threadId = threadId;
+    }
 
     public void sendMessage(String message, String id, String username)
     {
@@ -331,6 +353,35 @@ public class HTTPRequest
         return notificationsSettings.getSettings();
     }
 
+    public void clearConversation()
+    {
+        String url = "https://catherinegallaher.com/api/thread/clear-messages";
+
+        List<String> paramTypes = new ArrayList<>();
+        List<String> params = new ArrayList<>();
+
+        paramTypes.add("threadId");
+        params.add(String.valueOf(threadId));
+
+        sendHTTPReq(paramTypes, params, url, "POST");
+    }
+
+    public void muteConversation(Boolean threadMuted)
+    {
+        String url = "https://catherinegallaher.com/api/thread/settings";
+
+        List<String> paramTypes = new ArrayList<>();
+        List<String> params = new ArrayList<>();
+
+        paramTypes.add("threadMuted");
+        params.add(Boolean.toString(threadMuted));
+
+        paramTypes.add("threadId");
+        params.add(String.valueOf(threadId));
+
+        sendHTTPReq(paramTypes, params, url, "POST");
+    }
+
     public Thread createThread(List<String> users, String username)
     {
         users.add(username);
@@ -450,4 +501,13 @@ public class HTTPRequest
         return response.toString();
     }
 
+    public int getThreadId()
+    {
+        return threadId;
+    }
+
+    public void setThreadId(int threadId)
+    {
+        this.threadId = threadId;
+    }
 }

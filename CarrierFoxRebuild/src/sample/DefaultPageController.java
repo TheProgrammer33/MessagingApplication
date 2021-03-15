@@ -68,6 +68,7 @@ public class DefaultPageController extends AnchorPane
         if (!this.userData.getThreadList().isEmpty())
         {
             this.currentThreadId = this.userData.getThreadList().get(0).getThreadId();
+            httpRequest.setThreadId(currentThreadId);
 
             Thread initialThread = this.userData.getThreadList().get(0);
             if (initialThread.getName().contains(this.userData.getUsername()))
@@ -212,6 +213,21 @@ public class DefaultPageController extends AnchorPane
         }
     }
 
+    public String encryptMessage(String message)
+    {
+        Encyption encyptionHandler = new Encyption();
+
+        try
+        {
+            return encyptionHandler.encrypt(message);
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        return "";
+    }
+
     @FXML
     public void initializeSettingsPage() //FIXME: Loses websocket thread when switching back to thread
     {
@@ -258,6 +274,16 @@ public class DefaultPageController extends AnchorPane
         primaryStage.setAlwaysOnTop(false);
 
         primaryStage.toFront();
+    }
+
+    @FXML
+    public void initializeChatSettings() throws IOException
+    {
+        MenuPageController menuPageController = new MenuPageController();
+
+        Scene newScene = new Scene(menuPageController.initializePage(primaryStage, userData, httpRequest));
+
+        primaryStage.setScene(newScene);
     }
 
     @FXML
@@ -334,7 +360,9 @@ public class DefaultPageController extends AnchorPane
         if (this.currentThreadId == -1)
             return;
 
-        this.httpRequest.sendMessage(messagingTextField.getText(), String.valueOf(this.currentThreadId), userData.getUsername());
+        String encryptedMessage = encryptMessage(messagingTextField.getText());
+
+        this.httpRequest.sendMessage(encryptedMessage, String.valueOf(this.currentThreadId), userData.getUsername());
 
         messagingTextField.setText("");
 

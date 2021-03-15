@@ -80,10 +80,34 @@ public class WebSocketController extends WebSocketClient {
         });
     }
 
-    private void updateMessageBox()
+    private String decryptMessage(String cipherText)
+    {
+        Encyption encyptionHandler = new Encyption();
+
+        try
+        {
+            String decryptedMessage = encyptionHandler.decrypt(cipherText);
+
+            if (!decryptedMessage.equals(""))
+                return decryptedMessage;
+        } catch (Exception e)
+        {
+            System.out.println("Message not encrypted!");
+        }
+
+        return cipherText;
+    }
+
+    public void setMessagesScrollPane(ScrollPane messagesScrollPane)
+    {
+        this.messagesScrollPane = messagesScrollPane;
+    }
+
+    public void updateMessageBox()
     {
         HTTPRequest httpRequest = new HTTPRequest();
         List<Message> messages = httpRequest.getMessages(this.threadId);
+        this.messagesBox = (VBox) messagesScrollPane.getContent();
 
         this.messagesBox.getChildren().clear();
 
@@ -95,8 +119,10 @@ public class WebSocketController extends WebSocketClient {
             HBox hBox = new HBox();
             Button messageWrapper = new Button();
 
+            String decryptedMessage = decryptMessage(messages.get(i).getMessageBody());
+
             messageWrapper.setTextFill(Color.WHITE);
-            messageWrapper.setText(messages.get(i).getMessageBody());
+            messageWrapper.setText(decryptedMessage);
 
             hBox.getChildren().add(messageWrapper);
 
@@ -114,6 +140,8 @@ public class WebSocketController extends WebSocketClient {
             this.messagesBox.setSpacing(10);
             this.messagesBox.getChildren().add(hBox);
         }
+
+        messagesScrollPane.vvalueProperty().bind(messagesBox.heightProperty());
     }
 
 }

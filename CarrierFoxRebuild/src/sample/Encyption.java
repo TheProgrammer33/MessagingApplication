@@ -1,34 +1,19 @@
 package sample;
-/*
-import org.whispersystems.signalservice.*;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.push.TrustStore;
 
 public class Encyption
 {
-    private final String     URL         = "https://my.signal.server.com";
-    private final TrustStore TRUST_STORE = new MyTrustStoreImpl();
-    private final String     USERNAME    = "+14151231234";
-    private final String     PASSWORD    = generateRandomPassword();
-    private final String     USER_AGENT  = "[FILL_IN]";
+    private String key = "C9 78 96 ED 07 55 D5 6B EF 38 BF 8B 1E 0D 48 A2 B8 AE 9E 43 F0 C2 7E 4F B1 E5 60 38 A2 C4 4D 65";
 
-    public void createKeys()
+    public Encyption()
+    { }
+
+    public String encrypt(String text) throws Exception
     {
-        IdentityKeyPair    identityKey        = KeyHelper.generateIdentityKeyPair();
-        List<PreKeyRecord> oneTimePreKeys     = KeyHelper.generatePreKeys(0, 100);
-        PreKeyRecord       lastResortKey      = KeyHelper.generateLastResortPreKey();
-        SignedPreKeyRecord signedPreKeyRecord = KeyHelper.generateSignedPreKey(identityKey, signedPreKeyId);
+        return AESEncryption.encryptData(text, key);
     }
 
-    public void registeringKeys()
+    public String decrypt(String encryptedText) throws Exception
     {
-        SignalServiceAccountManager accountManager = new SignalServiceAccountManager(URL, TRUST_STORE,
-                USERNAME, PASSWORD, USER_AGENT);
-
-        accountManager.requestSmsVerificationCode();
-        accountManager.verifyAccountWithCode(receivedSmsVerificationCode, generateRandomSignalingKey(),
-                generateRandomInstallId(), false);
-        accountManager.setGcmId(Optional.of(GoogleCloudMessaging.getInstance(this).register(REGISTRATION_ID)));
-        accountManager.setPreKeys(identityKey.getPublicKey(), lastResortKey, signedPreKeyRecord, oneTimePreKeys);
+        return AESEncryption.decryptData(encryptedText, key);
     }
-}*/
+}
