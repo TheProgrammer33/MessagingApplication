@@ -30,6 +30,7 @@ public class SettingsPageController extends AnchorPane
     private Stage primaryStage;
 
     private UserData userData;
+    private Language language;
 
     @FXML
     private PasswordField oldPasswordField;
@@ -248,7 +249,7 @@ public class SettingsPageController extends AnchorPane
 
         Scene scene = null;
         try {
-            scene = new Scene(defaultPageController.initializeDefaultPage(primaryStage, userData));
+            scene = new Scene(defaultPageController.initializeDefaultPage(primaryStage, userData, language));
         } catch (IOException e) {
             e.printStackTrace();
         }

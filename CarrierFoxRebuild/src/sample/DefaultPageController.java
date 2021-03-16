@@ -20,6 +20,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class DefaultPageController extends AnchorPane
 {
@@ -29,6 +31,7 @@ public class DefaultPageController extends AnchorPane
     private UserData userData;
     private HTTPRequest httpRequest;
     private int currentThreadId;
+    private Language language;
 
     @FXML
     private AnchorPane chatNameAnchor;
@@ -44,7 +47,7 @@ public class DefaultPageController extends AnchorPane
     @FXML
     private ComboBox<String> addChatBox;
 
-    public Group initializeDefaultPage(Stage primaryStage, UserData userData) throws IOException
+    public Group initializeDefaultPage(Stage primaryStage, UserData userData, Language language) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("resources/DefaultPageRefactor.fxml"));
         HTTPRequest httpRequest = new HTTPRequest();
@@ -57,6 +60,7 @@ public class DefaultPageController extends AnchorPane
         this.primaryStage = primaryStage;
         this.userData = userData;
         this.httpRequest = httpRequest;
+        this.language = language;
 
         AnchorPane friendsListAnchor = (AnchorPane) root.getChildrenUnmodifiable().get(0);
         ScrollPane friendsScrollPane = (ScrollPane) friendsListAnchor.getChildren().get(0);
@@ -89,6 +93,8 @@ public class DefaultPageController extends AnchorPane
 
         messagingTextField = (TextField) root.getChildrenUnmodifiable().get(4);
 
+        syncToLanguage(root);
+
         if (this.currentThreadId != -1)
         {
             updateMessageBox(currentThreadId);
@@ -98,6 +104,24 @@ public class DefaultPageController extends AnchorPane
         }
 
         return new Group(root);
+    }
+
+    private void syncToLanguage(Parent root)
+    {
+        Locale locale = new Locale(language.getLanguage(), language.getCountry());
+
+        ResourceBundle defaultResourceBundle = ResourceBundle.getBundle("sample/resources/resourcebundles/DefaultPage", locale);
+
+        messagingTextField.setPromptText(defaultResourceBundle.getString("textPromtText"));
+
+        Button sendButton = (Button) root.getChildrenUnmodifiable().get(5);
+        sendButton.setText(defaultResourceBundle.getString("send"));
+
+        Button friendsButton = (Button) root.getChildrenUnmodifiable().get(7);
+        friendsButton.setText(defaultResourceBundle.getString("friends"));
+
+        Button settingsButton = (Button) root.getChildrenUnmodifiable().get(6);
+        settingsButton.setText(defaultResourceBundle.getString("settings"));
     }
 
     public int getCurrentThreadId()
@@ -369,5 +393,10 @@ public class DefaultPageController extends AnchorPane
         updateMessageBox(this.currentThreadId);
 
         messagesScrollPane.vvalueProperty().bind(messagesBox.heightProperty());
+    }
+
+    public void setLanguage(Language language)
+    {
+        this.language = language;
     }
 }

@@ -22,6 +22,7 @@ public class FriendsManagementController extends AnchorPane
     private Stage primaryStage;
 
     private UserData userData;
+    private Language language;
 
     @FXML
     private VBox friendsList;
@@ -175,7 +176,7 @@ public class FriendsManagementController extends AnchorPane
 
         Scene scene = null;
         try {
-            scene = new Scene(defaultPageController.initializeDefaultPage(primaryStage, userData));
+            scene = new Scene(defaultPageController.initializeDefaultPage(primaryStage, userData, language));
         } catch (IOException e) {
             e.printStackTrace();
         }
