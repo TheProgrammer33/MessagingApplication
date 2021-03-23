@@ -6,81 +6,162 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="600.0" style="-fx-background-color: #2E2F31; -fx-text-fill: #FFFFFF;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="525.0" prefWidth="600.0" style="-fx-background-color: #2E2F31; -fx-text-fill: #FFFFFF;" type="javafx.scene.layout.AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#returnToDefaultPage" style="-fx-background-color: #646467;" text="Back" textFill="WHITE" />
+      <HBox layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="561.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#returnToDefaultPage" style="-fx-background-color: #646467;" text="Back" textFill="WHITE" />
+         </children>
+      </HBox>
       <AnchorPane layoutX="14.0" layoutY="50.0" prefHeight="239.0" prefWidth="287.0">
          <children>
-            <Text fill="WHITE" layoutX="55.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Password">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <PasswordField layoutX="35.0" layoutY="70.0" prefHeight="26.0" prefWidth="218.0" promptText="Old Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
-            <PasswordField layoutX="35.0" layoutY="120.0" prefHeight="26.0" prefWidth="218.0" promptText="New Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
-            <PasswordField layoutX="35.0" layoutY="154.0" onKeyTyped="#checkPasswords" prefHeight="26.0" prefWidth="218.0" promptText="Confirm New Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
-            <Text fill="RED" layoutX="59.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Old Password is incorrect!" visible="false" />
-            <Text fill="RED" layoutX="50.0" layoutY="194.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Passwords don't match!" visible="false" />
-            <Button layoutX="77.0" layoutY="205.0" mnemonicParsing="false" onAction="#submitPassword" style="-fx-background-color: #646467;" text="Change Password" textFill="WHITE" />
+            <HBox alignment="CENTER" layoutY="30.0" prefHeight="23.0" prefWidth="287.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Password">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutY="70.0" prefHeight="26.0" prefWidth="287.0">
+               <children>
+                  <PasswordField prefHeight="26.0" prefWidth="218.0" promptText="Old Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutY="120.0" prefHeight="26.0" prefWidth="287.0">
+               <children>
+                  <PasswordField prefHeight="26.0" prefWidth="218.0" promptText="New Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutY="154.0" prefHeight="26.0" prefWidth="287.0">
+               <children>
+                  <PasswordField onKeyTyped="#checkPasswords" prefHeight="26.0" prefWidth="218.0" promptText="Confirm New Password" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+               </children>
+            </HBox>
+            <HBox layoutX="1.0" layoutY="99.0" prefHeight="15.0" prefWidth="287.0">
+               <children>
+                  <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Old Password is incorrect!" visible="false" />
+               </children>
+            </HBox>
+            <HBox layoutX="1.0" layoutY="182.0" prefHeight="15.0" prefWidth="287.0">
+               <children>
+                  <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="New Passwords don't match!" visible="false" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutY="205.0" prefHeight="26.0" prefWidth="287.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#submitPassword" style="-fx-background-color: #646467;" text="Change Password" textFill="WHITE" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="14.0" layoutY="272.0" prefHeight="239.0" prefWidth="287.0">
          <children>
-            <Text fill="WHITE" layoutX="74.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Email">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <TextField layoutX="58.0" layoutY="101.0" promptText="New Email" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
-            <Text fill="RED" layoutX="70.0" layoutY="147.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Email Address!" visible="false" />
-            <Button layoutX="90.0" layoutY="172.0" mnemonicParsing="false" onAction="#changeEmail" style="-fx-background-color: #646467;" text="Change Email" textFill="WHITE" />
+            <HBox alignment="CENTER" layoutX="-1.0" layoutY="45.0" prefHeight="26.0" prefWidth="287.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Email">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="-1.0" layoutY="101.0" prefHeight="26.0" prefWidth="287.0">
+               <children>
+                  <TextField promptText="New Email" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="-1.0" layoutY="135.0" prefHeight="15.0" prefWidth="287.0">
+               <children>
+                  <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid Email Address!" visible="false" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="5.0" layoutY="172.0" prefHeight="26.0" prefWidth="287.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#changeEmail" style="-fx-background-color: #646467;" text="Change Email" textFill="WHITE" />
+               </children>
+            </HBox>
             <Line endX="100.0" layoutX="144.0" layoutY="31.0" startX="-100.0" stroke="#3a3a3a" />
          </children>
       </AnchorPane>
       <AnchorPane layoutX="300.0" layoutY="50.0" prefHeight="454.0" prefWidth="287.0">
          <children>
-            <Text fill="WHITE" layoutX="42.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notification Settings">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <RadioButton layoutX="91.0" layoutY="131.0" mnemonicParsing="false" selected="true" text="On" textFill="WHITE">
-               <toggleGroup>
-                  <ToggleGroup fx:id="Full_Notifications" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton layoutX="152.0" layoutY="131.0" mnemonicParsing="false" text="Off" textFill="WHITE" toggleGroup="$Full_Notifications" />
+            <HBox alignment="CENTER" layoutY="31.0" prefHeight="23.0" prefWidth="287.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Notification Settings">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutY="131.0" prefHeight="18.0" prefWidth="287.0" spacing="5.0">
+               <children>
+                  <RadioButton mnemonicParsing="false" selected="true" text="On" textFill="WHITE">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Full_Notifications" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="Off" textFill="WHITE" toggleGroup="$Full_Notifications" />
+               </children>
+            </HBox>
             <Line endX="2.0" endY="5.0" layoutY="21.0" startX="2.0" startY="384.0" stroke="#3a3a3a" />
-            <Text fill="WHITE" layoutX="71.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Send Notifications">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Text>
+            <HBox alignment="CENTER" layoutX="2.0" layoutY="102.0" prefHeight="19.0" prefWidth="287.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Send Notifications">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
             <Line endX="100.0" layoutX="143.0" layoutY="307.0" startX="-100.0" stroke="#3a3a3a" />
-            <Text fill="WHITE" layoutX="109.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <Button layoutX="112.0" layoutY="396.0" mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #646467;" text="Logout" textFill="WHITE" />
+            <HBox alignment="CENTER" layoutX="1.0" layoutY="338.0" prefHeight="23.0" prefWidth="287.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Logout">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutY="396.0" prefHeight="26.0" prefWidth="287.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#logout" style="-fx-background-color: #646467;" text="Logout" textFill="WHITE" />
+               </children>
+            </HBox>
             <Line endX="100.0" layoutX="143.0" layoutY="180.0" startX="-100.0" stroke="#3a3a3a" />
-            <Text fill="WHITE" layoutX="94.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Language">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Text>
-            <RadioButton layoutX="69.0" layoutY="237.0" mnemonicParsing="false" selected="true" text="English" textFill="WHITE">
-               <toggleGroup>
-                  <ToggleGroup fx:id="Language" />
-               </toggleGroup>
-            </RadioButton>
-            <RadioButton layoutX="145.0" layoutY="237.0" mnemonicParsing="false" text="French" textFill="WHITE" toggleGroup="$Language" />
-            <RadioButton layoutX="145.0" layoutY="265.0" mnemonicParsing="false" text="German" textFill="WHITE" toggleGroup="$Language" />
-            <RadioButton layoutX="65.0" layoutY="265.0" mnemonicParsing="false" text="Spanish" textFill="WHITE" toggleGroup="$Language" />
+            <HBox alignment="CENTER" layoutX="2.0" layoutY="204.0" prefHeight="23.0" prefWidth="287.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Language">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutY="237.0" prefHeight="18.0" prefWidth="287.0" spacing="10.0">
+               <children>
+                  <RadioButton mnemonicParsing="false" selected="true" text="English" textFill="WHITE">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Language" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton mnemonicParsing="false" text="French" textFill="WHITE" toggleGroup="$Language" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="2.0" layoutY="265.0" prefHeight="18.0" prefWidth="287.0" spacing="10.0">
+               <children>
+                  <RadioButton mnemonicParsing="false" text="German" textFill="WHITE" toggleGroup="$Language" />
+                  <RadioButton mnemonicParsing="false" text="Spanish" textFill="WHITE" toggleGroup="$Language" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
    </children>

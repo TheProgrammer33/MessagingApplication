@@ -45,10 +45,9 @@ public class DefaultPageController extends AnchorPane
     @FXML
     private VBox friendsBox;
 
-    public Group initializeDefaultPage(Stage primaryStage, UserData userData, Language language) throws IOException
+    public Group initializeDefaultPage(Stage primaryStage, UserData userData, HTTPRequest httpRequest, Language language) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("resources/DefaultPageRefactor.fxml"));
-        HTTPRequest httpRequest = new HTTPRequest();
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -223,7 +222,7 @@ public class DefaultPageController extends AnchorPane
     }
 
     @FXML
-    public void initializeSettingsPage() //FIXME: Loses websocket thread when switching back to thread
+    public void initializeSettingsPage()
     {
         SettingsPageController settingsPageController = new SettingsPageController();
 
@@ -231,7 +230,7 @@ public class DefaultPageController extends AnchorPane
 
         Scene scene = null;
         try {
-            scene = new Scene(settingsPageController.initializeSettingsPage(primaryStage, userData));
+            scene = new Scene(settingsPageController.initializeSettingsPage(primaryStage, userData, httpRequest, language));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -255,7 +254,7 @@ public class DefaultPageController extends AnchorPane
 
         Scene scene = null;
         try {
-            scene = new Scene(friendsManagementController.initializeFriendsManagementPage(primaryStage, userData));
+            scene = new Scene(friendsManagementController.initializeFriendsManagementPage(primaryStage, userData, httpRequest, language));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -47,7 +47,7 @@
             </HBox>
             <HBox alignment="CENTER" layoutY="71.0" prefHeight="26.0" prefWidth="276.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat Settings">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Chat Settings" textAlignment="CENTER" wrappingWidth="250.0">
                      <font>
                         <Font size="22.0" />
                      </font>
@@ -59,20 +59,24 @@
                   <TextField prefHeight="26.0" prefWidth="242.0" promptText="Search" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" layoutY="436.0" prefHeight="26.0" prefWidth="276.0">
+            <VBox alignment="CENTER" layoutY="382.0" prefHeight="117.0" prefWidth="276.0" spacing="15.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="System Settings">
-                     <font>
-                        <Font size="22.0" />
-                     </font>
-                  </Text>
+                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="276.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="System Settings" textAlignment="CENTER" wrappingWidth="250.0">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="26.0" prefWidth="276.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#initializeSettingsPage" style="-fx-background-color: #646467;" text="System Settings" textFill="WHITE" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutY="488.0" prefHeight="26.0" prefWidth="276.0">
-               <children>
-                  <Button mnemonicParsing="false" onAction="#initializeSettingsPage" style="-fx-background-color: #646467;" text="System Settings" textFill="WHITE" />
-               </children>
-            </HBox>
+            </VBox>
          </children>
       </AnchorPane>
       <HBox alignment="BASELINE_RIGHT" layoutX="509.0" layoutY="25.0" prefHeight="26.0" prefWidth="276.0" spacing="10.0">

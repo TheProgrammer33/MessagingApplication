@@ -10,6 +10,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -106,11 +107,13 @@ public class MenuPageController extends AnchorPane
         Button muteConversationButton = (Button) muteConversationHBox.getChildren().get(0);
         muteConversationButton.setText(defaultResourceBundle.getString("muteConversation"));
 
-        HBox systemSettingsTextHBox = (HBox) menuPane.getChildren().get(4);
+        VBox systemSettingsVBox = (VBox) menuPane.getChildren().get(4);
+
+        HBox systemSettingsTextHBox = (HBox) systemSettingsVBox.getChildren().get(0);
         Text systemSettingsText = (Text) systemSettingsTextHBox.getChildren().get(0);
         systemSettingsText.setText(defaultResourceBundle.getString("systemSettings"));
 
-        HBox systemSettingsHBox = (HBox) menuPane.getChildren().get(5);
+        HBox systemSettingsHBox = (HBox) systemSettingsVBox.getChildren().get(1);
         Button systemSettingsButton = (Button) systemSettingsHBox.getChildren().get(0);
         systemSettingsButton.setText(defaultResourceBundle.getString("systemSettings"));
     }
@@ -153,7 +156,7 @@ public class MenuPageController extends AnchorPane
     }
 
     @FXML
-    public void initializeSettingsPage() //FIXME: Loses websocket thread when switching back to thread
+    public void initializeSettingsPage()
     {
         SettingsPageController settingsPageController = new SettingsPageController();
 
@@ -161,7 +164,7 @@ public class MenuPageController extends AnchorPane
 
         Scene scene = null;
         try {
-            scene = new Scene(settingsPageController.initializeSettingsPage(primaryStage, userData));
+            scene = new Scene(settingsPageController.initializeSettingsPage(primaryStage, userData, httpRequest, language));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -177,7 +180,7 @@ public class MenuPageController extends AnchorPane
     }
 
     @FXML
-    public void initializeFriendsPage() //FIXME: Loses websocket thread when switching back to thread
+    public void initializeFriendsPage()
     {
         FriendsManagementController friendsManagementController = new FriendsManagementController();
 
@@ -185,7 +188,7 @@ public class MenuPageController extends AnchorPane
 
         Scene scene = null;
         try {
-            scene = new Scene(friendsManagementController.initializeFriendsManagementPage(primaryStage, userData));
+            scene = new Scene(friendsManagementController.initializeFriendsManagementPage(primaryStage, userData, httpRequest, language));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -209,7 +212,7 @@ public class MenuPageController extends AnchorPane
             Scene newScene = null;
             try
             {
-                newScene = new Scene(searchingPageController.initializePage(primaryStage, userData, httpRequest));
+                newScene = new Scene(searchingPageController.initializePage(primaryStage, userData, httpRequest, language));
             } catch (IOException e)
             {
                 e.printStackTrace();

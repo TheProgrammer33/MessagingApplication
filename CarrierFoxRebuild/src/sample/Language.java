@@ -14,4 +14,14 @@ public class Language
     {
         return country;
     }
+
+    public void setCountry(String country)
+    {
+        this.country = country;
+    }
+
+    public void setLanguage(String language)
+    {
+        this.language = language;
+    }
 }

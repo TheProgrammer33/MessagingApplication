@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -12,44 +13,68 @@
    <children>
       <AnchorPane prefHeight="64.0" prefWidth="600.0" style="-fx-background-color: #2E2F31;">
          <children>
-            <Text fill="WHITE" layoutX="14.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friends">
-               <font>
-                  <Font size="26.0" />
-               </font>
-            </Text>
-            <Button layoutX="536.0" layoutY="24.0" mnemonicParsing="false" onAction="#returnToDefaultPage" style="-fx-background-color: #646467;" text="Back" textFill="WHITE" />
+            <HBox alignment="TOP_RIGHT" layoutX="303.0" layoutY="24.0" prefHeight="26.0" prefWidth="283.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#returnToDefaultPage" style="-fx-background-color: #646467;" text="Back" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox layoutX="14.0" layoutY="20.0" prefHeight="30.0" prefWidth="283.0">
+               <children>
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Friends">
+                     <font>
+                        <Font size="26.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutY="444.0" prefHeight="81.0" prefWidth="600.0" style="-fx-background-color: #2E2F31;">
          <children>
-            <TextField layoutX="14.0" layoutY="42.0" prefHeight="26.0" prefWidth="517.0" promptText="Search for friend here" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" visible="false" />
-            <Button layoutX="542.0" layoutY="42.0" mnemonicParsing="false" onAction="#submitAddFriendRequest" style="-fx-background-color: #646467;" text="Add" textFill="WHITE" visible="false" />
-            <Button layoutX="15.0" layoutY="6.0" mnemonicParsing="false" onAction="#showAddFriendMenu" style="-fx-background-color: #646467;" text="+ Add Friend" textFill="WHITE" />
+            <HBox layoutX="14.0" layoutY="6.0" prefHeight="26.0" prefWidth="570.0">
+               <children>
+                  <Button mnemonicParsing="false" onAction="#showAddFriendMenu" style="-fx-background-color: #646467;" text="+ Add Friend" textFill="WHITE" />
+               </children>
+            </HBox>
+            <HBox layoutX="14.0" layoutY="42.0" prefHeight="26.0" prefWidth="570.0" spacing="10.0">
+               <children>
+                  <TextField prefHeight="26.0" prefWidth="517.0" promptText="Search for friend here" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+                  <Button mnemonicParsing="false" onAction="#submitAddFriendRequest" style="-fx-background-color: #646467;" text="Add" textFill="WHITE" />
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
       <AnchorPane layoutX="15.0" layoutY="65.0" prefHeight="377.0" prefWidth="570.0" style="-fx-background-color: #1C1D1F;">
          <children>
             <ScrollPane hbarPolicy="NEVER" prefHeight="377.0" prefWidth="570.0" style="-fx-background-color: #1C1D1F;" stylesheets="@scrollPaneStyling.css">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="376.0" prefWidth="570.0" style="-fx-background-color: #1C1D1F;">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="376.0" prefWidth="570.0" style="-fx-background-color: #1C1D1F;">
                      <children>
                         <VBox prefHeight="377.0" prefWidth="570.0">
                            <children>
                               <AnchorPane prefHeight="74.0" prefWidth="570.0">
                                  <children>
-                                    <Text fill="WHITE" layoutX="14.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Friend_Username_Here">
-                                       <font>
-                                          <Font size="18.0" />
-                                       </font>
-                                    </Text>
-                                    <Button layoutX="477.0" layoutY="24.0" mnemonicParsing="false" style="-fx-background-color: #646467;" text="Delete" textFill="WHITE" />
+                                    <HBox layoutX="15.0" layoutY="22.0" prefHeight="30.0" prefWidth="341.0">
+                                       <children>
+                                          <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Friend_Username_Here">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                    </HBox>
+                                    <HBox alignment="TOP_RIGHT" layoutX="368.0" layoutY="24.0" prefHeight="26.0" prefWidth="170.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" style="-fx-background-color: #646467;" text="Delete" textFill="WHITE" />
+                                       </children>
+                                    </HBox>
                                  </children>
                               </AnchorPane>
                            </children>
                         </VBox>
                      </children>
                   </AnchorPane>
-              </content>
+               </content>
             </ScrollPane>
          </children>
       </AnchorPane>

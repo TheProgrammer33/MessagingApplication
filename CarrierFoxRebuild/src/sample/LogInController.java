@@ -2,7 +2,6 @@ package sample;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
@@ -19,18 +18,16 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.net.http.HttpRequest;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
 public class LogInController extends AnchorPane
 {
     private UserData userData;
+    private HTTPRequest httpRequest;
     private Language language;
 
     @FXML
@@ -49,6 +46,7 @@ public class LogInController extends AnchorPane
     public Group initializeLogInPage(Stage primaryStage) throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("resources/LoginPage.fxml"));
+        HTTPRequest httpRequest = new HTTPRequest();
 
         fxmlLoader.setRoot(this);
         fxmlLoader.setController(this);
@@ -67,6 +65,7 @@ public class LogInController extends AnchorPane
         submit = (Button) submitHBox.getChildren().get(0);
 
         setPrimaryStage(primaryStage);
+        setHttpRequest(httpRequest);
 
         invalidUserOrPass.setVisible(false);
         carrierFoxImage.setImage(new Image(new FileInputStream("src/sample/resources/CarrierFox128x1.png")));
@@ -139,8 +138,6 @@ public class LogInController extends AnchorPane
 
     public void loginAndLoadUserData() throws HTTPException
     {
-        HTTPRequest httpRequest = new HTTPRequest();
-
         userData = httpRequest.login(username.getText(), password.getText());
     }
 
@@ -165,7 +162,7 @@ public class LogInController extends AnchorPane
 
         Scene scene = null;
         try {
-            scene = new Scene(defaultPageController.initializeDefaultPage(primaryStage, userData, language));
+            scene = new Scene(defaultPageController.initializeDefaultPage(primaryStage, userData, httpRequest, language));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -192,5 +189,10 @@ public class LogInController extends AnchorPane
         this.primaryStage.setScene(scene);
 
         this.primaryStage.show();
+    }
+
+    public void setHttpRequest(HTTPRequest httpRequest)
+    {
+        this.httpRequest = httpRequest;
     }
 }
