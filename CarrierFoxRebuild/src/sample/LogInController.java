@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -55,18 +56,22 @@ public class LogInController extends AnchorPane
         Parent root = fxmlLoader.load();
 
         ImageView carrierFoxImage = (ImageView) root.getChildrenUnmodifiable().get(0);
-        invalidUserOrPass = (Text) root.getChildrenUnmodifiable().get(5);
+
+        HBox errorHBox = (HBox) root.getChildrenUnmodifiable().get(5);
+        invalidUserOrPass = (Text) errorHBox.getChildren().get(0);
 
         setUsername((TextField) root.getChildrenUnmodifiable().get(1));
         setPassword((PasswordField) root.getChildrenUnmodifiable().get(2));
-        submit = (Button) root.getChildrenUnmodifiable().get(3);
+
+        HBox submitHBox = (HBox) root.getChildrenUnmodifiable().get(4);
+        submit = (Button) submitHBox.getChildren().get(0);
 
         setPrimaryStage(primaryStage);
 
         invalidUserOrPass.setVisible(false);
         carrierFoxImage.setImage(new Image(new FileInputStream("src/sample/resources/CarrierFox128x1.png")));
 
-        setLanguage(root);
+        syncLanguage(root);
 
         return new Group(root);
     }
@@ -97,23 +102,25 @@ public class LogInController extends AnchorPane
         this.password = password;
     }
 
-    private void setLanguage(Parent root) throws IOException
+    private void syncLanguage(Parent root) throws IOException
     {
         this.language = loadLanguage();
 
         Locale locale = new Locale(language.getLanguage(), language.getCountry());
-        ResourceBundle loginResourceBundle = ResourceBundle.getBundle("sample.resources.resourcebundles.LoginPage", locale);
+        ResourceBundle loginResourceBundle = ResourceBundle.getBundle("sample/resources/resourcebundles/LoginPage", locale);
 
         username.setPromptText(loginResourceBundle.getString("usernamePromptText"));
 
         password.setPromptText(loginResourceBundle.getString("passwordPromptText"));
 
-        Button resetPassword = (Button) root.getChildrenUnmodifiable().get(4);
+        HBox resetPasswordCreateAccountHBox = (HBox) root.getChildrenUnmodifiable().get(3);
+
+        Button resetPassword = (Button) resetPasswordCreateAccountHBox.getChildren().get(0);
         resetPassword.setText(loginResourceBundle.getString("resetPassword"));
 
         invalidUserOrPass.setText(loginResourceBundle.getString("errorText"));
 
-        Button createAccount = (Button) root.getChildrenUnmodifiable().get(6);
+        Button createAccount = (Button) resetPasswordCreateAccountHBox.getChildren().get(1);
         createAccount.setText(loginResourceBundle.getString("createAccount"));
 
         submit.setText(loginResourceBundle.getString("submit"));

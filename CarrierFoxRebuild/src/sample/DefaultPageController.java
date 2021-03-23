@@ -44,8 +44,6 @@ public class DefaultPageController extends AnchorPane
 
     @FXML
     private VBox friendsBox;
-    @FXML
-    private ComboBox<String> addChatBox;
 
     public Group initializeDefaultPage(Stage primaryStage, UserData userData, Language language) throws IOException
     {
@@ -114,14 +112,21 @@ public class DefaultPageController extends AnchorPane
 
         messagingTextField.setPromptText(defaultResourceBundle.getString("textPromtText"));
 
-        Button sendButton = (Button) root.getChildrenUnmodifiable().get(5);
+        HBox sendButtonHBox = (HBox) root.getChildrenUnmodifiable().get(5);
+        Button sendButton = (Button) sendButtonHBox.getChildren().get(0);
         sendButton.setText(defaultResourceBundle.getString("send"));
 
-        Button friendsButton = (Button) root.getChildrenUnmodifiable().get(7);
+        HBox friendSettingsHBox = (HBox) root.getChildrenUnmodifiable().get(6);
+
+        Button friendsButton = (Button) friendSettingsHBox.getChildren().get(0);
         friendsButton.setText(defaultResourceBundle.getString("friends"));
 
-        Button settingsButton = (Button) root.getChildrenUnmodifiable().get(6);
+        Button settingsButton = (Button) friendSettingsHBox.getChildren().get(1);
         settingsButton.setText(defaultResourceBundle.getString("settings"));
+
+        AnchorPane addChatAnchorPane = (AnchorPane) root.getChildrenUnmodifiable().get(1);
+        Text addChatText = (Text) addChatAnchorPane.getChildren().get(1);
+        addChatText.setText(defaultResourceBundle.getString("addChat"));
     }
 
     public int getCurrentThreadId()
@@ -163,44 +168,9 @@ public class DefaultPageController extends AnchorPane
             friendButton.setOnAction(e ->
             {
                 httpRequest.changeThread(thread.getThreadId());
-
-                /*
-                java.lang.Thread newThread = new java.lang.Thread()
-                {
-                    @Override
-                    public void run()
-                    {
-                        Platform.runLater(new Runnable()
-                        {
-                            @Override
-                            public void run()
-                            {
-                                updateMessageBox(thread.getThreadId());
-                            }
-                        });
-                    }
-                };
-
-                newThread.start();
-                newThread.interrupt();*/
             });
         }
     }
-
-    /*
-    public void switchThreads(Thread thread)
-    {
-        this.currentThreadId = thread.getThreadId();
-
-        Text threadName = (Text) chatNameAnchor.getChildren().get(0);
-        threadName.setText(thread.getName());
-
-        closeWebSocket();
-
-        updateMessageBox(currentThreadId);
-
-        httpRequest.openWebSocket(messagesScrollPane, userData, thread.getThreadId());
-    }*/
 
     public void updateMessageBox(int threadId)
     {
@@ -305,7 +275,7 @@ public class DefaultPageController extends AnchorPane
     {
         MenuPageController menuPageController = new MenuPageController();
 
-        Scene newScene = new Scene(menuPageController.initializePage(primaryStage, userData, httpRequest));
+        Scene newScene = new Scene(menuPageController.initializePage(primaryStage, userData, httpRequest, language));
 
         primaryStage.setScene(newScene);
     }
