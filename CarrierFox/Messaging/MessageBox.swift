@@ -26,14 +26,11 @@ struct MessageBox: View, WebSocketConnectionDelegate {
         print(text)
         print("text")
         if(text != "Websocket Connected" && text != "Connection") {
-//            let data = Data(text.utf8)
-//            userData.messages.append(updateMessages(data))
             getMessages(threadID: userData.selectedChatID) { (messages) in
                 if(!messages.isEmpty)
                 {
                     userData.publishMessageChanges(messages: updateMessages(messages))
                     //self.setNotification()
-                    //userData.updateScrollIndex()
                 }
                 
             }
@@ -69,7 +66,6 @@ struct MessageBox: View, WebSocketConnectionDelegate {
                 
                 if(message != "") {
                     webSocketConnection.sendMessage(message: message, user: userData.username, threadId: userData.selectedChatID)
-                    //webSocketConnection.listen()
                 }
                 getMessages(threadID: userData.selectedChatID) { (messages) in
                     if(!messages.isEmpty)

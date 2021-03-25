@@ -16,6 +16,15 @@ struct NewAccountView: View {
     let myWindow:NSWindow?
     var body: some View {
         return VStack {
+            HStack {
+                Button(action: {
+                    showLoginWindow()
+                    self.myWindow?.close()
+                }) {
+                    Text(NSLocalizedString("Back", comment: "Back to login"))
+                }
+                Spacer()
+            }.padding()
             Image("Logo")
                 .resizable()
                 .frame(width: 128.0, height: 128.0)

@@ -27,6 +27,7 @@ final class UserData: ObservableObject {
     @Published var notificationsIsOn: Bool = false
     @Published var scrollIndex: Binding<CGPoint?>? = nil //Binding<CGPoint?>?(CGPoint(x: 0, y: 10000))
     @Published var newChatSelection: [FriendWithSelect] = []
+    @Published var selectedChatMuted: Bool = false
     
 
     func publishMessageChanges(messages: [Message]) {

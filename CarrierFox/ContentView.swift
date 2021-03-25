@@ -7,16 +7,6 @@
 
 import SwiftUI
 
-func testEncrypt() {
-    
-    do {
-        try encryptData()
-    }
-    catch {
-        print("There was an error in encryptData")
-    }
-}
-
 struct ContentView: View {
     let myWindow:NSWindow?
     @State private var isSettings: Bool = false
@@ -56,19 +46,28 @@ struct ContentView: View {
                                 }
                             }
                             Spacer()
-                            Button(action: {
-                                self.isFriends.toggle()
-                                self.isSettings = false
-                                testEncrypt()
-                            }) {
-                                Text(NSLocalizedString("Friends", comment: "Friends"))
+                            VStack {
+                                HStack {
+                                    Button(action: {
+                                        self.isFriends.toggle()
+                                        self.isSettings = false
+                                        encryptCommonCrypto()
+                                    }) {
+                                        Text(NSLocalizedString("Friends", comment: "Friends"))
+                                    }
+                                    Button(action: {
+                                        self.isSettings.toggle()
+                                        self.isFriends = false
+                                    }) {
+                                        Text(NSLocalizedString("Settings", comment: "Settings"))
+                                    }
+                                }
+                                HStack {
+                                    SearchMessages()
+                                    ChatSettings()
+                                }
                             }
-                            Button(action: {
-                                self.isSettings.toggle()
-                                self.isFriends = false
-                            }) {
-                                Text(NSLocalizedString("Settings", comment: "Settings"))
-                            }
+                            
                         }.padding([.top, .trailing])
                         MessagingView().environmentObject(UserData())
                     }

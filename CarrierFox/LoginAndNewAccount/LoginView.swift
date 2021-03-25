@@ -31,14 +31,16 @@ struct LoginView: View {
                 }
                 .frame(width: 425.0)
                 HStack {
-                    Text(NSLocalizedString("Reset Password", comment: "Reset Password"))
-                        .padding(.horizontal)
+                    Button(action: {}) {
+                        Text(NSLocalizedString("Reset Password", comment: "Reset Password"))
+                            .padding(.horizontal)
+                    }.buttonStyle(BorderlessButtonStyle())
                     Button(action: {
                         showNewAccountWindow()
                         self.myWindow?.close()
                     }) {
                         Text(NSLocalizedString("Add new Account", comment: "Add new Account"))
-                    }
+                    }.buttonStyle(BorderlessButtonStyle())
                 }.multilineTextAlignment(.center)
                 HStack {
                     Spacer()

@@ -13,10 +13,6 @@ struct MessageRow: View {
     @State private var showMessageSettings: Bool = false
     var body: some View {
         func rightMouseDown(with theEvent: NSEvent) {
-//            let point = NSPoint { NSEvent.mouseLocation }
-//            let row = List.row(at: point)
-//            print("right click")
-//            print(row)
         }
         let formatter = DateFormatter()
         formatter.dateFormat = "MM/dd/yyyy h:m a"
@@ -28,7 +24,7 @@ struct MessageRow: View {
                     VStack {
                         HStack {
                             Spacer()
-                            Text(date).font(.caption).foregroundColor(Color.gray)
+                            //Text(date).font(.caption).foregroundColor(Color.gray)
                             Text(message.user)
                                 .font(.footnote)
                                 .multilineTextAlignment(.trailing)
@@ -41,8 +37,9 @@ struct MessageRow: View {
                             }) {
                                 Text(message.messageBody)
                                     .foregroundColor(Color.white)
+                                    
                             }.buttonStyle(BorderlessButtonStyle())
-                            //.fixedSize(horizontal: false, vertical: true)
+                            .fixedSize(horizontal: false, vertical: true)
                             .multilineTextAlignment(.trailing)
                             .padding(.horizontal)
                              .background(Color.blue)
@@ -54,22 +51,33 @@ struct MessageRow: View {
                         arrowEdge: .trailing
                     ) {
                         VStack {
-                            Text("Delete Message?")
+                            Text(NSLocalizedString("Delete Message?", comment: "Confirm delete message"))
                             HStack {
                                 Button(action: {
                                     print("deleting message")
                                     print(message._id)
                                     deleteMessage(messageID: message._id, threadID: userData.selectedChatID)
                                     self.showMessageSettings.toggle()
+                                    getMessages(threadID: userData.selectedChatID) { (messages) in
+                                        if(!messages.isEmpty)
+                                        {
+                                            userData.publishMessageChanges(messages: updateMessages(messages))
+                                            userData.updateScrollIndex()
+                                        }
+                                        else
+                                        {
+                                            userData.publishMessageChanges(messages: [])
+                                        }
+                                    }
                                     
                                 }){
-                                    Text("Delete")
+                                    Text(NSLocalizedString("Delete", comment: "Delete message"))
                                 }
                                 Button(action: {
                                     self.showMessageSettings.toggle()
                                     
                                 }){
-                                    Text("Cancel")
+                                    Text(NSLocalizedString("Cancel", comment: "Cancel"))
                                 }
                             }
                         }.padding()
@@ -82,9 +90,9 @@ struct MessageRow: View {
                                 .font(.footnote)
                                 .multilineTextAlignment(.leading)
                                 .padding(.leading, 6.0)
-                            Text(date)
+                            //Text(date)
                                 .font(.caption)
-                                .foregroundColor(Color.gray)
+                                .foregroundColor(Color.white)
                             Spacer()
                         }
                         HStack {

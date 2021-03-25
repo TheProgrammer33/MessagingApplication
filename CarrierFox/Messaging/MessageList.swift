@@ -23,7 +23,7 @@ struct MessageList: View {
             Button(action: {
                 self.$scrollTo.wrappedValue = CGPoint(x: 0,y: 30*userData.messages.count)
             }){
-                Text("Scroll to bottom")
+                Text(NSLocalizedString("Scroll to Bottom", comment: "Temporary scroll to bottom"))
             }
         }
     }
