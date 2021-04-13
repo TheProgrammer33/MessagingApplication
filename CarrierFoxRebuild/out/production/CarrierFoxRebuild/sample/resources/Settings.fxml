@@ -94,7 +94,7 @@
          <children>
             <HBox alignment="CENTER" layoutY="31.0" prefHeight="23.0" prefWidth="287.0">
                <children>
-                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Notification Settings">
+                  <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Notification Settings" wrappingWidth="220.0" textAlignment="CENTER">
                      <font>
                         <Font size="20.0" />
                      </font>

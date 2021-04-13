@@ -65,7 +65,7 @@
             </AnchorPane>
             <HBox alignment="CENTER" layoutY="21.0" prefHeight="26.0" prefWidth="276.0">
                <children>
-                  <TextField prefHeight="26.0" prefWidth="242.0" promptText="Search" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
+                  <TextField prefHeight="26.0" prefWidth="242.0" promptText="Search" onAction="#searchMessages" style="-fx-background-color: #3A3A3A; -fx-text-fill: #FFFFFF;" />
                </children>
             </HBox>
             <HBox layoutX="20.0" layoutY="62.0" prefHeight="23.0" prefWidth="236.0">
@@ -86,8 +86,10 @@
       </HBox>
       <HBox alignment="TOP_RIGHT" layoutX="509.0" layoutY="24.0" prefHeight="26.0" prefWidth="276.0" spacing="10.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#initializeFriendsPage" style="-fx-background-color: #646467;" text="Friends" textFill="WHITE" />
-            <Button mnemonicParsing="false" onAction="#initializeSettingsPage" style="-fx-background-color: #646467;" text="Settings" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#initializeFriendsPage" style="-fx-background-color: #646467;" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#initializeSearchingPage" style="-fx-background-color: #646467;" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#initializeChatSettings" style="-fx-background-color: #646467;" textFill="WHITE" />
+            <Button mnemonicParsing="false" onAction="#initializeSettingsPage" style="-fx-background-color: #646467;" textFill="WHITE" />
          </children>
       </HBox>
    </children>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="80.0" prefWidth="240.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="10.0" layoutY="16.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="203.0" style="-fx-background-color: #3A3A3A;" wrapText="true">
+         <graphic>
+            <VBox prefHeight="200.0" prefWidth="100.0" />
+         </graphic></Button>
+      <Text fill="WHITE" layoutX="17.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="189.0" />
+      <HBox layoutX="17.0" layoutY="19.0" prefHeight="26.0" prefWidth="200.0" style="-fx-spacing: 5; -fx-padding: 2;">
+         <children>
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="__/__/____" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

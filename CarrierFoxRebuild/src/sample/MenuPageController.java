@@ -8,6 +8,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -48,21 +50,43 @@ public class MenuPageController extends AnchorPane
 
         setMessagingTextField((TextField) root.getChildrenUnmodifiable().get(2));
 
-        AnchorPane searchPane = (AnchorPane) root.getChildrenUnmodifiable().get(3);
-        HBox searchHBox = (HBox) searchPane.getChildren().get(3);
-        setSearchBox((TextField) searchHBox.getChildren().get(0));
+        HBox buttonsHBox = (HBox) root.getChildrenUnmodifiable().get(4);
+
+        Image friendsIcon = new Image(String.valueOf(this.getClass().getResource("resources/friendsx2.png")));
+        Button friendsButton = (Button) buttonsHBox.getChildren().get(0);
+        buildImageButton(friendsButton, friendsIcon);
+
+        Image searchIcon = new Image(String.valueOf(this.getClass().getResource("resources/searchx2.png")));
+        Button searchButton = (Button) buttonsHBox.getChildren().get(1);
+        buildImageButton(searchButton, searchIcon);
+
+        Image chatSettingsIcon = new Image(String.valueOf(this.getClass().getResource("resources/meatballMenux2.png")));
+        Button chatSettingsButton = (Button) buttonsHBox.getChildren().get(2);
+        buildImageButton(chatSettingsButton, chatSettingsIcon);
+
+        Image settingsIcon = new Image(String.valueOf(this.getClass().getResource("resources/settingsx2.png")));
+        Button settingsButton = (Button) buttonsHBox.getChildren().get(3);
+        buildImageButton(settingsButton, settingsIcon);
 
         AnchorPane usernamePane = (AnchorPane) root.getChildrenUnmodifiable().get(0);
         Text username = (Text) usernamePane.getChildren().get(0);
         username.setText(userData.getUsername());
-
-        initializeSearchingPage();
 
         httpRequest.refreshMessagesBox();
 
         syncToLanguage(root);
 
         return new Group(root);
+    }
+
+    private void buildImageButton(Button button, Image image)
+    {
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(20.0);
+        imageView.setPreserveRatio(true);
+
+        button.setText("");
+        button.setGraphic(imageView);
     }
 
     private void syncToLanguage(Parent root)
@@ -77,22 +101,9 @@ public class MenuPageController extends AnchorPane
         Button sendButton = (Button) sendButtonHBox.getChildren().get(0);
         sendButton.setText(defaultResourceBundle.getString("send"));
 
-        HBox friendsSettingsHBox = (HBox) root.getChildrenUnmodifiable().get(4);
-
-        Button friendsButton = (Button) friendsSettingsHBox.getChildren().get(0);
-        friendsButton.setText(defaultResourceBundle.getString("friends"));
-
-        Button settingsButton = (Button) friendsSettingsHBox.getChildren().get(1);
-        settingsButton.setText(defaultResourceBundle.getString("settings"));
-
         AnchorPane menuPane = (AnchorPane) root.getChildrenUnmodifiable().get(3);
 
         double centerPosition = menuPane.getWidth() / 2;
-
-        HBox searchHBox = (HBox) menuPane.getChildren().get(3);
-        TextField searchBox = (TextField) searchHBox.getChildren().get(0);
-        searchBox.setPromptText(defaultResourceBundle.getString("search"));
-        searchBox.setLayoutX(centerPosition);
 
         HBox chatSettingsTextHBox = (HBox) menuPane.getChildren().get(2);
         Text chatSettingsText = (Text) chatSettingsTextHBox.getChildren().get(0);
@@ -106,16 +117,6 @@ public class MenuPageController extends AnchorPane
         HBox muteConversationHBox = (HBox) menuPane.getChildren().get(1);
         Button muteConversationButton = (Button) muteConversationHBox.getChildren().get(0);
         muteConversationButton.setText(defaultResourceBundle.getString("muteConversation"));
-
-        VBox systemSettingsVBox = (VBox) menuPane.getChildren().get(4);
-
-        HBox systemSettingsTextHBox = (HBox) systemSettingsVBox.getChildren().get(0);
-        Text systemSettingsText = (Text) systemSettingsTextHBox.getChildren().get(0);
-        systemSettingsText.setText(defaultResourceBundle.getString("systemSettings"));
-
-        HBox systemSettingsHBox = (HBox) systemSettingsVBox.getChildren().get(1);
-        Button systemSettingsButton = (Button) systemSettingsHBox.getChildren().get(0);
-        systemSettingsButton.setText(defaultResourceBundle.getString("systemSettings"));
     }
 
     @FXML
@@ -203,23 +204,32 @@ public class MenuPageController extends AnchorPane
         primaryStage.toFront();
     }
 
+    @FXML
     private void initializeSearchingPage() throws IOException
     {
-        searchBox.setOnAction(event ->
+        SearchingPageController searchingPageController = new SearchingPageController();
+
+        Scene newScene = null;
+        try
         {
-            SearchingPageController searchingPageController = new SearchingPageController();
+            newScene = new Scene(searchingPageController.initializePage(primaryStage, userData, httpRequest, language));
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
-            Scene newScene = null;
-            try
-            {
-                newScene = new Scene(searchingPageController.initializePage(primaryStage, userData, httpRequest, language));
-            } catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+        primaryStage.setScene(newScene);
+    }
 
-            primaryStage.setScene(newScene);
-        });
+
+    @FXML
+    public void initializeChatSettings() throws IOException
+    {
+        MenuPageController menuPageController = new MenuPageController();
+
+        Scene newScene = new Scene(menuPageController.initializePage(primaryStage, userData, httpRequest, language));
+
+        primaryStage.setScene(newScene);
     }
 
     private void setPrimaryStage(Stage primaryStage)

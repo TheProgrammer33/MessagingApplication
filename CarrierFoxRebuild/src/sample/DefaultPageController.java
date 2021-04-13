@@ -1,7 +1,5 @@
 package sample;
 
-import javafx.application.Platform;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -9,6 +7,8 @@ import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -33,8 +33,6 @@ public class DefaultPageController extends AnchorPane
     private int currentThreadId;
     private Language language;
 
-    @FXML
-    private AnchorPane chatNameAnchor;
     @FXML
     private TextField messagingTextField;
     @FXML
@@ -63,44 +61,84 @@ public class DefaultPageController extends AnchorPane
         ScrollPane friendsScrollPane = (ScrollPane) friendsListAnchor.getChildren().get(0);
         friendsBox = (VBox) friendsScrollPane.getContent();
 
-        chatNameAnchor = (AnchorPane) root.getChildrenUnmodifiable().get(2);
+        AnchorPane chatNameAnchor = (AnchorPane) root.getChildrenUnmodifiable().get(2);
         Text chatName = (Text) chatNameAnchor.getChildren().get(0);
 
-        if (!this.userData.getThreadList().isEmpty())
-        {
-            this.currentThreadId = this.userData.getThreadList().get(0).getThreadId();
-            httpRequest.setThreadId(currentThreadId);
+        updateChatName(chatName);
 
-            Thread initialThread = this.userData.getThreadList().get(0);
-            if (initialThread.getName().contains(this.userData.getUsername()))
-            {
-                initialThread.setName(initialThread.getName().replace(this.userData.getUsername() + ",", ""));
-            }
-            chatName.setText(initialThread.getName());
-        }
-        else
-        {
-            this.currentThreadId = -1;
-            chatName.setText("");
-            friendsBox.getChildren().clear();
-        }
         AnchorPane messageBoxAnchor = (AnchorPane) root.getChildrenUnmodifiable().get(3);
         messagesScrollPane = (ScrollPane) messageBoxAnchor.getChildren().get(0);
         messagesBox = (VBox) messagesScrollPane.getContent();
 
         messagingTextField = (TextField) root.getChildrenUnmodifiable().get(4);
 
+        HBox buttonsHBox = (HBox) root.getChildrenUnmodifiable().get(6);
+
+        Image friendsIcon = new Image(String.valueOf(this.getClass().getResource("resources/friendsx2.png")));
+        Button friendsButton = (Button) buttonsHBox.getChildren().get(0);
+        buildImageButton(friendsButton, friendsIcon);
+
+        Image searchIcon = new Image(String.valueOf(this.getClass().getResource("resources/searchx2.png")));
+        Button searchButton = (Button) buttonsHBox.getChildren().get(1);
+        buildImageButton(searchButton, searchIcon);
+
+        Image chatSettingsIcon = new Image(String.valueOf(this.getClass().getResource("resources/meatballMenux2.png")));
+        Button chatSettingsButton = (Button) buttonsHBox.getChildren().get(2);
+        buildImageButton(chatSettingsButton, chatSettingsIcon);
+
+        Image settingsIcon = new Image(String.valueOf(this.getClass().getResource("resources/settingsx2.png")));
+        Button settingsButton = (Button) buttonsHBox.getChildren().get(3);
+        buildImageButton(settingsButton, settingsIcon);
+
         syncToLanguage(root);
 
         if (this.currentThreadId != -1)
         {
-            updateMessageBox(currentThreadId);
             updateFriendsBox();
 
             httpRequest.openWebSocket(messagesScrollPane, userData, currentThreadId);
         }
 
         return new Group(root);
+    }
+
+    private void buildImageButton(Button button, Image image)
+    {
+        ImageView imageView = new ImageView(image);
+        imageView.setFitHeight(20.0);
+        imageView.setPreserveRatio(true);
+
+        button.setText("");
+        button.setGraphic(imageView);
+    }
+
+    private void changeThreadId(int newThreadId)
+    {
+        this.currentThreadId = newThreadId;
+
+        httpRequest.setThreadId(newThreadId);
+    }
+
+    private void updateChatName(Text chatNameText)
+    {
+        if (!this.userData.getThreadList().isEmpty())
+        {
+            int newThreadId = this.userData.getThreadList().get(0).getThreadId();
+            changeThreadId(newThreadId);
+
+            Thread initialThread = this.userData.getThreadList().get(0);
+            if (initialThread.getName().contains(this.userData.getUsername()))
+            {
+                initialThread.setName(initialThread.getName().replace(this.userData.getUsername() + ",", ""));
+            }
+            chatNameText.setText(initialThread.getName());
+        }
+        else
+        {
+            this.currentThreadId = -1;
+            chatNameText.setText("");
+            friendsBox.getChildren().clear();
+        }
     }
 
     private void syncToLanguage(Parent root)
@@ -114,14 +152,6 @@ public class DefaultPageController extends AnchorPane
         HBox sendButtonHBox = (HBox) root.getChildrenUnmodifiable().get(5);
         Button sendButton = (Button) sendButtonHBox.getChildren().get(0);
         sendButton.setText(defaultResourceBundle.getString("send"));
-
-        HBox friendSettingsHBox = (HBox) root.getChildrenUnmodifiable().get(6);
-
-        Button friendsButton = (Button) friendSettingsHBox.getChildren().get(0);
-        friendsButton.setText(defaultResourceBundle.getString("friends"));
-
-        Button settingsButton = (Button) friendSettingsHBox.getChildren().get(1);
-        settingsButton.setText(defaultResourceBundle.getString("settings"));
 
         AnchorPane addChatAnchorPane = (AnchorPane) root.getChildrenUnmodifiable().get(1);
         Text addChatText = (Text) addChatAnchorPane.getChildren().get(1);
@@ -171,48 +201,13 @@ public class DefaultPageController extends AnchorPane
         }
     }
 
-    public void updateMessageBox(int threadId)
-    {
-        List<Message> messages = this.httpRequest.getMessages(threadId);
-
-        messagesBox.getChildren().clear();
-
-        if (messages == null)
-            return;
-
-        for (int i = 0; i < messages.size(); i++)
-        {
-            HBox hBox = new HBox();
-            Button messageWrapper = new Button();
-
-            messageWrapper.setTextFill(Color.WHITE);
-            messageWrapper.setText(messages.get(i).getMessageBody());
-
-            hBox.getChildren().add(messageWrapper);
-
-            if (messages.get(i).getUser().compareTo(userData.getUsername()) == 0)
-            {
-                hBox.setAlignment(Pos.BASELINE_RIGHT);
-                messageWrapper.setStyle("-fx-background-color: #4285F4");
-            }
-            else
-            {
-                hBox.setAlignment(Pos.BASELINE_LEFT);
-                messageWrapper.setStyle("-fx-background-color: #DB4437");
-            }
-
-            messagesBox.setSpacing(10);
-            messagesBox.getChildren().add(hBox);
-        }
-    }
-
     public String encryptMessage(String message)
     {
-        Encyption encyptionHandler = new Encyption();
+        Encyption encryptionHandler = new Encyption();
 
         try
         {
-            return encyptionHandler.encrypt(message);
+            return encryptionHandler.encrypt(message);
         } catch (Exception e)
         {
             e.printStackTrace();
@@ -246,7 +241,7 @@ public class DefaultPageController extends AnchorPane
     }
 
     @FXML
-    public void initializeFriendsPage() //FIXME: Loses websocket thread when switching back to thread
+    public void initializeFriendsPage()
     {
         FriendsManagementController friendsManagementController = new FriendsManagementController();
 
@@ -268,6 +263,24 @@ public class DefaultPageController extends AnchorPane
 
         primaryStage.toFront();
     }
+
+    @FXML
+    private void initializeSearchingPage()
+    {
+        SearchingPageController searchingPageController = new SearchingPageController();
+
+        Scene newScene = null;
+        try
+        {
+            newScene = new Scene(searchingPageController.initializePage(primaryStage, userData, httpRequest, language));
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        primaryStage.setScene(newScene);
+    }
+
 
     @FXML
     public void initializeChatSettings() throws IOException
@@ -358,8 +371,6 @@ public class DefaultPageController extends AnchorPane
         this.httpRequest.sendMessage(encryptedMessage, String.valueOf(this.currentThreadId), userData.getUsername());
 
         messagingTextField.setText("");
-
-        updateMessageBox(this.currentThreadId);
 
         messagesScrollPane.vvalueProperty().bind(messagesBox.heightProperty());
     }

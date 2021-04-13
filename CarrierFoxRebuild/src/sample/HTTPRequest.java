@@ -74,6 +74,11 @@ public class HTTPRequest
         websocketThread.stop();
     }
 
+    public List<Message> getCurrentThreadMessages()
+    {
+        return chatClient.getDecryptedMessages();
+    }
+
     public void changeThread(int threadId)
     {
         chatClient.changeThread(threadId);
