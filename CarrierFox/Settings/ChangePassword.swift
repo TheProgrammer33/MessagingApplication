@@ -12,6 +12,7 @@ struct ChangePassword: View {
     @State private var newPassword = ""
     @State private var confirmNewPassword = ""
     @State private var validOldPassword = false
+    @State private var showAlert: Bool = false
     @ObservedObject var userData: UserData = .shared
     var body: some View {
         return VStack {
@@ -20,10 +21,6 @@ struct ChangePassword: View {
             SecureField(NSLocalizedString("Old Password", comment: "Old Password"), text: $oldPassword)
                 .padding([.top, .leading, .trailing])
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-            if(!validOldPassword) {
-                Text("Password is incorrect")
-                    .foregroundColor(Color.red)
-            }
             
             SecureField(NSLocalizedString("New Password", comment: "New Password"), text: $newPassword)
                 .padding([.top, .leading, .trailing])
@@ -37,13 +34,15 @@ struct ChangePassword: View {
             }
             
             Button(action: {
-                print("changing password")
                 changePassword(sessionID: userData.sessionID, password: newPassword, oldPassword: oldPassword) { response in
-                    validOldPassword = response
+                    //validOldPassword = response
+                    self.showAlert = !response
                 }
             }) {
                 Text(NSLocalizedString("Change Password", comment: "Change Password"))
             }
+        }.alert(isPresented: $showAlert) {
+            Alert(title: Text(NSLocalizedString("Password is incorrect", comment: "Invalid")), message: Text(NSLocalizedString("Password is incorrect", comment: "Invalid")), dismissButton: .default(Text("Okay")))
         }
         
     }

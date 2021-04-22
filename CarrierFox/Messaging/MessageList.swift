@@ -17,11 +17,11 @@ struct MessageList: View {
             ScrollableView(scrollTo: $scrollTo)//userData.scrollIndex!)
             {
                 ForEach(userData.messages, id: \.self) { message in
-                    MessageRow(message: message).padding(.all, 5.0).frame(minWidth: 550, maxWidth: 550)
+                    MessageRow(message: message).padding(.all, 5.0).frame(maxWidth: 550)
                 }
             }
             Button(action: {
-                self.$scrollTo.wrappedValue = CGPoint(x: 0,y: 30*userData.messages.count)
+                self.$scrollTo.wrappedValue = CGPoint(x: 0,y: 50*userData.messages.count)
             }){
                 Text(NSLocalizedString("Scroll to Bottom", comment: "Temporary scroll to bottom"))
             }

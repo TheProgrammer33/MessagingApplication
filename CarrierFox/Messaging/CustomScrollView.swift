@@ -26,7 +26,6 @@ struct ScrollableView<Content:View>: NSViewControllerRepresentable {
         let scrollViewController = NSScrollViewController(rootView: self.content())
 
         scrollViewController.scrollView.hasVerticalScroller = hasScrollbars
-        //scrollViewController.scrollView.hasHorizontalScroller = hasScrollbars
         scrollViewController.scrollView.hasHorizontalScroller = false
         return scrollViewController
     }

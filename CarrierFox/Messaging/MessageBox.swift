@@ -65,7 +65,7 @@ struct MessageBox: View, WebSocketConnectionDelegate {
             Button(action: {
                 
                 if(message != "") {
-                    webSocketConnection.sendMessage(message: message, user: userData.username, threadId: userData.selectedChatID)
+                    webSocketConnection.sendMessage(textMessage: message, user: userData.username, threadId: userData.selectedChatID)
                 }
                 getMessages(threadID: userData.selectedChatID) { (messages) in
                     if(!messages.isEmpty)

@@ -31,9 +31,15 @@ final class UserData: ObservableObject {
     
 
     func publishMessageChanges(messages: [Message]) {
+        var tempMessages:[Message] = []
         print("In publishMessageChanges")
+        for message in messages {
+            var tempMessage:Message = message
+            tempMessage.updateMessageBody(newMessageBody: decryptCommonCrypto(cyphertext: message.messageBody))
+            tempMessages.append(tempMessage)
+        }
         DispatchQueue.main.async {
-            self.messages = messages
+            self.messages = tempMessages
         }
     }
     

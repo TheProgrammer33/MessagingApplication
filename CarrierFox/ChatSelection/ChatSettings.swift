@@ -15,7 +15,7 @@ struct ChatSettings: View {
             Button(action: {
                 showChatSettings.toggle()
             }) {
-                Text(NSLocalizedString("Chat Settings", comment: "Chat Settings"))
+                Image("MeatballMenu")
             }
         }
         .popover(

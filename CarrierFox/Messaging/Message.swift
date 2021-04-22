@@ -23,7 +23,19 @@ struct Message: Codable, Hashable {
         self.isEdited = false
     }
     
+    init(messageBody: String, messageSentDate: Date, _id: String, user:String, isEdited: Bool) {
+        self._id = _id
+        self.messageBody = messageBody
+        self.user = user
+        self.messageSentDate = messageSentDate
+        self.isEdited = isEdited
+    }
+    
     mutating func updatedEdited() {
         self.isEdited = true
+    }
+    
+    mutating func updateMessageBody(newMessageBody: String) {
+        self.messageBody = newMessageBody
     }
 }

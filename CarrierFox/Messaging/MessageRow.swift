@@ -15,72 +15,81 @@ struct MessageRow: View {
         func rightMouseDown(with theEvent: NSEvent) {
         }
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM/dd/yyyy h:m a"
+        formatter.dateFormat = "MM/dd/yyyy h:mm a"
         let date = formatter.string(from: message.messageSentDate)
         return VStack {
             HStack {
                 if (message.user == userData.username) {
                     
-                    VStack {
-                        HStack {
-                            Spacer()
-                            //Text(date).font(.caption).foregroundColor(Color.gray)
-                            Text(message.user)
-                                .font(.footnote)
-                                .multilineTextAlignment(.trailing)
-                                .padding(.trailing, 6.0)
-                        }
-                        HStack {
-                            Spacer()
-                            Button(action: {
-                                self.showMessageSettings.toggle()
-                            }) {
-                                Text(message.messageBody)
-                                    .foregroundColor(Color.white)
-                                    
-                            }.buttonStyle(BorderlessButtonStyle())
-                            .fixedSize(horizontal: false, vertical: true)
-                            .multilineTextAlignment(.trailing)
-                            .padding(.horizontal)
-                             .background(Color.blue)
-                             .clipShape(Capsule())
-                             
-                        }
-                    } .popover(
-                        isPresented: self.$showMessageSettings,
-                        arrowEdge: .trailing
-                    ) {
+                    HStack {
+                        Spacer()
                         VStack {
-                            Text(NSLocalizedString("Delete Message?", comment: "Confirm delete message"))
                             HStack {
-                                Button(action: {
-                                    print("deleting message")
-                                    print(message._id)
-                                    deleteMessage(messageID: message._id, threadID: userData.selectedChatID)
-                                    self.showMessageSettings.toggle()
-                                    getMessages(threadID: userData.selectedChatID) { (messages) in
-                                        if(!messages.isEmpty)
-                                        {
-                                            userData.publishMessageChanges(messages: updateMessages(messages))
-                                            userData.updateScrollIndex()
-                                        }
-                                        else
-                                        {
-                                            userData.publishMessageChanges(messages: [])
-                                        }
-                                    }
-                                    
-                                }){
-                                    Text(NSLocalizedString("Delete", comment: "Delete message"))
-                                }
-                                Button(action: {
-                                    self.showMessageSettings.toggle()
-                                    
-                                }){
-                                    Text(NSLocalizedString("Cancel", comment: "Cancel"))
-                                }
+                                Spacer()
+                                Text(date).font(.caption).foregroundColor(Color.gray)
+                                Text(message.user)
+                                    .font(.footnote)
+                                    .multilineTextAlignment(.trailing)
+                                    .padding(.trailing, 6.0)
                             }
-                        }.padding()
+                            ZStack{
+                                HStack {
+                                    Spacer()
+                                    Text(message.messageBody)
+                                        .foregroundColor(Color.white)
+                                        .multilineTextAlignment(.leading)
+                                        .padding(.horizontal)
+                                        .background(Color.blue)
+                                        .clipShape(Capsule())
+                                        .fixedSize(horizontal: false, vertical: true)
+                                }
+                                    
+                                Button(action: {
+                                    self.showMessageSettings.toggle()
+                                }) {
+                                    Text("                                                                          ")
+                                        .foregroundColor(Color.white)
+                                        
+                                }.buttonStyle(BorderlessButtonStyle())
+                                .padding(.horizontal)
+                                
+                            }
+                                     
+                        } .popover(
+                            isPresented: self.$showMessageSettings,
+                            arrowEdge: .trailing
+                        ) {
+                            VStack {
+                                Text(NSLocalizedString("Delete Message?", comment: "Confirm delete message"))
+                                HStack {
+                                    Button(action: {
+                                        print(message._id)
+                                        deleteMessage(messageID: message._id, threadID: userData.selectedChatID)
+                                        self.showMessageSettings.toggle()
+                                        getMessages(threadID: userData.selectedChatID) { (messages) in
+                                            if(!messages.isEmpty)
+                                            {
+                                                userData.publishMessageChanges(messages: updateMessages(messages))
+                                                userData.updateScrollIndex()
+                                            }
+                                            else
+                                            {
+                                                userData.publishMessageChanges(messages: [])
+                                            }
+                                        }
+                                        
+                                    }){
+                                        Text(NSLocalizedString("Delete", comment: "Delete message"))
+                                    }
+                                    Button(action: {
+                                        self.showMessageSettings.toggle()
+                                        
+                                    }){
+                                        Text(NSLocalizedString("Cancel", comment: "Cancel"))
+                                    }
+                                }
+                            }.padding()
+                    }
                     }
                 }
                 else {
@@ -90,7 +99,7 @@ struct MessageRow: View {
                                 .font(.footnote)
                                 .multilineTextAlignment(.leading)
                                 .padding(.leading, 6.0)
-                            //Text(date)
+                            Text(date).font(.caption).foregroundColor(Color.gray)
                                 .font(.caption)
                                 .foregroundColor(Color.white)
                             Spacer()

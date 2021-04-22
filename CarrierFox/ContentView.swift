@@ -51,15 +51,14 @@ struct ContentView: View {
                                     Button(action: {
                                         self.isFriends.toggle()
                                         self.isSettings = false
-                                        encryptCommonCrypto()
                                     }) {
-                                        Text(NSLocalizedString("Friends", comment: "Friends"))
+                                        Image("Friends")
                                     }
                                     Button(action: {
                                         self.isSettings.toggle()
                                         self.isFriends = false
                                     }) {
-                                        Text(NSLocalizedString("Settings", comment: "Settings"))
+                                        Image("Settings")
                                     }
                                 }
                                 HStack {

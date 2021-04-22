@@ -6,17 +6,23 @@
 //
 
 import SwiftUI
+func searchMessages(searchValue: String, listToSearch: [Message]) -> [Message] {
+    let result = listToSearch.filter { message in
+        return message.messageBody.lowercased().contains(searchValue.lowercased())
+    }
+    return result
+}
 
 struct SearchMessages: View {
     @ObservedObject var userData: UserData = .shared
     @State private var showMessageSearch: Bool = false
     @State private var searchMessages:String = ""
-    @State private var returnedMessages: [String] = []
+    @State private var returnedMessages: [Message] = []
     var body: some View {
         Button(action: {
             showMessageSearch.toggle()
         }) {
-            Text("Search Messages")
+            Image("Search")
         }.popover(
             isPresented: self.$showMessageSearch,
             arrowEdge: .bottom
@@ -25,13 +31,14 @@ struct SearchMessages: View {
                 HStack {
                     TextField(NSLocalizedString("Search Messages", comment: "Search Messages"), text: $searchMessages).padding()
                     Button(action: {
-                        returnedMessages = CarrierFox.searchMessages(toSearch: searchMessages, threadId: userData.selectedChatID)
+                        //returnedMessages = CarrierFox.searchMessages(toSearch: searchMessages, threadId: userData.selectedChatID)
+                        self.returnedMessages = CarrierFox.searchMessages(searchValue: self.searchMessages, listToSearch: userData.messages)
                     }) {
                         Text(NSLocalizedString("Search", comment: "Search messages"))
                     }
                 }
                 ForEach(returnedMessages, id: \.self) { message in
-                    Text(message)
+                    Text(message.messageBody).padding(.vertical)
                 }
             }.padding()
         }

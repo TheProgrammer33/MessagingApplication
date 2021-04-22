@@ -11,6 +11,7 @@ struct LoginView: View {
     @State private var username = ""
     @State private var password = ""
     @State private var sessionID = ""
+    @State private var showAlert: Bool = false
     @ObservedObject var userData: UserData = .shared
     let myWindow:NSWindow?
     var body: some View {
@@ -31,7 +32,9 @@ struct LoginView: View {
                 }
                 .frame(width: 425.0)
                 HStack {
-                    Button(action: {}) {
+                    Button(action: {
+                        print(encryptCommonCrypto(plaintext: "Ok lets see if this workssss"))
+                    }) {
                         Text(NSLocalizedString("Reset Password", comment: "Reset Password"))
                             .padding(.horizontal)
                     }.buttonStyle(BorderlessButtonStyle())
@@ -75,6 +78,7 @@ struct LoginView: View {
                             }
                             else {
                                 successfulLogin = false
+                                self.showAlert = true
                             }
                         }
                     }) {
@@ -82,11 +86,15 @@ struct LoginView: View {
                     }
                 }
                 .padding(.trailing, 27.0)
+                
                 if (!successfulLogin) {
                     Text(NSLocalizedString("Invalid Username or Password", comment: "Invalid")).font(.footnote).foregroundColor(Color.red).padding()
                 }
             }
             .frame(width: 450.0, height: 500.0)
+            .alert(isPresented: $showAlert) {
+                Alert(title: Text(NSLocalizedString("Invalid Username or Password", comment: "Invalid")), message: Text(NSLocalizedString("Invalid Username or Password", comment: "Invalid")), dismissButton: .default(Text("Okay")))
+            }
         }
     }
 }

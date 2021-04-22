@@ -9,7 +9,8 @@ import Foundation
 import Combine
 
 protocol WebSocketConnection {
-    func sendMessage(message: String, user: String, threadId: Int)
+    func sendMessage(textMessage: String, user: String, threadId: Int)
+    func typing()
     func send(data: Data)
     func connect()
     func disconnect()
@@ -75,19 +76,28 @@ class WebSocketTaskConnection: NSObject, WebSocketConnection, URLSessionWebSocke
                 @unknown default:
                     fatalError()
                 }
-                //self.listen()
-                //self.connect()
             }
             self.listen()
         }
-        //self.listen()
     }
     
-    func sendMessage(message: String, user: String, threadId: Int) {
-        let message = URLSessionWebSocketTask.Message.string("{\"message\": \"\(message)\", \"threadId\": \(threadId), \"user\": \"\(user)\",\"type\": \"newMessage\"}")
+    func sendMessage(textMessage: String, user: String, threadId: Int) {
+        print(textMessage)
+        let encryptedMessage:String = encryptCommonCrypto(plaintext: textMessage)
+        print(encryptedMessage)
+        let message = URLSessionWebSocketTask.Message.string("{\"message\": \"\(encryptedMessage)\", \"threadId\": \(threadId), \"user\": \"\(user)\",\"type\": \"newMessage\"}")
         webSocketTask.send(message) { error in
             if let error = error {
                 self.delegate?.onError(connection: self, error: error)
+            }
+        }
+    }
+    
+    func typing() {
+        let message = URLSessionWebSocketTask.Message.string("\"type\": \"typing\"")
+        webSocketTask.send(message) { error in
+            if let error = error {
+            self.delegate?.onError(connection: self, error: error)
             }
         }
     }
