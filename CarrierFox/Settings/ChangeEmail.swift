@@ -19,12 +19,7 @@ struct ChangeEmail: View {
             TextField(NSLocalizedString("Email", comment: "Email"), text: $email)
                 .padding([.top, .leading, .trailing])
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-//            if(!validEmail) {
-//                Text(NSLocalizedString("Invalid Email", comment: "Invalid Email"))
-//                    .foregroundColor(Color.red)
-//            }
             Button(action: {
-                print("changing email")
                 changeEmail(sessionID: userData.sessionID, newEmail: email) { response in
                     self.showAlert = !response
                 }

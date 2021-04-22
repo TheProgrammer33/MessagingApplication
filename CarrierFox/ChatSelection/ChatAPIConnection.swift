@@ -51,7 +51,6 @@ func newChat(friendUsernames: [String], sessionID: String, currentUser: String, 
             let end =  stringData.index(stringData.endIndex, offsetBy: -1)
             let range = start..<end
             stringData = String(stringData[range])
-            print(stringData)
             let parsedData = Data(stringData.utf8)
             let loginResponse:NewChatObject = try! JSONDecoder().decode(NewChatObject.self, from: parsedData)
             completionHandler(loginResponse)
@@ -93,9 +92,8 @@ func muteThread(threadMuted: Bool, threadId: Int) {
             return
         }
 
-        if let data = data {
-            let stringData = String(decoding: data, as: UTF8.self)
-            print(stringData)
+        if data != nil {
+            return
         }
     })
     dataTask.resume()
@@ -134,9 +132,8 @@ func clearMessages(threadId: Int) {
             return
         }
 
-        if let data = data {
-            let stringData = String(decoding: data, as: UTF8.self)
-            print(stringData)
+        if data != nil {
+            return
         }
     })
     dataTask.resume()

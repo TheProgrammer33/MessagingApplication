@@ -21,7 +21,6 @@ func showLoginWindow() {
 
 
 func showContentWindow() {
-    print("in show content window")
     var windowRef:NSWindow
     windowRef = NSWindow(
         contentRect: NSRect(x: 0, y: 0, width: 800, height: 700),

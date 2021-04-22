@@ -32,9 +32,7 @@ struct LoginView: View {
                 }
                 .frame(width: 425.0)
                 HStack {
-                    Button(action: {
-                        print(encryptCommonCrypto(plaintext: "Ok lets see if this workssss"))
-                    }) {
+                    Button(action: {}) {
                         Text(NSLocalizedString("Reset Password", comment: "Reset Password"))
                             .padding(.horizontal)
                     }.buttonStyle(BorderlessButtonStyle())

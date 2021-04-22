@@ -13,9 +13,7 @@ struct ChatDetailView: View {
     var body: some View {
         VStack {
             Button(action: {
-                print(chat)
                 userData.publishSelectedChatChanges(chat: chat)
-                print(userData.selectedChatID)
                 getMessages(threadID: userData.selectedChatID) { (messages) in
                     if(!messages.isEmpty)
                     {

@@ -38,7 +38,10 @@ struct SearchMessages: View {
                     }
                 }
                 ForEach(returnedMessages, id: \.self) { message in
-                    Text(message.messageBody).padding(.vertical)
+                    HStack {
+                        Text(message.user + ": ").bold()
+                        Text(message.messageBody).padding(.vertical)
+                    }
                 }
             }.padding()
         }

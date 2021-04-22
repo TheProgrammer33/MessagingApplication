@@ -28,7 +28,6 @@ struct FriendsView: View {
             }
             HStack {
                 Button(action: {
-                    print("adding friend")
                     self.isNewFriend.toggle()
                 }) {
                     Text(NSLocalizedString("+ Add Friend", comment: "Add Friend"))

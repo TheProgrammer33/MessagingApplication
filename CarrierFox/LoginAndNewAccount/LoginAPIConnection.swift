@@ -43,7 +43,6 @@ func createNewAccount(email: String, username: String, password: String, complet
 
         if let data = data {
             let stringData = String(decoding: data, as: UTF8.self)
-            print(stringData)
             if (stringData == "{}") {
                 completionHandler(true)
             }

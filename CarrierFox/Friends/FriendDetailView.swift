@@ -16,7 +16,6 @@ struct FriendDetailView: View {
             Text(friend.username)
             Spacer()
             Button(action: {
-                print("Deleting friend")
                 deleteFriend(friendUsername: friend.username, sessionID: userData.sessionID){ (result) in
                     getFriends(sessionID: userData.sessionID) { (friends) in
                         userData.publishFriendListChanges(friendList: friends)

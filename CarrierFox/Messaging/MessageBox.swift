@@ -24,7 +24,6 @@ struct MessageBox: View, WebSocketConnectionDelegate {
     
     func onMessage(connection: WebSocketConnection, text: String) {
         print(text)
-        print("text")
         if(text != "Websocket Connected" && text != "Connection") {
             getMessages(threadID: userData.selectedChatID) { (messages) in
                 if(!messages.isEmpty)

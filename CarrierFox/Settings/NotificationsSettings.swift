@@ -17,7 +17,6 @@ struct NotificationsSettings: View {
                 Text(NSLocalizedString("Send Notifications", comment: "Send Notifications"))
             }.toggleStyle(SwitchToggleStyle())
             Button(action: {
-                print("saving settings")
                 saveNotifications(sessionID: userData.sessionID, notifications: userData.notificationsIsOn)
             }) {
                 Text(NSLocalizedString("Save Settings", comment: "Save Settings"))

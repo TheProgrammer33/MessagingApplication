@@ -33,7 +33,6 @@ func getMessages(threadID:Int, completionHandler: @escaping (Data) -> Void){
         }
 
         if let data = data {
-            let stringData = String(decoding: data, as: UTF8.self)
             completionHandler(data)
         }
     })
@@ -68,9 +67,8 @@ func sendMessage(myMessage: String){
             return
         }
 
-        if let data = data {
-            let stringData = String(decoding: data, as: UTF8.self)
-            print(stringData)
+        if data != nil {
+            return
         }
     })
     dataTask.resume()
@@ -105,15 +103,9 @@ func deleteMessage(messageID: String, threadID: Int){
             return
         }
 
-        if let data = data {
-            let stringData = String(decoding: data, as: UTF8.self)
-            print(stringData)
+        if data != nil {
+            return
         }
     })
     dataTask.resume()
-}
-
-func searchMessages(toSearch: String, threadId: Int) -> [String] {
-    print("searching messages")
-    return []
 }

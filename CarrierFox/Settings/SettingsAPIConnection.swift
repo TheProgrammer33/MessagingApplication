@@ -43,7 +43,6 @@ func getSettings(completionHandler: @escaping (Bool) -> Void){
 
         if let data = data {
             let stringData = String(decoding: data, as: UTF8.self)
-            print(stringData)
             if (stringData == "{}") {
                 completionHandler(true)
             }
@@ -89,9 +88,8 @@ func saveNotifications(sessionID: String, notifications: Bool){
             return
         }
 
-        if let data = data {
-            let stringData = String(decoding: data, as: UTF8.self)
-            print(stringData)
+        if data != nil {
+            return
         }
     })
     dataTask.resume()
@@ -133,7 +131,6 @@ func changePassword(sessionID: String, password: String, oldPassword: String, co
 
         if let data = data {
             let stringData = String(decoding: data, as: UTF8.self)
-            print(stringData)
             if (stringData == "{}") {
                 completionHandler(true)
             }
@@ -180,7 +177,6 @@ func changeEmail(sessionID: String, newEmail: String, completionHandler: @escapi
 
         if let data = data {
             let stringData = String(decoding: data, as: UTF8.self)
-            print(stringData)
             if (stringData == "{}") {
                 completionHandler(true)
             }

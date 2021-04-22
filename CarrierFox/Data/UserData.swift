@@ -11,9 +11,7 @@ import SwiftUI
 import Combine
 
 final class UserData: ObservableObject {
-    init() {
-        print("in userdata init")
-    }
+    init() {}
     
     static let shared = UserData()
     
@@ -32,7 +30,6 @@ final class UserData: ObservableObject {
 
     func publishMessageChanges(messages: [Message]) {
         var tempMessages:[Message] = []
-        print("In publishMessageChanges")
         for message in messages {
             var tempMessage:Message = message
             tempMessage.updateMessageBody(newMessageBody: decryptCommonCrypto(cyphertext: message.messageBody))
@@ -72,7 +69,6 @@ final class UserData: ObservableObject {
     }
     
     func publishSessionIDChange(id: String) {
-        print("in publish session id")
         print(id)
         DispatchQueue.main.async {
             self.sessionID = id
@@ -84,7 +80,6 @@ final class UserData: ObservableObject {
             self.friendList = friendList
             self.newChatSelection = []
             for friend in friendList {
-                //self.newChatSelection.updateValue(false, forKey: friend.username)
                 self.newChatSelection.append(FriendWithSelect(friend: friend.username))
             }
         }

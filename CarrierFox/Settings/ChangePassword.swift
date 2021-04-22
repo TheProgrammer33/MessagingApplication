@@ -35,7 +35,6 @@ struct ChangePassword: View {
             
             Button(action: {
                 changePassword(sessionID: userData.sessionID, password: newPassword, oldPassword: oldPassword) { response in
-                    //validOldPassword = response
                     self.showAlert = !response
                 }
             }) {
