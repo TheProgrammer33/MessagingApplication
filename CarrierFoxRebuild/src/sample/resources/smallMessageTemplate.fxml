@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="30.0" prefWidth="66.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Button layoutX="3.0" layoutY="1.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #4285F4;" wrapText="true">
+         <graphic>
+            <VBox prefHeight="16.0" prefWidth="80.0" />
+         </graphic>
+      </Button>
+      <Text fill="WHITE" layoutX="5.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="aaaaaaaa" wrappingWidth="70.0" />
+   </children>
+</AnchorPane>

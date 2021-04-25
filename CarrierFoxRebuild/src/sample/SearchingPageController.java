@@ -153,8 +153,9 @@ public class SearchingPageController extends AnchorPane
 
         results.setText(resultsList.size() + " Results");
 
-        for (Message message : resultsList)
+        for (int j = resultsList.size() - 1; j > 0; j--)
         {
+            Message message = resultsList.get(j);
             Parent searchMessageBox = buildSearchMessageTemplate();
 
             Button bottomBox = (Button) searchMessageBox.getChildrenUnmodifiable().get(0);
@@ -268,7 +269,7 @@ public class SearchingPageController extends AnchorPane
     }
 
     @FXML
-    public void sendMessageOnClick()
+    public void sendMessageOnClick() throws IOException
     {
         int currentThreadId = httpRequest.getThreadId();
 

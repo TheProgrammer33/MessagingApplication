@@ -90,13 +90,15 @@ public class DefaultPageController extends AnchorPane
         Button settingsButton = (Button) buttonsHBox.getChildren().get(3);
         buildImageButton(settingsButton, settingsIcon);
 
+        Text stringTextWidth = (Text) root.getChildrenUnmodifiable().get(7);
+
         syncToLanguage(root);
 
         if (this.currentThreadId != -1)
         {
             updateFriendsBox();
 
-            httpRequest.openWebSocket(messagesScrollPane, userData, currentThreadId);
+            httpRequest.openWebSocket(messagesScrollPane, stringTextWidth, userData, currentThreadId);
         }
 
         return new Group(root);

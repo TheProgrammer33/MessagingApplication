@@ -1,5 +1,6 @@
 package sample;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -8,12 +9,19 @@ import java.util.List;
 import java.util.Map;
 
 import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft;
 import org.java_websocket.handshake.ServerHandshake;
@@ -26,15 +34,17 @@ public class WebSocketController extends WebSocketClient {
 
     private ScrollPane messagesScrollPane;
     private VBox messagesBox;
+    private Text stringTextWidth;
     private UserData userData;
     private int threadId;
 
     private List<Message> decryptedMessages;
 
-    public WebSocketController(URI serverUri, ScrollPane messagesScrollPane, UserData userData, int threadId) {
+    public WebSocketController(URI serverUri, ScrollPane messagesScrollPane, Text stringTextWidth, UserData userData, int threadId) {
         super(serverUri);
         this.messagesScrollPane = messagesScrollPane;
         this.messagesBox = (VBox) messagesScrollPane.getContent();
+        this.stringTextWidth = stringTextWidth;
         this.userData = userData;
         this.threadId = threadId;
         this.decryptedMessages = new ArrayList<Message>();
@@ -49,7 +59,13 @@ public class WebSocketController extends WebSocketClient {
     public void onMessage(String message) {
         Platform.runLater(() ->
         {
-            updateMessageBox();
+            try
+            {
+                updateMessageBox();
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
             messagesScrollPane.vvalueProperty().bind(messagesBox.heightProperty());
         });
     }
@@ -70,7 +86,13 @@ public class WebSocketController extends WebSocketClient {
 
         Platform.runLater(() ->
         {
-            updateMessageBox();
+            try
+            {
+                updateMessageBox();
+            } catch (IOException e)
+            {
+                e.printStackTrace();
+            }
             messagesScrollPane.vvalueProperty().bind(messagesBox.heightProperty());
         });
     }
@@ -98,7 +120,7 @@ public class WebSocketController extends WebSocketClient {
         this.messagesScrollPane = messagesScrollPane;
     }
 
-    public void updateMessageBox()
+    public void updateMessageBox() throws IOException
     {
         HTTPRequest httpRequest = new HTTPRequest();
         List<Message> messages = httpRequest.getMessages(this.threadId);
@@ -112,34 +134,133 @@ public class WebSocketController extends WebSocketClient {
 
         for (Message message : messages)
         {
-            Message decryptedMessage = message;
-            HBox hBox = new HBox();
-            Button messageWrapper = new Button();
-
-            decryptedMessage.setMessageBody(decryptMessage(message.getMessageBody()));
-
-            messageWrapper.setTextFill(Color.WHITE);
-            messageWrapper.setText(decryptedMessage.getMessageBody());
-
-            hBox.getChildren().add(messageWrapper);
-
-            if (message.getUser().compareTo(userData.getUsername()) == 0)
+            if (message.getMessageBody().contains("\n"))
             {
-                hBox.setAlignment(Pos.BASELINE_RIGHT);
-                messageWrapper.setStyle("-fx-background-color: #4285F4");
-            } else
+                message.setMessageBody(message.getMessageBody().replace("\n", ""));
+            }
+            else if (message.getMessageBody().isEmpty())
             {
-                hBox.setAlignment(Pos.BASELINE_LEFT);
-                messageWrapper.setStyle("-fx-background-color: #DB4437");
+                continue;
             }
 
-            decryptedMessages.add(decryptedMessage);
+            message.setMessageBody(decryptMessage(message.getMessageBody()));
+
+            decryptedMessages.add(message);
+
+            Parent messageTemplate = normalWrapping(message); //noWrapping(message); //longWrapping(message);
 
             this.messagesBox.setSpacing(10);
-            this.messagesBox.getChildren().add(hBox);
+            this.messagesBox.getChildren().add(messageTemplate);
         }
 
         messagesScrollPane.vvalueProperty().bind(messagesBox.heightProperty());
+    }
+
+    private Parent normalWrapping(Message message) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("resources/smallMessageTemplate.fxml"));
+        AnchorPane messageTemplate = fxmlLoader.load();
+        HBox messageHBoxWrapper = new HBox();
+        Button messageWrapper = (Button) messageTemplate.getChildrenUnmodifiable().get(0);
+        VBox buttonNewLineGraphic = (VBox) messageWrapper.getGraphic();
+        Text messageText = (Text) messageTemplate.getChildrenUnmodifiable().get(1);
+
+        this.stringTextWidth.setText(message.getMessageBody());
+        this.stringTextWidth.applyCss();
+        double stringWidth = Math.ceil(this.stringTextWidth.getLayoutBounds().getWidth()) + 5;
+
+        if (stringWidth > 200)
+        {
+            messageHBoxWrapper.setPrefWidth(200);
+            messageTemplate.setPrefWidth(200);
+            messageWrapper.setPrefWidth(200);
+            messageText.setWrappingWidth(200);
+        }
+        else
+        {
+            messageHBoxWrapper.setPrefWidth(stringWidth);
+            messageTemplate.setPrefWidth(stringWidth);
+            messageWrapper.setPrefWidth(stringWidth);
+            messageText.setWrappingWidth(stringWidth);
+        }
+
+        int numberOfLines = (int) Math.round(stringWidth / 200) + 1;
+
+        for (int i = 0; i < numberOfLines; i++)
+        {
+            Label newLineLabel = new Label("");
+
+            buttonNewLineGraphic.getChildren().add(newLineLabel);
+        }
+
+        if (message.getUser().compareTo(userData.getUsername()) == 0)
+        {
+            messageHBoxWrapper.setAlignment(Pos.BASELINE_RIGHT);
+            messageWrapper.setStyle("-fx-background-color: #4285F4");
+        } else
+        {
+            messageHBoxWrapper.setAlignment(Pos.BASELINE_LEFT);
+            messageWrapper.setStyle("-fx-background-color: #DB4437");
+        }
+
+        messageText.setText(message.getMessageBody());
+
+        messageHBoxWrapper.getChildren().add(messageTemplate);
+
+        return messageHBoxWrapper;
+    }
+
+    private Parent noWrapping(Message message)
+    {
+        HBox messageTemplate = new HBox();
+        Button messageWrapper = new Button();
+
+        messageWrapper.setTextFill(Color.WHITE);
+        messageWrapper.setText(message.getMessageBody());
+
+        messageTemplate.getChildren().add(messageWrapper);
+
+        if (message.getUser().compareTo(userData.getUsername()) == 0)
+        {
+            messageTemplate.setAlignment(Pos.BASELINE_RIGHT);
+            messageWrapper.setStyle("-fx-background-color: #4285F4");
+        } else
+        {
+            messageTemplate.setAlignment(Pos.BASELINE_LEFT);
+            messageWrapper.setStyle("-fx-background-color: #DB4437");
+        }
+
+        return messageTemplate;
+    }
+
+    private Parent longWrapping(Message message) throws IOException
+    {
+        FXMLLoader fxmlLoader = new FXMLLoader(this.getClass().getResource("resources/messageTemplate.fxml"));
+        Parent messageTemplate = fxmlLoader.load();
+        Button messageWrapper = (Button) messageTemplate.getChildrenUnmodifiable().get(0);
+        VBox buttonNewLineGraphic = (VBox) messageWrapper.getGraphic();
+        Text messageText = (Text) messageTemplate.getChildrenUnmodifiable().get(1);
+
+        int numberOfLines = (message.getMessageBody().length() / 63) + 1;
+
+        for (int i = 0; i < numberOfLines; i++)
+        {
+            Label newLineLabel = new Label("");
+
+            buttonNewLineGraphic.getChildren().add(newLineLabel);
+        }
+
+        if (message.getUser().compareTo(userData.getUsername()) == 0)
+        {
+            messageWrapper.setStyle("-fx-background-color: #4285F4");
+        } else
+        {
+            messageWrapper.setStyle("-fx-background-color: #DB4437");
+        }
+
+        messageText.setText(message.getMessageBody());
+
+        return messageTemplate;
     }
 
     public List<Message> getDecryptedMessages()

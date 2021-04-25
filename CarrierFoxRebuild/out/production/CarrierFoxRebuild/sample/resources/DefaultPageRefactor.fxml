@@ -62,5 +62,6 @@
             <Button mnemonicParsing="false" onAction="#initializeSettingsPage" style="-fx-background-color: #646467;" textFill="WHITE" />
          </children>
       </HBox>
+      <Text layoutX="-3.0" layoutY="-10.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
    </children>
 </fx:root>

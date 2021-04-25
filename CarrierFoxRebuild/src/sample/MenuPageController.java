@@ -120,7 +120,7 @@ public class MenuPageController extends AnchorPane
     }
 
     @FXML
-    public void sendMessageOnClick()
+    public void sendMessageOnClick() throws IOException
     {
         int currentThreadId = httpRequest.getThreadId();
 

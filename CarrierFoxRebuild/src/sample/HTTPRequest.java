@@ -2,6 +2,7 @@ package sample;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
@@ -15,6 +16,7 @@ import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 
 import javafx.scene.control.ScrollPane;
+import javafx.scene.text.Text;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSocketFactory;
@@ -33,11 +35,11 @@ public class HTTPRequest
 
     public HTTPRequest() {}
 
-    public void openWebSocket(ScrollPane messagesScrollPane, UserData userData, int threadId)
+    public void openWebSocket(ScrollPane messagesScrollPane, Text stringTextWidth, UserData userData, int threadId)
     {
         try
         {
-            WebSocketController chatclient = new WebSocketController(new URI("wss://catherinegallaher.com/"), messagesScrollPane, userData, threadId);
+            WebSocketController chatclient = new WebSocketController(new URI("wss://catherinegallaher.com/"), messagesScrollPane, stringTextWidth, userData, threadId);
 
             SSLContext sslContext = null;
             sslContext = SSLContext.getInstance("TLS");
@@ -64,7 +66,7 @@ public class HTTPRequest
         chatClient.setMessagesScrollPane(messagesScrollPane);
     }
 
-    public void refreshMessagesBox()
+    public void refreshMessagesBox() throws IOException
     {
         chatClient.updateMessageBox();
     }
