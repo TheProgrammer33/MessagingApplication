@@ -41,6 +41,7 @@ struct ContentView: View {
                                 Button(action: {
                                     self.isFriends = false
                                     self.isSettings = false
+                                    userData.publishChatChanges(chats: [])
                                 }) {
                                     Text(NSLocalizedString("Back", comment: "Back to main page"))
                                 }

@@ -47,12 +47,13 @@ func newChat(friendUsernames: [String], sessionID: String, currentUser: String, 
 
         if let data = data {
             var stringData = String(decoding: data, as: UTF8.self)
-            let start = stringData.index(stringData.startIndex, offsetBy: 1)
-            let end =  stringData.index(stringData.endIndex, offsetBy: -1)
-            let range = start..<end
-            stringData = String(stringData[range])
-            let parsedData = Data(stringData.utf8)
-            let loginResponse:NewChatObject = try! JSONDecoder().decode(NewChatObject.self, from: parsedData)
+            print(stringData)
+//            let start = stringData.index(stringData.startIndex, offsetBy: 1)
+//            let end =  stringData.index(stringData.endIndex, offsetBy: -1)
+//            let range = start..<end
+//            stringData = String(stringData[range])
+//            let parsedData = Data(stringData.utf8)
+            let loginResponse:NewChatObject = try! JSONDecoder().decode(NewChatObject.self, from: data)
             completionHandler(loginResponse)
         }
     })

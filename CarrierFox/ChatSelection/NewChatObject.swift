@@ -8,14 +8,14 @@
 import Foundation
 
 struct NewChatObject: Codable, Hashable {
-    var users: [String]
-    var _id: String
+//    var users: [String]
+//    var _id: String
     var threadId: Int
     var name: String
     
     init() {
-        self.users = []
-        self._id = ""
+//        self.users = []
+//        self._id = ""
         self.threadId = 0
         self.name = ""
     }
